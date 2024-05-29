@@ -1,0 +1,362 @@
+body {
+  font-family: "Ubuntu", sans-serif;
+  background: #e9e9e9;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+.marquee {
+  padding: 5px;
+  background: #0091d6;
+  color: #ffffff;
+  font-weight: 500;
+}
+.marqueeicon {
+  width: 1% !important;
+}
+.logo {
+  width: 100%;
+}
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+.headerlinktitle {
+  color: #323c8c;
+  font-size: 18px;
+  font-weight: 700;
+}
+.headerlinktitle:hover {
+  color: #d0541e;
+}
+.navbarfix {
+  text-align: center;
+}
+.headerlinkspace {
+  display: flex;
+  justify-content: end;
+  padding: 15px 0;
+  width: 100%;
+}
+.banner {
+  margin-top: 120px;
+}
+.carousal1 {
+  padding: 40px 0px;
+}
+
+/* WhatsApp Button */
+
+.whatsApp {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 100;
+}
+.whatsApp:hover {
+  color: #fff;
+}
+.my-whatsApp {
+  margin-top: 15px;
+}
+.floating {
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  margin-left: 30px;
+  margin-top: 5px;
+}
+@keyframes floating {
+  from {
+    transform: translate(0, 0px);
+  }
+  65% {
+    transform: translate(0, 15px);
+  }
+  to {
+    transform: translate(0, -0px);
+  }
+}
+
+/* Order Button */
+
+.ordernow {
+  position: fixed;
+  background-color: yellow;
+  width: 110px;
+  height: 110px;
+  top: 250px;
+  right: 40px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 30px;
+  z-index: 100;
+}
+.ordergif {
+  width: 85%;
+  margin-top: 5px;
+}
+.floating {
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  margin-left: 30px;
+  margin-top: 5px;
+}
+@keyframes floating {
+  from {
+    transform: translate(0, 0px);
+  }
+  65% {
+    transform: translate(0, 15px);
+  }
+  to {
+    transform: translate(0, -0px);
+  }
+}
+
+.iconcolor {
+  color: #d0541e;
+  font-size: 35px;
+}
+.iconsize {
+  width: 100%;
+}
+.icontext {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+.iconsubtext {
+  font-size: 14px;
+}
+.borderline {
+  border-right: 3px solid red;
+}
+.crackerlooking {
+  background-image: url("../Assets/Banner/banner4.webp");
+  background-size: cover;
+  height: 40vh;
+  margin-bottom: 17%;
+  position: relative;
+  width: 100%;
+}
+.lookingfor {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 8%;
+  padding: 20px;
+  position: absolute;
+  width: inherit;
+}
+.lookingtitle {
+  color: #1b1818;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 48px;
+  text-align: center;
+  text-transform: capitalize;
+}
+.lookingicon {
+  display: flex;
+  margin: auto;
+  width: 50%;
+}
+.lookingicontitle {
+  color: #1b1818;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  margin-top: 5%;
+  text-align: center;
+  text-transform: uppercase;
+}
+.lookingiconcontent {
+  color: #505050;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: justify;
+  text-transform: capitalize;
+}
+.itemtitle {
+  color: #1b1818;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 48px;
+  margin-bottom: 3%;
+  text-transform: capitalize;
+}
+.itemcard {
+  padding: 3px;
+  border: 1px solid red;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+.itemimage {
+  transition: transform 0.2s; /* Animation */
+}
+.itemimage:hover {
+  transform: scale(1.02);
+}
+.itemname {
+  color: #323c8c;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 5%;
+}
+.deletetag {
+  color: red;
+  font-weight: 700;
+  font-size: 18px;
+}
+.inserttag {
+  color: green;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
+}
+.countbanner {
+  padding: 40px;
+}
+.CountUp {
+  font-size: 55px;
+  font-weight: bolder;
+  background: linear-gradient(to left, #b12733, #3f468a);
+  background-clip: text;
+  color: transparent;
+}
+.countname {
+  font-size: 20px;
+  text-align: center;
+  font-weight: 400;
+}
+.addbanner {
+  width: 100%;
+}
+.footer {
+  color: #d0541e;
+  padding: 40px;
+}
+.footerlogo {
+  width: 60%;
+}
+.footertitle {
+  font-size: 20px;
+  font-weight: 700;
+}
+.footercontent {
+  font-size: 14px;
+  color: #000000;
+}
+.footerlinktitle {
+  color: #000000;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 10px 0;
+}
+.footerlinktitle:hover {
+  color: #d0541e;
+}
+.addresstext {
+  color: #000000;
+  font-size: 14px;
+  font-weight: 400;
+}
+.blink_me {
+  animation: blinker 1s linear infinite;
+  font-size: 20px;
+  font-weight: 600;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+.addressimage {
+  width: 40%;
+}
+.aligntext {
+  text-align: center;
+}
+.footerrights {
+  background: #d0541e;
+  padding: 10px;
+}
+.rightstext {
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+}
+.socialicon {
+  width: 20%;
+  margin-right: 8%;
+  cursor: pointer;
+  transition: transform 0.2s;
+  margin-bottom: 8%;
+}
+.socialicon:hover {
+  transform: scale(1.25);
+}
+.blinkbox {
+  border: 2px solid #d0541e;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+.headingtitle {
+  color: #2058a5;
+  font-size: 22px;
+  font-weight: 700;
+}
+.aboutimage {
+  width: 90%;
+}
+.aboutbanner {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.bannerwidth {
+  width: 100%;
+  height: 50vh;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 60px;
+  font-weight: 900;
+}
+.webtext {
+  color: #d0541e;
+  font-size: 30px;
+  font-weight: 700;
+}
+.aboutcontent {
+  font-size: 20px;
+}
+.contenthigh {
+  color: #d0541e;
+  font-size: 22px;
+  font-weight: 500;
+}
