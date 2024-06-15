@@ -1,6 +1,7 @@
 body {
   font-family: "Ubuntu", sans-serif;
   background: #e9e9e9;
+  /* background: #e0dde4; */
 }
 ul {
   list-style-type: none;
@@ -10,7 +11,11 @@ ul {
 a {
   text-decoration: none;
 }
+.aligntext {
+  text-align: center;
+}
 .marquee {
+  text-indent: 1200px;
   padding: 5px;
   background: #0091d6;
   color: #ffffff;
@@ -294,9 +299,7 @@ a {
 .addressimage {
   width: 40%;
 }
-.aligntext {
-  text-align: center;
-}
+
 .footerrights {
   background: #d0541e;
   padding: 10px;
@@ -359,4 +362,131 @@ a {
   color: #d0541e;
   font-size: 22px;
   font-weight: 500;
+}
+.aboutcard {
+  border-radius: 8px;
+  margin-bottom: 30px;
+  padding: 50px 41px 30px;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.aboutcard:hover {
+  box-shadow: 0 0 50px 0 rgba(19, 19, 28, 0.12);
+}
+.cardtitle {
+  color: #484848;
+  font-weight: 900;
+  font-size: 16px;
+  margin-top: 6%;
+}
+.aboutcardimg {
+  width: 35%;
+}
+.cardpara {
+  font-size: 14px;
+  text-align: justify;
+  font-weight: 400;
+}
+.teamcard {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 16px #11111a1a;
+  padding: 15px;
+  text-align: center;
+  margin: 25px 0 15px;
+  position: relative;
+}
+.teamimage {
+  width: 100%;
+  margin-top: -35px;
+  opacity: 1;
+  display: block;
+  transition: 0.5s ease;
+}
+.teamtitle {
+  padding-top: 15px;
+  font-size: 18px;
+  font-weight: bolder;
+}
+.temsubtitle {
+  color: #6c757d !important;
+  font-weight: lighter;
+  font-size: 15px;
+}
+.middle {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.teamcard:hover .image {
+  opacity: 0.2;
+}
+.teamcard:hover .middle {
+  opacity: 1;
+}
+.textmore {
+  color: #ffffff;
+  font-size: 16px;
+  padding: 16px 32px;
+  cursor: pointer;
+}
+.foundertitle {
+  font-size: 30px;
+  color: #0091d6;
+  font-weight: 600;
+}
+.founderpara {
+  font-size: 17px;
+  text-align: justify;
+}
+.founderparaspan {
+  color: #d0541e;
+  font-weight: 500;
+}
+.spantag {
+  font-weight: bolder;
+}
+.firesafetyimage {
+  width: 70%;
+}
+.paraspacing {
+  margin-bottom: 1%;
+}
+.chitimage {
+  width: 100%;
+}
+.labeltext {
+  font-size: 16px;
+  font-weight: 500;
+  color: #252c58;
+  margin-top: 2%;
+}
+.fieldinput {
+  width: 90%;
+  outline: none;
+  border-radius: 8px;
+  padding: 7px 15px;
+  border: 1px solid #9195ab;
+  margin-top: 5px;
+  text-transform: capitalize !important;
+}
+.button {
+  padding: 10px 5px;
+  width: 90%;
+  background: #d0541e;
+  border-radius: 10px;
+  border: none;
+  margin-top: 5%;
+  color: #fff;
+}
+.button:hover {
+  color: #d0541e;
+  border: 1px solid #d0541e;
+  background: transparent;
 }

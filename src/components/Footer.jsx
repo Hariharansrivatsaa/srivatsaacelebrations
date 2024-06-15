@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../Assets/Logo/Logo.webp";
-import address from "../Assets/Images/Address.webp";
 import insta from "../Assets/Icon/insta.webp";
 import linkedin from "../Assets/Icon/linkdlin.webp";
 import threads from "../Assets/Icon/threads.webp";
@@ -49,18 +48,12 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    className="nav-item nav-link footerlinktitle"
-                    to="/About"
-                  >
+                  <Link className="nav-item nav-link footerlinktitle" to="">
                     ⮞&nbsp; Our Gallery
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    className="nav-item nav-link footerlinktitle"
-                    to="/About"
-                  >
+                  <Link className="nav-item nav-link footerlinktitle" to="">
                     ⮞&nbsp; Customer Pickup Points
                   </Link>
                 </li>
@@ -68,16 +61,13 @@ const Footer = () => {
                 <li>
                   <Link
                     className="nav-item nav-link footerlinktitle"
-                    to="/About"
+                    to="/Chit"
                   >
                     ⮞&nbsp; Chit Schemes
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    className="nav-item nav-link footerlinktitle"
-                    to="/About"
-                  >
+                  <Link className="nav-item nav-link footerlinktitle" to="">
                     ⮞&nbsp; Contact Us
                   </Link>
                 </li>
@@ -92,7 +82,7 @@ const Footer = () => {
                 <li>
                   <Link
                     className="nav-item nav-link footerlinktitle"
-                    to="/About"
+                    to="/Privacypolicy"
                   >
                     Privacy Policy
                   </Link>
@@ -100,23 +90,20 @@ const Footer = () => {
                 <li>
                   <Link
                     className="nav-item nav-link footerlinktitle"
-                    to="/About"
+                    to="/TermsandConditions"
                   >
                     Terms & Condition
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    className="nav-item nav-link footerlinktitle"
-                    to="/About"
-                  >
+                  <Link className="nav-item nav-link footerlinktitle" to="">
                     Cancellation & Refund Policy
                   </Link>
                 </li>
                 <li>
                   <Link
                     className="nav-item nav-link footerlinktitle"
-                    to="/About"
+                    to="/Shipping"
                   >
                     Shipping & Delivery Policy
                   </Link>
@@ -124,23 +111,20 @@ const Footer = () => {
                 <li>
                   <Link
                     className="nav-item nav-link footerlinktitle"
-                    to="/About"
+                    to="/Firesafetytips"
                   >
                     Fire Safety Tips
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    className="nav-item nav-link footerlinktitle"
-                    to="/About"
-                  >
+                  <Link className="nav-item nav-link footerlinktitle" to="/Faq">
                     FAQ's
                   </Link>
                 </li>
                 <li>
                   <Link
                     className="nav-item nav-link footerlinktitle"
-                    to="/About"
+                    to="/Importantnotes"
                   >
                     Important Updates
                   </Link>
@@ -148,7 +132,7 @@ const Footer = () => {
                 <li>
                   <Link
                     className="nav-item nav-link footerlinktitle"
-                    to="/About"
+                    to="/Greencrackers"
                   >
                     Green Crackers
                   </Link>
@@ -161,7 +145,7 @@ const Footer = () => {
                 <li>
                   <Link
                     className="nav-item nav-link footerlinktitle"
-                    to="/About"
+                    to="/Corporate"
                   >
                     ⮞&nbsp; Bulk/Corporate Orders
                   </Link>
@@ -169,25 +153,19 @@ const Footer = () => {
                 <li>
                   <Link
                     className="nav-item nav-link footerlinktitle"
-                    to="/About"
+                    to="/ChannelPartner"
                   >
                     ⮞&nbsp; Channel partners
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    className="nav-item nav-link footerlinktitle"
-                    to="/About"
-                  >
+                  <Link className="nav-item nav-link footerlinktitle" to="">
                     ⮞&nbsp; Quick Purchase
                   </Link>
                 </li>
 
                 <li>
-                  <Link
-                    className="nav-item nav-link footerlinktitle"
-                    to="/About"
-                  >
+                  <Link className="nav-item nav-link footerlinktitle" to="">
                     ⮞&nbsp; Payment Details
                   </Link>
                 </li>
