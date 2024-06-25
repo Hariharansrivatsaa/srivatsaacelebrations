@@ -21,6 +21,8 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import CountUp from "react-countup";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Home = () => {
   const [isInView, setIsInView] = useState(false);
@@ -50,6 +52,7 @@ const Home = () => {
 
   return (
     <>
+      <Header />
       <section className="my-4">
         <div className="container-fluid">
           <div className="row">
@@ -407,6 +410,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

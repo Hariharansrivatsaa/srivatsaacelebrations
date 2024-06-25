@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Gokul = () => {
   useEffect(() => {
@@ -6,6 +8,7 @@ const Gokul = () => {
   }, []);
   return (
     <>
+      <Header />
       <section className="my-5">
         <div className="container">
           <div className="row">
@@ -39,6 +42,7 @@ const Gokul = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

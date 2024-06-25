@@ -1,10 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "../src/Css/Style.css";
+import { useEffect } from "react";
 
 import Home from "./components/Home";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import { useEffect } from "react";
 import About from "./components/Aboutus";
 import Arun from "./components/Arun";
 import Hari from "./components/Hari";
@@ -19,6 +17,8 @@ import Chit from "./components/Chit";
 import Shipping from "./components/Shipping";
 import Corporate from "./components/Corporate";
 import ChannelPartner from "./components/ChannelPartner";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 function App() {
   useEffect(() => {
@@ -27,7 +27,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/About" element={<About />} />
@@ -48,8 +47,9 @@ function App() {
         <Route exact path="/Shipping" element={<Shipping />} />
         <Route exact path="/Corporate" element={<Corporate />} />
         <Route exact path="/ChannelPartner" element={<ChannelPartner />} />
+        <Route exact path="/Login" element={<Login />} />
+        <Route exact path="/Register" element={<Register />} />
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 }

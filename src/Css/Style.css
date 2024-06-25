@@ -490,3 +490,111 @@ a {
   border: 1px solid #d0541e;
   background: transparent;
 }
+.loginbg {
+  background-image: url("../Assets/Bg/loginbg4.webp");
+  height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+.center-banner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+.login-bg {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 35%;
+  margin-top: 13%;
+  margin-left: 12.5%;
+}
+.signup-bg {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 35%;
+  margin-top: 7%;
+  margin-left: 12.5%;
+}
+.loginlogo {
+  width: 50%;
+}
+.fancy {
+  position: relative;
+  width: 415px;
+  height: 50px;
+  max-width: 100%;
+  background: #e1edf5;
+  border-radius: 50px;
+  overflow: hidden;
+  --offset: 3px;
+}
+.fancy::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  background: conic-gradient(transparent 180deg, #2b4d9b, #228acd);
+  transform: translate(-50%, -50%);
+  aspect-ratio: 1;
+  animation: rotate 2s linear infinite;
+}
+.fancy::after {
+  content: "";
+  position: absolute;
+  width: calc(100% - 2 * var(--offset));
+  height: calc(100% - 2 * var(--offset));
+  inset: var(--offset);
+  background: inherit;
+  border-radius: inherit;
+}
+.fancy input {
+  position: absolute;
+  color: #2b4d9b;
+  background: transparent;
+  font-size: 1rem;
+  inset: 0;
+  padding: 1.5rem;
+  z-index: 10;
+  border: none;
+  outline: none;
+}
+.fancy input::placeholder {
+  border: none;
+}
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) scale(1.4) rotate(0turn);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.4) rotate(1turn);
+  }
+}
+.loginbutton {
+  width: 100%;
+  border-radius: 50px;
+  padding: 10px;
+  background: #2058a5;
+  color: #ffffff;
+  border: none;
+  font-size: 18px;
+}
+.loginbutton:hover {
+  border: 1px solid #2058a5;
+  color: #2058a5;
+  background: transparent;
+}
+.tablecolor {
+  border: 1px solid #000000;
+}
+.commissiontext {
+  font-size: 20px;
+  font-weight: 700;
+}

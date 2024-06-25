@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Shipping = () => {
   useEffect(() => {
@@ -6,6 +8,7 @@ const Shipping = () => {
   }, []);
   return (
     <>
+      <Header />
       <section className="my-5">
         <div className="container">
           <h2>SHIPPING AND DELIVERY POLICY</h2>
@@ -45,6 +48,7 @@ const Shipping = () => {
           </p>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

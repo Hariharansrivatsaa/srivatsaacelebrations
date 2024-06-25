@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Privacypolicy = () => {
   useEffect(() => {
@@ -6,6 +8,7 @@ const Privacypolicy = () => {
   }, []);
   return (
     <>
+      <Header />
       <section className="my-5">
         <div className="container">
           <h2>Privacy Policy</h2>
@@ -119,6 +122,7 @@ const Privacypolicy = () => {
           <p>Phone: +91-9043360340</p>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
 import chit from "../Assets/Banner/chit.webp";
+import Header from "./Header";
+import Footer from "./Footer";
 const Chit = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (
     <>
+      <Header />
       <section className="my-5">
         <div className="container">
           <div className="row">
@@ -157,6 +160,7 @@ const Chit = () => {
           </p>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

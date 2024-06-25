@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const TermsandConditions = () => {
   useEffect(() => {
@@ -6,6 +8,7 @@ const TermsandConditions = () => {
   }, []);
   return (
     <>
+      <Header />
       <section className="my-5">
         <div className="container">
           <h3>Terms & Conditions </h3>
@@ -543,6 +546,7 @@ const TermsandConditions = () => {
           </p>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

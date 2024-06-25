@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Greencrackers = () => {
   useEffect(() => {
@@ -6,6 +8,7 @@ const Greencrackers = () => {
   }, []);
   return (
     <>
+      <Header />
       <section className="my-5">
         <div className="container">
           <h2> Green Crackers</h2>
@@ -57,6 +60,7 @@ const Greencrackers = () => {
           </p>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

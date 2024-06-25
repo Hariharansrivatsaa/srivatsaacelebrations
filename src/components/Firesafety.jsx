@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import firesafety from "../Assets/Images/firesafety.webp";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Firesafety = () => {
   useEffect(() => {
@@ -7,6 +9,7 @@ const Firesafety = () => {
   }, []);
   return (
     <>
+      <Header />
       <section className="my-5">
         <div className="container">
           <h2>Fire Safety Tips</h2>
@@ -40,7 +43,9 @@ const Firesafety = () => {
           <h3>Do's :</h3>
           <p>
             <li className="paraspacing">Use fireworks only in the outdoors.</li>
-            <li className="paraspacing">Buy fireworks of authorized/reputed manufacturers only.</li>
+            <li className="paraspacing">
+              Buy fireworks of authorized/reputed manufacturers only.
+            </li>
             <li className="paraspacing">
               Light only one firework at a time, by one person. Others should
               watch from a safe distance.
@@ -50,7 +55,9 @@ const Firesafety = () => {
               are working hard to make our transportation system to deliver
               every order in a good condition.
             </li>
-            <li className="paraspacing">Keep the fireworks to be used at a safer place.</li>
+            <li className="paraspacing">
+              Keep the fireworks to be used at a safer place.
+            </li>
             <li className="paraspacing">
               Organize a community display of fireworks rather than individuals
               handling crackers.
@@ -80,16 +87,36 @@ const Firesafety = () => {
           </p>
           <h3>Don'ts :</h3>
           <p>
-            <li className="paraspacing">Don't ignite fireworks while holding them.</li>
-            <li className="paraspacing">Don't bend over the fireworks being ignited.</li>
-            <li className="paraspacing">Don't ignite fireworks in any container.</li>
-            <li className="paraspacing">Don't approach immediately to the misfired fireworks.</li>
-            <li className="paraspacing">Don't tamper with misfired fireworks.</li>
-            <li className="paraspacing">Don't attempt to make fireworks at home.</li>
-            <li className="paraspacing">Don't allow small children to handle fireworks.</li>
-            <li className="paraspacing">Don't throw or point fireworks at other people.</li>
-            <li className="paraspacing">Don't carry fireworks in the pocket.</li>
-            <li className="paraspacing">Don't store firecrackers near burning candles and diyas.</li>
+            <li className="paraspacing">
+              Don't ignite fireworks while holding them.
+            </li>
+            <li className="paraspacing">
+              Don't bend over the fireworks being ignited.
+            </li>
+            <li className="paraspacing">
+              Don't ignite fireworks in any container.
+            </li>
+            <li className="paraspacing">
+              Don't approach immediately to the misfired fireworks.
+            </li>
+            <li className="paraspacing">
+              Don't tamper with misfired fireworks.
+            </li>
+            <li className="paraspacing">
+              Don't attempt to make fireworks at home.
+            </li>
+            <li className="paraspacing">
+              Don't allow small children to handle fireworks.
+            </li>
+            <li className="paraspacing">
+              Don't throw or point fireworks at other people.
+            </li>
+            <li className="paraspacing">
+              Don't carry fireworks in the pocket.
+            </li>
+            <li className="paraspacing">
+              Don't store firecrackers near burning candles and diyas.
+            </li>
             <li className="paraspacing">
               Don't light firecrackers in narrow by lanes; preferably use open
               areas and parks.
@@ -101,7 +128,9 @@ const Firesafety = () => {
             <li className="paraspacing">
               Don't wear loosely hanging clothes; secure all clothes properly.
             </li>
-            <li className="paraspacing">Don't apply any cream or ointment or oil on burnt area.</li>
+            <li className="paraspacing">
+              Don't apply any cream or ointment or oil on burnt area.
+            </li>
             <li className="paraspacing">
               Don't drive recklessly while taking a burn victim to the hospital;
               a delay of up to one hour is immaterial.
@@ -109,6 +138,7 @@ const Firesafety = () => {
           </p>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

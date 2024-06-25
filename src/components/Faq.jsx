@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Faq = () => {
   useEffect(() => {
@@ -47,6 +49,7 @@ const Faq = () => {
 
   return (
     <>
+      <Header />
       <section className="my-5">
         <div className="container">
           <div>
@@ -82,6 +85,7 @@ const Faq = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

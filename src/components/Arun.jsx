@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Arun = () => {
   useEffect(() => {
@@ -6,6 +8,7 @@ const Arun = () => {
   }, []);
   return (
     <>
+      <Header />
       <section className="my-5">
         <div className="container">
           <div className="row">
@@ -56,6 +59,7 @@ const Arun = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

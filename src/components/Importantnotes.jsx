@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Importantnotes = () => {
   useEffect(() => {
@@ -6,6 +8,7 @@ const Importantnotes = () => {
   }, []);
   return (
     <>
+      <Header />
       <section className="my-5">
         <div className="container">
           <h2>IMPORTANT NOTES</h2>
@@ -59,7 +62,9 @@ const Importantnotes = () => {
               Our minimum order value for Other States is ₹6,000/- and
               transportation charges to be directly paid to transporter.
             </li>
-            <li className="paraspacing">The purchase is inclusive of GST @ 18%.</li>
+            <li className="paraspacing">
+              The purchase is inclusive of GST @ 18%.
+            </li>
             <li className="paraspacing">
               Best quality crackers are being tested randomly and added to the
               website.
@@ -83,6 +88,7 @@ const Importantnotes = () => {
           </p>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

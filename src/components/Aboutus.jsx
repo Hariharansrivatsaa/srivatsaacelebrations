@@ -10,6 +10,8 @@ import viki from "../Assets/Images/Viki.webp";
 import hari from "../Assets/Images/Hari.webp";
 import plain from "../Assets/Images/plain.webp";
 import { Link } from "react-router-dom";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const About = () => {
   useEffect(() => {
@@ -17,6 +19,7 @@ const About = () => {
   }, []);
   return (
     <>
+      <Header />
       <section className="my-3">
         <div className="aboutbanner">
           <img src={aboutbanner} alt="Aboutus" className="bannerwidth" />
@@ -228,6 +231,7 @@ const About = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };
