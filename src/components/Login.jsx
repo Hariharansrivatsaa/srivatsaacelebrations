@@ -25,7 +25,7 @@ const Login = () => {
                   <small>Welcome back Please enter your details.</small>
                 </p>
                 <div class="fancy">
-                  <input type="text" placeholder="Enter Your MailId" />
+                  <input type="text" placeholder="Enter Your Mail Id" />
                 </div>
                 <div class="fancy my-4">
                   <input type="password" placeholder="Enter Your Password" />

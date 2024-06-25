@@ -117,6 +117,17 @@ const Header = () => {
                         Contact Us
                       </span>
                     </Link>
+                    <Link
+                      className="nav-item nav-link headerlinktitle"
+                      to="/Login"
+                    >
+                      <span
+                        data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse"
+                      >
+                        Login
+                      </span>
+                    </Link>
                   </div>
                   <div className="hamburger">
                     <div className="hamburger_btn">
