@@ -22,7 +22,7 @@ const Login = () => {
                 </div>
                 <h4 className="fw-bold">SIGN IN</h4>
                 <p className="fw-bold">
-                  <small>Welcome back Please enter your details.</small>
+                  <small>Welcome back, Please enter your details.</small>
                 </p>
                 <div class="fancy">
                   <input type="text" placeholder="Enter Your Mail Id" />

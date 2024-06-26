@@ -22,7 +22,7 @@ const Register = () => {
                 </div>
                 <h4 className="fw-bold">SIGN UP</h4>
                 <p className="fw-bold">
-                  <small>Welcome, Please enter your details.</small>
+                  <small>Hello, Please enter your details.</small>
                 </p>
                 <div class="fancy">
                   <input type="text" placeholder="Enter Your Name" />

@@ -340,8 +340,9 @@ a {
 }
 .bannerwidth {
   width: 100%;
-  height: 50vh;
+  height: 45vh;
 }
+
 .centered {
   position: absolute;
   top: 50%;
@@ -491,7 +492,7 @@ a {
   background: transparent;
 }
 .loginbg {
-  background-image: url("../Assets/Bg/loginbg6.webp");
+  background-image: url("../Assets/Bg/loginbg.webp");
   height: 100vh;
   width: 100%;
   background-position: center;
@@ -511,16 +512,16 @@ a {
   padding: 20px;
   border-radius: 10px;
   width: 35%;
-  margin-top: 4%;
-  margin-left: 32.5%;
+  margin-top: 21.5%;
+  margin-left: 60%;
 }
 .signup-bg {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
   width: 35%;
-  margin-top: 3%;
-  margin-left: 32.5%;
+  margin-top: 10%;
+  margin-left: 60%;
 }
 .loginlogo {
   width: 50%;
@@ -597,4 +598,60 @@ a {
 .commissiontext {
   font-size: 20px;
   font-weight: 700;
+}
+.contactbox {
+  padding: 20px;
+}
+
+.fancycontact {
+  position: relative;
+  width: 415px;
+  height: 50px;
+  max-width: 100%;
+  background: #e1edf5;
+  border-radius: 50px;
+  overflow: hidden;
+  --offset: 3px;
+}
+.fancycontact::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  background: conic-gradient(transparent 180deg, #d0541e, #228acd);
+  transform: translate(-50%, -50%);
+  aspect-ratio: 1;
+  animation: rotate 2s linear infinite;
+}
+.fancycontact::after {
+  content: "";
+  position: absolute;
+  width: calc(100% - 2 * var(--offset));
+  height: calc(100% - 2 * var(--offset));
+  inset: var(--offset);
+  background: inherit;
+  border-radius: inherit;
+}
+.fancycontact input {
+  position: absolute;
+  color: #d0541e;
+  background: transparent;
+  font-size: 1rem;
+  inset: 0;
+  padding: 1.5rem;
+  z-index: 10;
+  border: none;
+  outline: none;
+}
+.fancycontact input::placeholder {
+  border: none;
+}
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) scale(1.4) rotate(0turn);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.4) rotate(1turn);
+  }
 }

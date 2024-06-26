@@ -19,6 +19,7 @@ import Corporate from "./components/Corporate";
 import ChannelPartner from "./components/ChannelPartner";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Contactus from "./components/Contactus";
 
 function App() {
   useEffect(() => {
@@ -49,6 +50,7 @@ function App() {
         <Route exact path="/ChannelPartner" element={<ChannelPartner />} />
         <Route exact path="/Login" element={<Login />} />
         <Route exact path="/Register" element={<Register />} />
+        <Route exact path="/Contactus" element={<Contactus />} />
       </Routes>
     </BrowserRouter>
   );
