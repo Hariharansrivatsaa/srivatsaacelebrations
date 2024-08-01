@@ -542,7 +542,7 @@ a {
   top: 50%;
   left: 50%;
   width: 100%;
-  background: conic-gradient(transparent 180deg, #2b4d9b, #228acd);
+  background: conic-gradient(transparent 180deg, #d0541e, #228acd);
   transform: translate(-50%, -50%);
   aspect-ratio: 1;
   animation: rotate 2s linear infinite;
@@ -608,7 +608,7 @@ a {
   width: 415px;
   height: 50px;
   max-width: 100%;
-  background: #e1edf5;
+  background: #f6e9e4;
   border-radius: 50px;
   overflow: hidden;
   --offset: 3px;
@@ -654,4 +654,47 @@ a {
   to {
     transform: translate(-50%, -50%) scale(1.4) rotate(1turn);
   }
+}
+.contactbutton {
+  width: 100%;
+  border-radius: 50px;
+  padding: 10px;
+  background: #d0541e;
+  color: #ffffff;
+  border: none;
+  font-size: 18px;
+}
+.contactbutton:hover {
+  border: 1px solid #d0541e;
+  color: #d0541e;
+  background: transparent;
+}
+.contactbgbox {
+  background-color: #d0541e;
+  /* width: 100%; */
+  height: 30vh;
+  margin-top: 13%;
+}
+.contactboxwhite {
+  background: #ffffff;
+  /* width: 100%; */
+  padding: 30px;
+  border-radius: 10px;
+  margin-top: -4%;
+}
+.contactcircle {
+  border-radius: 50%;
+  height: 90px;
+  width: 90px;
+  background: #d0541e;
+  margin: auto;
+  margin-top: -24%;
+}
+.contacticon {
+  width: 60%;
+  margin-top: 25%;
+}
+.contacticon1{
+  width: 50%;
+  margin-top: 25%;
 }
