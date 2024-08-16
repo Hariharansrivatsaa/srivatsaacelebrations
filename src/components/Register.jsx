@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import loginlogo from "../Assets/Logo/Logo.webp";
-import { Link } from "react-router-dom";
+import { supabase } from "../supabaseClient";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      const { data, error } = await supabase
+        .from("users")
+        .insert([{ username: name, email, phone, password }]);
+
+      if (error) throw error;
+
+      Swal.fire({
+        icon: "success",
+        title: "Registration Successful",
+        text: "You have been registered successfully!",
+      }).then(() => {
+        navigate("/");
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: error.message,
+      });
+    }
+  };
+
   return (
     <>
       <section>
@@ -24,24 +57,51 @@ const Register = () => {
                 <p className="fw-bold">
                   <small>Hello, Please enter your details.</small>
                 </p>
-                <div class="fancy">
-                  <input type="text" placeholder="Enter Your Name" />
-                </div>
-                <div class="fancy my-4">
-                  <input type="text" placeholder="Enter Your MailId" />
-                </div>
-                <div class="fancy my-4">
-                  <input type="text" placeholder="Enter Your Phone Number" />
-                </div>
-                <div class="fancy my-4">
-                  <input type="password" placeholder="Enter Your Password" />
-                </div>
-                <div>
-                  <button className="loginbutton">Register</button>
-                </div>
+                <form onSubmit={handleRegister}>
+                  <div className="fancy">
+                    <input
+                      type="text"
+                      placeholder="Enter Your Name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="fancy my-4">
+                    <input
+                      type="email"
+                      placeholder="Enter Your MailId"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="fancy my-4">
+                    <input
+                      type="tel"
+                      placeholder="Enter Your Phone Number"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
+                  </div>
+                  <div className="fancy my-4">
+                    <input
+                      type="password"
+                      placeholder="Enter Your Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <button type="submit" className="loginbutton">
+                      Register
+                    </button>
+                  </div>
+                </form>
                 <p className="fw-bold mt-3">
                   <small>
-                    Already have an account ?&nbsp;
+                    Already have an account?&nbsp;
                     <span>
                       <Link to="/Login">Sign In</Link>
                     </span>
