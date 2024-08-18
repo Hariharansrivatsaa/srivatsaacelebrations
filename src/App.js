@@ -20,6 +20,8 @@ import ChannelPartner from "./components/ChannelPartner";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Contactus from "./components/Contactus";
+import Product from "./components/Product";
+import Quickorder from "./components/Quickorder";
 
 function App() {
   useEffect(() => {
@@ -51,6 +53,8 @@ function App() {
         <Route exact path="/Login" element={<Login />} />
         <Route exact path="/Register" element={<Register />} />
         <Route exact path="/Contactus" element={<Contactus />} />
+        <Route exact path="/Product" element={<Product />} />
+        <Route exact path="/Quickorder" element={<Quickorder />} />
       </Routes>
     </BrowserRouter>
   );

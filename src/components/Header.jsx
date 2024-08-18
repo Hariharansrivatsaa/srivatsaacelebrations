@@ -67,7 +67,7 @@ const Header = () => {
                     </Link>
                     <Link
                       className="nav-item nav-link headerlinktitle"
-                      to="/Blog"
+                      to="/Product"
                     >
                       <span
                         data-bs-toggle="collapse"
@@ -76,7 +76,10 @@ const Header = () => {
                         Our Products
                       </span>
                     </Link>
-                    <Link className="nav-item nav-link headerlinktitle" to="">
+                    <Link
+                      className="nav-item nav-link headerlinktitle"
+                      to="/Quickorder"
+                    >
                       <span
                         data-bs-toggle="collapse"
                         data-bs-target=".navbar-collapse"
