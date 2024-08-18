@@ -21,57 +21,100 @@ const Product = () => {
           <h5> Showing 1-20 of 155 results</h5>
           <div className="row my-5">
             <div className="col-lg-3">
-              <h5>Products By Category</h5>
+              <h5 className="categorytitle mb-4">Products By Category</h5>
+              <button className="producttopic">All</button>
+              <button className="producttopic">2024 New Varieties</button>
+              <button className="producttopic">New Arrivals</button>
+              <button className="producttopic">Single Sound Crackers</button>
             </div>
             <div className="col-lg-9">
-              <h5>All Products</h5>
+              <h5 className="producttitleheading">All Products</h5>
               <div>
                 <h5 className="mt-3 producttitle">Single Sound Crackers</h5>
                 <div className="row my-3">
                   <div className="col-lg-4 mb-4">
-                    <img src={kuruvi} alt="products" className="productimage" />
+                    <div className="productcontain">
+                      <img
+                        src={kuruvi}
+                        alt="products"
+                        className="productimage"
+                      />
+                      <div class="cartmiddle">
+                        <div class="productcarttext">Add to cart</div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-lg-4 mb-4">
-                    <img
-                      src={threelakshimi}
-                      alt="products"
-                      className="productimage"
-                    />
+                    <div className="productcontain">
+                      <img
+                        src={threelakshimi}
+                        alt="products"
+                        className="productimage"
+                      />
+                      <div class="cartmiddle">
+                        <div class="productcarttext">Add to cart</div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-lg-4 mb-4">
-                    <img
-                      src={fourlakshimi}
-                      alt="products"
-                      className="productimage"
-                    />
+                    <div className="productcontain">
+                      <img
+                        src={fourlakshimi}
+                        alt="products"
+                        className="productimage"
+                      />
+                      <div class="cartmiddle">
+                        <div class="productcarttext">Add to cart</div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-lg-4 mb-4">
-                    <img
-                      src={deluxelakshimi}
-                      alt="products"
-                      className="productimage"
-                    />
+                    <div className="productcontain">
+                      <img
+                        src={deluxelakshimi}
+                        alt="products"
+                        className="productimage"
+                      />
+                      <div class="cartmiddle">
+                        <div class="productcarttext">Add to cart</div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-lg-4 mb-4">
-                    <img
-                      src={fivelakshimi}
-                      alt="products"
-                      className="productimage"
-                    />
+                    <div className="productcontain">
+                      <img
+                        src={fivelakshimi}
+                        alt="products"
+                        className="productimage"
+                      />
+                      <div class="cartmiddle">
+                        <div class="productcarttext">Add to cart</div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-lg-4 mb-4">
-                    <img
-                      src={twosound}
-                      alt="products"
-                      className="productimage"
-                    />
+                    <div className="productcontain">
+                      <img
+                        src={twosound}
+                        alt="products"
+                        className="productimage"
+                      />
+                      <div class="cartmiddle">
+                        <div class="productcarttext">Add to cart</div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-lg-4 mb-4">
-                    <img
-                      src={twosound}
-                      alt="products"
-                      className="productimage"
-                    />
+                    <div className="productcontain">
+                      <img
+                        src={twosound}
+                        alt="products"
+                        className="productimage"
+                      />
+                      <div class="cartmiddle">
+                        <div class="productcarttext">Add to cart</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -79,39 +122,64 @@ const Product = () => {
                 <h5 className="mt-3 producttitle">Ground Chakkars</h5>
                 <div className="row my-3">
                   <div className="col-lg-4 mb-4">
-                    <img
-                      src={chakkarten}
-                      alt="products"
-                      className="productimage"
-                    />
+                    <div className="productcontain">
+                      <img
+                        src={chakkarten}
+                        alt="products"
+                        className="productimage"
+                      />
+                      <div class="cartmiddle">
+                        <div class="productcarttext">Add to cart</div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-lg-4 mb-4">
-                    <img
-                      src={chakkartwofive}
-                      alt="products"
-                      className="productimage"
-                    />
+                    <div className="productcontain">
+                      <img
+                        src={chakkartwofive}
+                        alt="products"
+                        className="productimage"
+                      />
+                      <div class="cartmiddle">
+                        <div class="productcarttext">Add to cart</div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-lg-4 mb-4">
-                    <img
-                      src={chakkarspl}
-                      alt="products"
-                      className="productimage"
-                    />
+                    <div className="productcontain">
+                      <img
+                        src={chakkarspl}
+                        alt="products"
+                        className="productimage"
+                      />
+                      <div class="cartmiddle">
+                        <div class="productcarttext">Add to cart</div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-lg-4 mb-4">
-                    <img
-                      src={chakkardlx}
-                      alt="products"
-                      className="productimage"
-                    />
+                    <div className="productcontain">
+                      <img
+                        src={chakkardlx}
+                        alt="products"
+                        className="productimage"
+                      />
+                      <div class="cartmiddle">
+                        <div class="productcarttext">Add to cart</div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-lg-4 mb-4">
-                    <img
-                      src={chakkardlx}
-                      alt="products"
-                      className="productimage"
-                    />
+                    <div className="productcontain">
+                      <img
+                        src={chakkardlx}
+                        alt="products"
+                        className="productimage"
+                      />
+                      <div class="cartmiddle">
+                        <div class="productcarttext">Add to cart</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
