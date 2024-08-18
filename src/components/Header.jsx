@@ -4,6 +4,7 @@ import Marquee from "react-fast-marquee";
 import icon1 from "../Assets/Icon/rocket.webp";
 import logo from "../Assets/Logo/Logo.webp";
 import order from "../Assets/Gif/order1.gif";
+import cart from "../Assets/Gif/cart.gif";
 
 const Header = () => {
   return (
@@ -48,7 +49,7 @@ const Header = () => {
                   </button>
                 </div>
               </div>
-              <div className="col-lg-10 col-md-11 col-sm-12 p-0 ms-auto my-auto">
+              <div className="col-lg-9 col-md-11 col-sm-12 p-0 ms-auto my-auto">
                 <div
                   className="collapse navbar-collapse"
                   id="navbarTogglerDemo02"
@@ -141,13 +142,25 @@ const Header = () => {
                   </div>
                 </div>
               </div>
+              <div className="col-lg-1 col-md-11 p-0 my-auto">
+                <Link className="nav-item nav-link headerlinktitle" to="/cart">
+                  <span className="badge">1</span>
+                  <img
+                    src={cart}
+                    alt="cart"
+                    className="carticon"
+                    data-bs-toggle="collapse"
+                    data-bs-target=".navbar-collapse"
+                  />
+                </Link>
+              </div>
             </div>
           </nav>
         </div>
       </section>
       <section>
         <a
-          href="https://api.whatsapp.com/send?phone=9043360340&text=&source=&data="
+          href="https://api.whatsapp.com/send?phone=9514561008&text=&source=&data="
           className="whatsApp floating"
           target="_blank"
         >
