@@ -69,13 +69,13 @@ const Home = () => {
               autoplayTimeout={5000}
             >
               <div className="">
-                <img src={banner1} alt="logo" className="client-logo" />
+                <img src={banner1} alt="logo" />
               </div>
               <div className="">
-                <img src={banner2} alt="logo" className="client-logo" />
+                <img src={banner2} alt="logo" />
               </div>
               <div className="">
-                <img src={banner3} alt="logo" className="client-logo" />
+                <img src={banner3} alt="logo" />
               </div>
             </OwlCarousel>
           </div>

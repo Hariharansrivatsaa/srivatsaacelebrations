@@ -216,18 +216,6 @@ a {
   cursor: pointer;
   background: #fff;
 }
-.itemimage {
-  transition: transform 0.2s; /* Animation */
-}
-.itemimage:hover {
-  transform: scale(1.02);
-}
-.itemname {
-  color: #323c8c;
-  font-weight: 700;
-  font-size: 18px;
-  margin-top: 5%;
-}
 .deletetag {
   color: red;
   font-weight: 700;

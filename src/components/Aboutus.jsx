@@ -155,7 +155,7 @@ const About = () => {
           </div>
         </div>
       </section>
-      <section className="my-5">
+      {/* <section className="my-5">
         <div className="container">
           <h6 className="webtext aligntext">Meet Our Team</h6>
           <h6 className="aligntext">One Team, One Dream.</h6>
@@ -230,7 +230,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       <Footer />
     </>
   );
