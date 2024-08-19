@@ -10,11 +10,6 @@ import cracker1 from "../Assets/Icon/icon2.webp";
 import cracker2 from "../Assets/Icon/icon4.webp";
 import cracker3 from "../Assets/Icon/icon3.webp";
 import cracker4 from "../Assets/Icon/icon1.webp";
-import box from "../Assets/Images/box.webp";
-import box1 from "../Assets/Images/box1.webp";
-import box2 from "../Assets/Images/box2.webp";
-import box3 from "../Assets/Images/box3.webp";
-import box4 from "../Assets/Images/box4.webp";
 import add50 from "../Assets/Banner/50 add.webp";
 import add70 from "../Assets/Banner/70 add.webp";
 import OwlCarousel from "react-owl-carousel";
@@ -23,6 +18,11 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import CountUp from "react-countup";
 import Header from "./Header";
 import Footer from "./Footer";
+import kuruvi from "../Assets/Products/kuruvi.webp";
+import chakkarspl from "../Assets/Products/chakkarspl.webp";
+import chakkardlx from "../Assets/Products/chakkardlx.webp";
+import fourlakshimi from "../Assets/Products/4lakshimi.webp";
+import twosound from "../Assets/Products/2sound.webp";
 
 const Home = () => {
   const [isInView, setIsInView] = useState(false);
@@ -178,49 +178,91 @@ const Home = () => {
               }}
             >
               <div className="itemcard">
-                <img src={box} alt="fancy" className="itemimage" />
-                <h6 className="itemname">30 Shot Crackling</h6>
-                <p>(1pc/box)</p>
-                <p>
-                  <del className="deletetag"> ₹ 500 </del> &nbsp;
-                  <ins className="inserttag"> ₹ 200</ins>
-                </p>
+                <div className="productcontain">
+                  <img src={kuruvi} alt="products" className="productimage" />
+                  <div class="cartmiddle">
+                    <div class="productcarttext">Add to cart</div>
+                  </div>
+                  <div className="aligntext">
+                    <p className="my-3">(1Pkt / 5Pcs)</p>
+                    <p>
+                      <del className="deletetag"> ₹ 40 </del> &nbsp;
+                      <ins className="inserttag"> ₹ 8</ins>
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="itemcard">
-                <img src={box1} alt="fancy" className="itemimage" />
-                <h6 className="itemname">Tik Tok Fancy</h6>
-                <p>(3pc/box)</p>
-                <p>
-                  <del className="deletetag"> ₹ 800 </del> &nbsp;
-                  <ins className="inserttag"> ₹ 520</ins>
-                </p>
+                <div className="productcontain">
+                  <img src={twosound} alt="products" className="productimage" />
+                  <div class="cartmiddle">
+                    <div class="productcarttext">Add to cart</div>
+                  </div>
+                  <div className="aligntext">
+                    <p className="my-3">(1Pkt / 5Pcs)</p>
+                    <p>
+                      <del className="deletetag"> ₹ 145 </del> &nbsp;
+                      <ins className="inserttag"> ₹ 29</ins>
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="itemcard">
-                <img src={box2} alt="fancy" className="itemimage" />
-                <h6 className="itemname">Peacock Fancy</h6>
-                <p>(1pc/box)</p>
-                <p>
-                  <del className="deletetag"> ₹ 900 </del> &nbsp;
-                  <ins className="inserttag"> ₹ 700</ins>
-                </p>
+                <div className="productcontain">
+                  <img
+                    src={chakkarspl}
+                    alt="products"
+                    className="productimage"
+                  />
+                  <div class="cartmiddle">
+                    <div class="productcarttext">Add to cart</div>
+                  </div>
+                  <div className="aligntext">
+                    <p className="my-3">(1Pkt / 5Pcs)</p>
+                    <p>
+                      <del className="deletetag"> ₹ 380 </del> &nbsp;
+                      <ins className="inserttag"> ₹ 76 </ins>
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="itemcard">
-                <img src={box3} alt="fancy" className="itemimage" />
-                <h6 className="itemname">Chakkar Deluxe</h6>
-                <p>(10pc/box)</p>
-                <p>
-                  <del className="deletetag"> ₹ 300 </del> &nbsp;
-                  <ins className="inserttag"> ₹ 120</ins>
-                </p>
+                <div className="productcontain">
+                  <img
+                    src={fourlakshimi}
+                    alt="products"
+                    className="productimage"
+                  />
+                  <div class="cartmiddle">
+                    <div class="productcarttext">Add to cart</div>
+                  </div>
+                  <div className="aligntext">
+                    <p className="my-3">(1Pkt / 5Pcs)</p>
+                    <p>
+                      <del className="deletetag"> ₹ 100 </del> &nbsp;
+                      <ins className="inserttag"> ₹ 20</ins>
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="itemcard">
-                <img src={box4} alt="fancy" className="itemimage" />
-                <h6 className="itemname">7 Shot Crackling</h6>
-                <p>(5pc/box)</p>
-                <p>
-                  <del className="deletetag"> ₹ 600 </del> &nbsp;
-                  <ins className="inserttag"> ₹ 280</ins>
-                </p>
+                <div className="productcontain">
+                  <img
+                    src={chakkardlx}
+                    alt="products"
+                    className="productimage"
+                  />
+                  <div class="cartmiddle">
+                    <div class="productcarttext">Add to cart</div>
+                  </div>
+                  <div className="aligntext">
+                    <p className="my-3">(1Pkt / 5Pcs)</p>
+                    <p>
+                      <del className="deletetag"> ₹ 325 </del> &nbsp;
+                      <ins className="inserttag"> ₹ 125</ins>
+                    </p>
+                  </div>
+                </div>
               </div>
             </OwlCarousel>
           </div>
@@ -304,49 +346,91 @@ const Home = () => {
               }}
             >
               <div className="itemcard">
-                <img src={box} alt="fancy" className="itemimage" />
-                <h6 className="itemname">30 Shot Crackling</h6>
-                <p>(1pc/box)</p>
-                <p>
-                  <del className="deletetag"> ₹ 500 </del> &nbsp;
-                  <ins className="inserttag"> ₹ 200</ins>
-                </p>
+                <div className="productcontain">
+                  <img src={kuruvi} alt="products" className="productimage" />
+                  <div class="cartmiddle">
+                    <div class="productcarttext">Add to cart</div>
+                  </div>
+                  <div className="aligntext">
+                    <p className="my-3">(1Pkt / 5Pcs)</p>
+                    <p>
+                      <del className="deletetag"> ₹ 40 </del> &nbsp;
+                      <ins className="inserttag"> ₹ 8</ins>
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="itemcard">
-                <img src={box1} alt="fancy" className="itemimage" />
-                <h6 className="itemname">Tik Tok Fancy</h6>
-                <p>(3pc/box)</p>
-                <p>
-                  <del className="deletetag"> ₹ 800 </del> &nbsp;
-                  <ins className="inserttag"> ₹ 520</ins>
-                </p>
+                <div className="productcontain">
+                  <img src={twosound} alt="products" className="productimage" />
+                  <div class="cartmiddle">
+                    <div class="productcarttext">Add to cart</div>
+                  </div>
+                  <div className="aligntext">
+                    <p className="my-3">(1Pkt / 5Pcs)</p>
+                    <p>
+                      <del className="deletetag"> ₹ 145 </del> &nbsp;
+                      <ins className="inserttag"> ₹ 29</ins>
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="itemcard">
-                <img src={box2} alt="fancy" className="itemimage" />
-                <h6 className="itemname">Peacock Fancy</h6>
-                <p>(1pc/box)</p>
-                <p>
-                  <del className="deletetag"> ₹ 900 </del> &nbsp;
-                  <ins className="inserttag"> ₹ 700</ins>
-                </p>
+                <div className="productcontain">
+                  <img
+                    src={chakkarspl}
+                    alt="products"
+                    className="productimage"
+                  />
+                  <div class="cartmiddle">
+                    <div class="productcarttext">Add to cart</div>
+                  </div>
+                  <div className="aligntext">
+                    <p className="my-3">(1Pkt / 5Pcs)</p>
+                    <p>
+                      <del className="deletetag"> ₹ 380 </del> &nbsp;
+                      <ins className="inserttag"> ₹ 76 </ins>
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="itemcard">
-                <img src={box3} alt="fancy" className="itemimage" />
-                <h6 className="itemname">Chakkar Deluxe</h6>
-                <p>(10pc/box)</p>
-                <p>
-                  <del className="deletetag"> ₹ 300 </del> &nbsp;
-                  <ins className="inserttag"> ₹ 120</ins>
-                </p>
+                <div className="productcontain">
+                  <img
+                    src={fourlakshimi}
+                    alt="products"
+                    className="productimage"
+                  />
+                  <div class="cartmiddle">
+                    <div class="productcarttext">Add to cart</div>
+                  </div>
+                  <div className="aligntext">
+                    <p className="my-3">(1Pkt / 5Pcs)</p>
+                    <p>
+                      <del className="deletetag"> ₹ 100 </del> &nbsp;
+                      <ins className="inserttag"> ₹ 20</ins>
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="itemcard">
-                <img src={box4} alt="fancy" className="itemimage" />
-                <h6 className="itemname">7 Shot Crackling</h6>
-                <p>(5pc/box)</p>
-                <p>
-                  <del className="deletetag"> ₹ 600 </del> &nbsp;
-                  <ins className="inserttag"> ₹ 280</ins>
-                </p>
+                <div className="productcontain">
+                  <img
+                    src={chakkardlx}
+                    alt="products"
+                    className="productimage"
+                  />
+                  <div class="cartmiddle">
+                    <div class="productcarttext">Add to cart</div>
+                  </div>
+                  <div className="aligntext">
+                    <p className="my-3">(1Pkt / 5Pcs)</p>
+                    <p>
+                      <del className="deletetag"> ₹ 325 </del> &nbsp;
+                      <ins className="inserttag"> ₹ 125</ins>
+                    </p>
+                  </div>
+                </div>
               </div>
             </OwlCarousel>
           </div>

@@ -210,10 +210,11 @@ a {
 }
 .itemcard {
   padding: 3px;
-  border: 1px solid red;
+  border: 1px solid #177b00;
   border-radius: 10px;
   text-align: center;
   cursor: pointer;
+  background: #fff;
 }
 .itemimage {
   transition: transform 0.2s; /* Animation */
