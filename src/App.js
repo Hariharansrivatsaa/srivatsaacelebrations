@@ -22,6 +22,8 @@ import Register from "./components/Register";
 import Contactus from "./components/Contactus";
 import Product from "./components/Product";
 import Quickorder from "./components/Quickorder";
+import CategoryPage from "./Page/Category/CategoryPage";
+import AdminProduct from "./Page/Product/AdminProduct";
 
 function App() {
   useEffect(() => {
@@ -55,6 +57,9 @@ function App() {
         <Route exact path="/Contactus" element={<Contactus />} />
         <Route exact path="/Product" element={<Product />} />
         <Route exact path="/Quickorder" element={<Quickorder />} />
+
+        <Route exact path="/admin_cat" element={<CategoryPage />} />
+        <Route exact path="/admin_product" element={<AdminProduct />} />
       </Routes>
     </BrowserRouter>
   );
