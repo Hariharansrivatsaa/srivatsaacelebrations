@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "../src/Css/Style.css";
+import "../src/Css/Admin.css";
+import "../src/Css/Responsive.css";
 import { useEffect } from "react";
-
 import Home from "./components/Home";
 import About from "./components/Aboutus";
 import Arun from "./components/Arun";
@@ -24,6 +25,8 @@ import Product from "./components/Product";
 import Quickorder from "./components/Quickorder";
 import CategoryPage from "./Page/Category/CategoryPage";
 import AdminProduct from "./Page/Product/AdminProduct";
+import Admindashboard from "./components/Admin/Admindashboard";
+import Adminsidebar from "./components/Admin/Adminsidebar";
 
 function App() {
   useEffect(() => {
@@ -57,6 +60,9 @@ function App() {
         <Route exact path="/Contactus" element={<Contactus />} />
         <Route exact path="/Product" element={<Product />} />
         <Route exact path="/Quickorder" element={<Quickorder />} />
+
+        <Route exact path="/Admindashboard" element={<Admindashboard />} />
+        <Route exact path="/Adminsidebar" element={<Adminsidebar />} />
 
         <Route exact path="/admin_cat" element={<CategoryPage />} />
         <Route exact path="/admin_product" element={<AdminProduct />} />

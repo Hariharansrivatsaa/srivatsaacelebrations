@@ -42,6 +42,19 @@ const Product = () => {
     }
   };
 
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+
+  // Filter products based on the selected category
+  const filteredProducts = selectedCategory
+    ? products.filter(
+        (product) => product.category === selectedCategory.category
+      )
+    : products;
+
   return (
     <>
       <Header />
@@ -51,18 +64,30 @@ const Product = () => {
           <div className="row my-5">
             <div className="col-lg-3">
               <h5 className="categorytitle mb-4">Products By Category</h5>
-              <button className="producttopic">All</button>
-              <button className="producttopic">New Arrivals</button>
+              <button
+                className="producttopic"
+                onClick={() => setSelectedCategory(null)}
+              >
+                All
+              </button>
               {categories.map((category) => (
-                <button key={category.id} className="producttopic">
+                <button
+                  key={category.id}
+                  className={`producttopic ${
+                    selectedCategory?.id === category.id ? "active" : ""
+                  }`}
+                  onClick={() => handleCategoryClick(category)}
+                >
                   {category.category}
                 </button>
               ))}
             </div>
             <div className="col-lg-9">
-              <h5 className="producttitleheading">All Products</h5>
+              <h5 className="producttitleheading">
+                {selectedCategory ? selectedCategory.category : "All Products"}
+              </h5>
               <div className="row my-3">
-                {products.map((product) => (
+                {filteredProducts.map((product) => (
                   <div key={product.id} className="col-lg-4 mb-4">
                     <div className="productcontain">
                       <img
