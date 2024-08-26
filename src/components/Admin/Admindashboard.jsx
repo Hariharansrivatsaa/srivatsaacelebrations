@@ -5,8 +5,17 @@ import Adminsidebar from "./Adminsidebar";
 const Admindashboard = () => {
   return (
     <>
-      <Adminsidebar />  
-      {/* <Adminheader /> */}
+      <div className="alignmentdisplay">
+        <div className="sidebaralign">
+          <Adminsidebar />
+        </div>
+        <div className="contentalign">
+          <Adminheader />
+          <div>
+            <h5> Helo everyone</h5>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

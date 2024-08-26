@@ -13,15 +13,24 @@ a {
 .aligntext {
   text-align: center;
 }
-.sidebar {
+.sidebaradmin {
   padding: 15px 35px !important;
   background: #262d34 !important;
-  width: 20% !important;
   height: 100vh;
   color: #818182 !important;
   display: flex;
   flex-direction: column;
   position: relative;
+}
+.alignmentdisplay {
+  display: flex;
+}
+.sidebaralign {
+  width: 20%;
+}
+.contentalign {
+  width: 80%;
+  padding: 10px;
 }
 .adminlogo {
   width: 75%;

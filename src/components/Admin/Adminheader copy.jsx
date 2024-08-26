@@ -10,7 +10,7 @@ const Adminheader = () => {
       <section className="my-2">
         <div className="container">
           <div className="d-flex justify-content-between align-items-center">
-            <h4> Welcome Admin !</h4>
+            Welcome !
             <div className="d-flex justify-content-between  align-items-center">
               <div className="nav-item nav-link headerlinktitle" to="">
                 <div className="dropdown">
