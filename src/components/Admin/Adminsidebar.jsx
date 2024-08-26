@@ -82,132 +82,146 @@ const Adminsidebar = () => {
         <section className="sidebarmenu">
           <div>
             <h6 className="sidebarheading">General</h6>
-            <div
-              className="sidebaritem"
-              onMouseEnter={() => handleMouseEnter("dashboard")}
-              onMouseLeave={() => handleMouseLeave("dashboard")}
-            >
-              <img
-                src={hoveredItems.dashboard ? dashboardhover : dashboard}
-                alt="dashboard"
-                className="sidebaricon"
-              />
-              <h6
-                className={`sidebarheadingtitle ${
-                  hoveredItems.dashboard ? "hovered" : ""
-                }`}
+            <Link to="/Admindashboard">
+              <div
+                className="sidebaritem"
+                onMouseEnter={() => handleMouseEnter("dashboard")}
+                onMouseLeave={() => handleMouseLeave("dashboard")}
               >
-                Dashboard
-              </h6>
-            </div>
-            <div
-              className="sidebaritem"
-              onMouseEnter={() => handleMouseEnter("cat")}
-              onMouseLeave={() => handleMouseLeave("cat")}
-            >
-              <img
-                src={hoveredItems.cat ? categoryhover : category}
-                alt="cat"
-                className="sidebaricon"
-              />
-              <h6
-                className={`sidebarheadingtitle ${
-                  hoveredItems.cat ? "hovered" : ""
-                }`}
+                <img
+                  src={hoveredItems.dashboard ? dashboardhover : dashboard}
+                  alt="dashboard"
+                  className="sidebaricon"
+                />
+                <h6
+                  className={`sidebarheadingtitle ${
+                    hoveredItems.dashboard ? "hovered" : ""
+                  }`}
+                >
+                  Dashboard
+                </h6>
+              </div>
+            </Link>
+            <Link to="/AdminCategory">
+              <div
+                className="sidebaritem"
+                onMouseEnter={() => handleMouseEnter("cat")}
+                onMouseLeave={() => handleMouseLeave("cat")}
               >
-                Categories
-              </h6>
-            </div>
-            <div
-              className="sidebaritem"
-              onMouseEnter={() => handleMouseEnter("pro")}
-              onMouseLeave={() => handleMouseLeave("pro")}
-            >
-              <img
-                src={hoveredItems.pro ? producthover : product}
-                alt="pro"
-                className="sidebaricon"
-              />
-              <h6
-                className={`sidebarheadingtitle ${
-                  hoveredItems.pro ? "hovered" : ""
-                }`}
+                <img
+                  src={hoveredItems.cat ? categoryhover : category}
+                  alt="cat"
+                  className="sidebaricon"
+                />
+                <h6
+                  className={`sidebarheadingtitle ${
+                    hoveredItems.cat ? "hovered" : ""
+                  }`}
+                >
+                  Categories
+                </h6>
+              </div>
+            </Link>
+            <Link to="/AdminProduct">
+              <div
+                className="sidebaritem"
+                onMouseEnter={() => handleMouseEnter("pro")}
+                onMouseLeave={() => handleMouseLeave("pro")}
               >
-                Products
-              </h6>
-            </div>
-            <div
-              className="sidebaritem"
-              onMouseEnter={() => handleMouseEnter("inv")}
-              onMouseLeave={() => handleMouseLeave("inv")}
-            >
-              <img
-                src={hoveredItems.inv ? inventoryhover : inventory}
-                alt="inventory"
-                className="sidebaricon"
-              />
-              <h6
-                className={`sidebarheadingtitle ${
-                  hoveredItems.inv ? "hovered" : ""
-                }`}
+                <img
+                  src={hoveredItems.pro ? producthover : product}
+                  alt="pro"
+                  className="sidebaricon"
+                />
+                <h6
+                  className={`sidebarheadingtitle ${
+                    hoveredItems.pro ? "hovered" : ""
+                  }`}
+                >
+                  Products
+                </h6>
+              </div>
+            </Link>
+            <Link to="/AdminCategory">
+              <div
+                className="sidebaritem"
+                onMouseEnter={() => handleMouseEnter("inv")}
+                onMouseLeave={() => handleMouseLeave("inv")}
               >
-                Inventories
-              </h6>
-            </div>
-            <div
-              className="sidebaritem"
-              onMouseEnter={() => handleMouseEnter("order")}
-              onMouseLeave={() => handleMouseLeave("order")}
-            >
-              <img
-                src={hoveredItems.order ? orderhover : order}
-                alt="order"
-                className="sidebaricon"
-              />
-              <h6
-                className={`sidebarheadingtitle ${
-                  hoveredItems.order ? "hovered" : ""
-                }`}
+                <img
+                  src={hoveredItems.inv ? inventoryhover : inventory}
+                  alt="inventory"
+                  className="sidebaricon"
+                />
+                <h6
+                  className={`sidebarheadingtitle ${
+                    hoveredItems.inv ? "hovered" : ""
+                  }`}
+                >
+                  Inventories
+                </h6>
+              </div>
+            </Link>
+            <Link to="/AdminCategory">
+              <div
+                className="sidebaritem"
+                onMouseEnter={() => handleMouseEnter("order")}
+                onMouseLeave={() => handleMouseLeave("order")}
               >
-                Orders
-              </h6>
-            </div>
-            <div
-              className="sidebaritem"
-              onMouseEnter={() => handleMouseEnter("pur")}
-              onMouseLeave={() => handleMouseLeave("pur")}
-            >
-              <img
-                src={hoveredItems.pur ? purchasehover : purchase}
-                alt="purchase"
-                className="sidebaricon"
-              />
-              <h6
-                className={`sidebarheadingtitle ${
-                  hoveredItems.pur ? "hovered" : ""
-                }`}
+                <img
+                  src={hoveredItems.order ? orderhover : order}
+                  alt="order"
+                  className="sidebaricon"
+                />
+                <h6
+                  className={`sidebarheadingtitle ${
+                    hoveredItems.order ? "hovered" : ""
+                  }`}
+                >
+                  Orders
+                </h6>
+              </div>
+            </Link>
+            <Link to="/AdminCategory">
+              <div
+                className="sidebaritem"
+                onMouseEnter={() => handleMouseEnter("pur")}
+                onMouseLeave={() => handleMouseLeave("pur")}
               >
-                Purchases
-              </h6>
-            </div>
-            <div
-              className="sidebaritem"
-              onMouseEnter={() => handleMouseEnter("invoice")}
-              onMouseLeave={() => handleMouseLeave("invoice")}
-            >
-              <img
-                src={hoveredItems.invoice ? invoicehover : invoice}
-                alt="invoice"
-                className="sidebaricon"
-              />
-              <h6
-                className={`sidebarheadingtitle ${
-                  hoveredItems.invoice ? "hovered" : ""
-                }`}
+                <img
+                  src={hoveredItems.pur ? purchasehover : purchase}
+                  alt="purchase"
+                  className="sidebaricon"
+                />
+                <h6
+                  className={`sidebarheadingtitle ${
+                    hoveredItems.pur ? "hovered" : ""
+                  }`}
+                >
+                  Purchases
+                </h6>
+              </div>
+            </Link>
+            <Link to="/AdminCategory">
+              <div
+                className="sidebaritem"
+                onMouseEnter={() => handleMouseEnter("invoice")}
+                onMouseLeave={() => handleMouseLeave("invoice")}
               >
-                Invoices
-              </h6>
-            </div>
+                <img
+                  src={hoveredItems.invoice ? invoicehover : invoice}
+                  alt="invoice"
+                  className="sidebaricon"
+                />
+                <h6
+                  className={`sidebarheadingtitle ${
+                    hoveredItems.invoice ? "hovered" : ""
+                  }`}
+                >
+                  Invoices
+                </h6>
+              </div>
+            </Link>
           </div>
           <div>
             <h6 className="sidebarheading">Users</h6>

@@ -44,6 +44,13 @@ a {
 .sidebarmenu::-webkit-scrollbar {
   display: none;
 }
+.mainpagecontent {
+  overflow-y: auto;
+  height: calc(80vh - 100px);
+}
+.mainpagecontent::-webkit-scrollbar {
+  display: none;
+}
 .sidebarheading {
   font-size: 13px;
   text-transform: uppercase;
@@ -114,4 +121,60 @@ a {
 }
 .dropdown:hover .dropdown-content {
   display: block;
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+.form-containerleft {
+  display: flex;
+  justify-content: end;
+}
+.add-form {
+  display: flex;
+  align-items: center;
+}
+.addinput {
+  padding: 7px 14px;
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid #d0541e;
+  margin-right: 2%;
+}
+.addbutton {
+  padding: 7px 20px;
+  background-color: #d0541e;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.addbutton:hover {
+  color: #d0541e;
+  border: 1px solid #d0541e;
+  background: transparent;
+}
+.pagetitle {
+  font-size: 23px;
+  font-weight: 500;
+  color: #0091d6;
+  text-transform: capitalize;
+}
+.tableediticonbutton {
+  background: green;
+}
+.tabledeleteiconbutton {
+  background: red;
+}
+.tableediticonbutton,
+.tabledeleteiconbutton {
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+}
+.tableicon {
+  width: 20px;
+  height: 20px;
 }

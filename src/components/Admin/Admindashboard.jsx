@@ -2,7 +2,7 @@ import React from "react";
 import Adminheader from "./Adminheader";
 import Adminsidebar from "./Adminsidebar";
 
-const Admindashboard = () => {
+const AdminDashboard = () => {
   return (
     <>
       <div className="alignmentdisplay">
@@ -10,14 +10,18 @@ const Admindashboard = () => {
           <Adminsidebar />
         </div>
         <div className="contentalign">
-          <Adminheader />
-          <div>
-            <h5> Helo everyone</h5>
-          </div>
+          <section>
+            <Adminheader />
+          </section>
+          <section>
+            <div className="container">
+              <h5> Admin</h5>
+            </div>
+          </section>
         </div>
       </div>
     </>
   );
 };
 
-export default Admindashboard;
+export default AdminDashboard;

@@ -143,7 +143,7 @@ const Header = () => {
                 </div>
               </div>
               <div className="col-lg-1 col-md-11 p-0 my-auto">
-                <Link className="nav-item nav-link headerlinktitle" to="/cart">
+                <Link className="nav-item nav-link headerlinktitle" to="/Cart">
                   <span className="badge">1</span>
                   <img
                     src={cart}

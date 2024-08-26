@@ -698,7 +698,6 @@ th {
   padding: 10px;
   color: #228acd;
 }
-
 table {
   width: 100%;
   border-collapse: collapse;
@@ -778,4 +777,16 @@ table {
   border-radius: 50%;
   position: absolute;
   right: 2rem;
+}
+.bagicon {
+  width: 5%;
+}
+.cartaligntext {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carttitle {
+  color: #d0541e;
+  font-size: 25px;
 }

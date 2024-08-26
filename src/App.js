@@ -23,10 +23,12 @@ import Register from "./components/Register";
 import Contactus from "./components/Contactus";
 import Product from "./components/Product";
 import Quickorder from "./components/Quickorder";
-import CategoryPage from "./Page/Category/CategoryPage";
-import AdminProduct from "./Page/Product/AdminProduct";
-import Admindashboard from "./components/Admin/Admindashboard";
+import Cart from "./components/Cart";
+
 import Adminsidebar from "./components/Admin/Adminsidebar";
+import AdminCategory from "./components/Admin/AdminCategory";
+import AdminDashboard from "./components/Admin/AdminDashboard";
+import AdminProduct from "./components/Admin/AdminProduct";
 
 function App() {
   useEffect(() => {
@@ -60,12 +62,12 @@ function App() {
         <Route exact path="/Contactus" element={<Contactus />} />
         <Route exact path="/Product" element={<Product />} />
         <Route exact path="/Quickorder" element={<Quickorder />} />
+        <Route exact path="/Cart" element={<Cart />} />
 
-        <Route exact path="/Admindashboard" element={<Admindashboard />} />
+        <Route exact path="/AdminDashboard" element={<AdminDashboard />} />
         <Route exact path="/Adminsidebar" element={<Adminsidebar />} />
-
-        <Route exact path="/admin_cat" element={<CategoryPage />} />
-        <Route exact path="/admin_product" element={<AdminProduct />} />
+        <Route exact path="/AdminCategory" element={<AdminCategory />} />
+        <Route exact path="/AdminProduct" element={<AdminProduct />} />
       </Routes>
     </BrowserRouter>
   );
