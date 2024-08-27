@@ -790,3 +790,18 @@ table {
   color: #d0541e;
   font-size: 25px;
 }
+.cartline {
+  border-top: 1px solid #2058a5;
+}
+.cartimage {
+  width: 100%;
+}
+.cartimagetitle {
+  font-size: 16px;
+  font-weight: 500;
+}
+.cartimagesubtitle {
+  color: #858282;
+  font-size: 14px;
+  font-weight: 500;
+}
