@@ -24,6 +24,7 @@ import Contactus from "./components/Contactus";
 import Product from "./components/Product";
 import Quickorder from "./components/Quickorder";
 import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
 
 import Adminsidebar from "./components/Admin/Adminsidebar";
 import AdminCategory from "./components/Admin/AdminCategory";
@@ -63,6 +64,7 @@ function App() {
         <Route exact path="/Product" element={<Product />} />
         <Route exact path="/Quickorder" element={<Quickorder />} />
         <Route exact path="/Cart" element={<Cart />} />
+        <Route exact path="/Checkout" element={<Checkout />} />
 
         <Route exact path="/AdminDashboard" element={<AdminDashboard />} />
         <Route exact path="/Adminsidebar" element={<Adminsidebar />} />
