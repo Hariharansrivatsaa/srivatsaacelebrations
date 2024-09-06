@@ -9,15 +9,14 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [currentOrderValue] = useState(409);
-  const [minimumOrderValue, setMinimumOrderValue] = useState(2500);
+  const [minimumOrderValue, setMinimumOrderValue] = useState(2499);
 
   const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
-
     if (selectedValue === "insideTN") {
-      setMinimumOrderValue(2500);
+      setMinimumOrderValue(2499);
     } else if (selectedValue === "outsideTN") {
-      setMinimumOrderValue(5000);
+      setMinimumOrderValue(3499);
     }
   };
 
