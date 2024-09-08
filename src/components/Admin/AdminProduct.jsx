@@ -14,6 +14,8 @@ const AdminProduct = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
   const [formData, setFormData] = useState({
     productCode: "",
     productName: "",
@@ -252,6 +254,15 @@ const AdminProduct = () => {
     }
   };
 
+  const handleImageClick = (imageUrl) => {
+    setSelectedImage(imageUrl);
+  };
+
+  // Function to close the image preview
+  const closePreview = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <>
       <div className="alignmentdisplay">
@@ -299,7 +310,16 @@ const AdminProduct = () => {
                           <img
                             src={`https://ndabevturhrddprzhkcb.supabase.co/storage/v1/object/public/Images/${product.image_url}`}
                             alt={product.product_name}
-                            style={{ width: "50px", height: "50px" }}
+                            style={{
+                              width: "50px",
+                              height: "50px",
+                              cursor: "pointer",
+                            }}
+                            onClick={() =>
+                              handleImageClick(
+                                `https://ndabevturhrddprzhkcb.supabase.co/storage/v1/object/public/Images/${product.image_url}`
+                              )
+                            }
                           />
                         </td>
                         <td>{product.product_name}</td>
@@ -458,6 +478,29 @@ const AdminProduct = () => {
                   </Form>
                 </Modal.Body>
               </Modal>
+
+              {selectedImage && (
+                <div
+                  onClick={closePreview}
+                  style={{
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    width: "100vw",
+                    height: "100vh",
+                    background: "rgba(0, 0, 0, 0.5)",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <img
+                    src={selectedImage}
+                    alt="Preview"
+                    style={{ maxWidth: "90%", maxHeight: "90%" }}
+                  />
+                </div>
+              )}
             </div>
           </section>
         </div>
