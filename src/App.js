@@ -28,8 +28,17 @@ import Checkout from "./components/Checkout";
 
 import Adminsidebar from "./components/Admin/Adminsidebar";
 import AdminCategory from "./components/Admin/AdminCategory";
-import AdminDashboard from "./components/Admin/AdminDashboard";
+import AdminDashboard from "./components/Admin/Admindashboard";
 import AdminProduct from "./components/Admin/AdminProduct";
+import UserProfile from "./components/UserProfile";
+import { useAuthStore } from "./Store/useAuthStore";
+import { Navigate } from "react-router-dom";
+
+const PrivateRoute = ({ children }) => {
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+
+  return isLoggedIn ? children : <Navigate to="/Login" />;
+};
 
 function App() {
   useEffect(() => {
@@ -65,6 +74,15 @@ function App() {
         <Route exact path="/Quickorder" element={<Quickorder />} />
         <Route exact path="/Cart" element={<Cart />} />
         <Route exact path="/Checkout" element={<Checkout />} />
+        <Route
+          exact
+          path="/Profile"
+          element={
+            <PrivateRoute>
+              <UserProfile />
+            </PrivateRoute>
+          }
+        />
 
         <Route exact path="/AdminDashboard" element={<AdminDashboard />} />
         <Route exact path="/Adminsidebar" element={<Adminsidebar />} />

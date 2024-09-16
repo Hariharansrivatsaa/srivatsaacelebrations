@@ -5,8 +5,11 @@ import icon1 from "../Assets/Icon/rocket.webp";
 import logo from "../Assets/Logo/Logo.webp";
 import order from "../Assets/Gif/order1.gif";
 import cart from "../Assets/Gif/cart.gif";
+import { useAuthStore } from "../Store/useAuthStore";
 
 const Header = () => {
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+
   return (
     <>
       <section>
@@ -121,17 +124,21 @@ const Header = () => {
                         Contact Us
                       </span>
                     </Link>
-                    <Link
-                      className="nav-item nav-link headerlinktitle"
-                      to="/Login"
-                    >
-                      <span
-                        data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse"
+                    {isLoggedIn ? (
+                      <Link
+                        className="nav-item nav-link headerlinktitle"
+                        to="/Profile"
+                      >
+                        Profile
+                      </Link>
+                    ) : (
+                      <Link
+                        className="nav-item nav-link headerlinktitle"
+                        to="/Login"
                       >
                         Login
-                      </span>
-                    </Link>
+                      </Link>
+                    )}
                   </div>
                   <div className="hamburger">
                     <div className="hamburger_btn">

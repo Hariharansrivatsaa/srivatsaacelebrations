@@ -25,7 +25,7 @@ const Register = () => {
         title: "Registration Successful",
         text: "You have been registered successfully!",
       }).then(() => {
-        navigate("/");
+        navigate("/Login");
       });
     } catch (error) {
       Swal.fire({
