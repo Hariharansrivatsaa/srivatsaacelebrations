@@ -5,11 +5,14 @@ import icon1 from "../Assets/Icon/rocket.webp";
 import logo from "../Assets/Logo/Logo.webp";
 import order from "../Assets/Gif/order1.gif";
 import cart from "../Assets/Gif/cart.gif";
+import { useAuthStore } from "../Store/useAuthStore";
 
 const Header = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   return (
     <>

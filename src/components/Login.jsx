@@ -4,6 +4,7 @@ import loginlogo from "../Assets/Logo/Logo.webp";
 import { supabase } from "../supabaseClient";
 import Swal from "sweetalert2";
 import bcrypt from "bcryptjs";
+import { useAuthStore } from "../Store/useAuthStore";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -13,30 +14,21 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      console.log("Attempting login with:", username); // This now contains the email
       const { data, error } = await supabase
         .from("users")
         .select()
-        .ilike("email", username.trim()); // Use ilike for case-insensitive matching and trim the input
+        .ilike("email", username.trim());
 
-      if (error) {
-        console.error("Supabase error:", error);
-        throw error;
-      }
-
-      console.log("Query result:", data);
+      if (error) throw error;
 
       if (data && data.length === 1) {
         const user = data[0];
-        console.log("User found:", user);
-
         if (user.password === password) {
-          // Still using plain text comparison - not recommended for production
           Swal.fire({
             icon: "success",
             title: "Login Successful",
-            text: "You have been logged in successfully!",
           }).then(() => {
+            useAuthStore.getState().setLogin(true);
             navigate("/");
           });
         } else {
@@ -46,7 +38,6 @@ const Login = () => {
         throw new Error("Invalid email or password");
       }
     } catch (error) {
-      console.error("Login error:", error);
       Swal.fire({
         icon: "error",
         title: "Login Failed",
