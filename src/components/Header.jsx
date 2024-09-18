@@ -111,15 +111,27 @@ const Header = () => {
                     Contact Us
                   </NavLink>
                 </li>
-                <li className="nav-item">
-                  <NavLink
-                    to="/Login"
-                    className="nav-link headerlinktitle"
-                    activeClassName="active"
-                  >
-                    Login
-                  </NavLink>
-                </li>
+                {isLoggedIn ? (
+                  <li className="nav-item">
+                    <NavLink
+                      to="/UserDashboard"
+                      className="nav-link headerlinktitle"
+                      activeClassName="active"
+                    >
+                      Profile
+                    </NavLink>
+                  </li>
+                ) : (
+                  <li className="nav-item">
+                    <NavLink
+                      to="/Login"
+                      className="nav-link headerlinktitle"
+                      activeClassName="active"
+                    >
+                      Login
+                    </NavLink>
+                  </li>
+                )}
               </ul>
             </div>
 

@@ -28,11 +28,12 @@ import Checkout from "./components/Checkout";
 
 import Adminsidebar from "./components/Admin/Adminsidebar";
 import AdminCategory from "./components/Admin/AdminCategory";
-import AdminDashboard from "./components/Admin/Admindashboard";
+import AdminDashboard from "./components/Admin/AdminDashboard";
 import AdminProduct from "./components/Admin/AdminProduct";
 import UserProfile from "./components/UserProfile";
 import { useAuthStore } from "./Store/useAuthStore";
 import { Navigate } from "react-router-dom";
+import UserDashboard from "./components/User/UserDashboard";
 
 const PrivateRoute = ({ children }) => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -88,6 +89,7 @@ function App() {
         <Route exact path="/Adminsidebar" element={<Adminsidebar />} />
         <Route exact path="/AdminCategory" element={<AdminCategory />} />
         <Route exact path="/AdminProduct" element={<AdminProduct />} />
+        <Route exact path="/UserDashboard" element={<UserDashboard />} />
       </Routes>
     </BrowserRouter>
   );
