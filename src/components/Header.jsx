@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import icon1 from "../Assets/Icon/rocket.webp";
 import logo from "../Assets/Logo/Logo.webp";
@@ -7,6 +7,10 @@ import order from "../Assets/Gif/order1.gif";
 import cart from "../Assets/Gif/cart.gif";
 
 const Header = () => {
+  const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+
+  const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+
   return (
     <>
       <section>
@@ -26,137 +30,105 @@ const Header = () => {
         </div>
       </section>
       <section className="my-2">
-        <div className="container">
-          <nav className="navbar navbar-expand-lg">
-            <div className="row">
-              <div className="col-lg-2 col-md-11 col-sm-12 row">
-                <div className="col-lg-12 col-6 navbarfix">
-                  <Link to="/">
-                    <img src={logo} alt="Srivatsaa" className="logo" />
-                  </Link>
-                </div>
-                <div className="col-2 p-0 d-flex align-items: center ms-auto">
-                  <button
-                    className="navbar-toggler shadow-none ms-auto"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarTogglerDemo02"
-                    aria-controls="navbarTogglerDemo02"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
+        <nav className="navbar navbar-expand-lg navbar-light">
+          <div className="container">
+            <Link to="/" className="navbar-brand">
+              <img src={logo} alt="Srivatsaa" className="logo" />
+            </Link>
+
+            <button
+              className="navbar-toggler"
+              type="button"
+              onClick={handleNavCollapse}
+              aria-controls="navbarNav"
+              aria-expanded={!isNavCollapsed}
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+
+            <div
+              className={`collapse navbar-collapse ${
+                !isNavCollapsed ? "show" : ""
+              }`}
+              id="navbarNav"
+            >
+              <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <NavLink
+                    to="/About"
+                    className="nav-link headerlinktitle"
+                    activeClassName="active"
                   >
-                    <span className="navbar-toggler-icon"></span>
-                  </button>
-                </div>
-              </div>
-              <div className="col-lg-9 col-md-11 col-sm-12 p-0 ms-auto my-auto">
-                <div
-                  className="collapse navbar-collapse"
-                  id="navbarTogglerDemo02"
-                >
-                  <div className="navbar-nav mx-auto headerlinkspace">
-                    <Link
-                      className="nav-item nav-link headerlinktitle"
-                      to="/About"
-                    >
-                      <span
-                        data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse"
-                      >
-                        About Us
-                      </span>
-                    </Link>
-                    <Link
-                      className="nav-item nav-link headerlinktitle"
-                      to="/Product"
-                    >
-                      <span
-                        data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse"
-                      >
-                        Our Products
-                      </span>
-                    </Link>
-                    <Link
-                      className="nav-item nav-link headerlinktitle"
-                      to="/Quickorder"
-                    >
-                      <span
-                        data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse"
-                      >
-                        Quick purchase
-                      </span>
-                    </Link>
-                    <Link
-                      className="nav-item nav-link headerlinktitle"
-                      to="/Chit"
-                    >
-                      <span
-                        data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse"
-                      >
-                        Chit Schemes
-                      </span>
-                    </Link>
-                    <Link
-                      className="nav-item nav-link headerlinktitle"
-                      to="/Corporate"
-                    >
-                      <span
-                        data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse"
-                      >
-                        Bulk/Corporate Order
-                      </span>
-                    </Link>
-                    <Link
-                      className="nav-item nav-link headerlinktitle"
-                      to="/Contactus"
-                    >
-                      <span
-                        data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse"
-                      >
-                        Contact Us
-                      </span>
-                    </Link>
-                    <Link
-                      className="nav-item nav-link headerlinktitle"
-                      to="/Login"
-                    >
-                      <span
-                        data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse"
-                      >
-                        Login
-                      </span>
-                    </Link>
-                  </div>
-                  <div className="hamburger">
-                    <div className="hamburger_btn">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-1 col-md-11 p-0 my-auto">
-                <Link className="nav-item nav-link headerlinktitle" to="/Cart">
-                  <span className="badge">1</span>
-                  <img
-                    src={cart}
-                    alt="cart"
-                    className="carticon"
-                    data-bs-toggle="collapse"
-                    data-bs-target=".navbar-collapse"
-                  />
-                </Link>
-              </div>
+                    About Us
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    to="/Product"
+                    className="nav-link headerlinktitle"
+                    activeClassName="active"
+                  >
+                    Our Products
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    to="/Quickorder"
+                    className="nav-link headerlinktitle"
+                    activeClassName="active"
+                  >
+                    Quick Purchase
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    to="/Chit"
+                    className="nav-link headerlinktitle"
+                    activeClassName="active"
+                  >
+                    Chit Schemes
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    to="/Corporate"
+                    className="nav-link headerlinktitle"
+                    activeClassName="active"
+                  >
+                    Bulk/Corporate Order
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    to="/Contactus"
+                    className="nav-link headerlinktitle"
+                    activeClassName="active"
+                  >
+                    Contact Us
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    to="/Login"
+                    className="nav-link headerlinktitle"
+                    activeClassName="active"
+                  >
+                    Login
+                  </NavLink>
+                </li>
+              </ul>
             </div>
-          </nav>
-        </div>
+
+            {/* Cart Icon Section */}
+            <div className="nav-item">
+              <Link to="/Cart" className="nav-link headerlinktitle">
+                <span className="badge">1</span>
+                <img src={cart} alt="cart" className="carticon" />
+              </Link>
+            </div>
+          </div>
+        </nav>
       </section>
       <section>
         <a
@@ -167,6 +139,7 @@ const Header = () => {
           <i className="fa-brands fa-whatsapp my-whatsApp"></i>
         </a>
       </section>
+
       <section>
         <Link to="/Admindashboard" className="ordernow floating">
           <img src={order} alt="Order" className="ordergif" />

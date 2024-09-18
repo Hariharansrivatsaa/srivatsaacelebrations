@@ -1,0 +1,96 @@
+@media (max-width: 768px) {
+  .marquee {
+    text-indent: 250px;
+    padding: 0;
+  }
+  .logo {
+    height: 80px;
+  }
+  .carticon {
+    height: 50px;
+  }
+  .badge {
+    font-size: 10px;
+  }
+  .whatsApp {
+    width: 50px;
+    height: 50px;
+    bottom: 10%;
+    right: 20px;
+    font-size: 24px;
+  }
+  .ordernow {
+    width: 70px;
+    height: 70px;
+    top: 120px;
+    right: 20px;
+  }
+  .bannerimage {
+    width: 100%;
+    height: 230px;
+  }
+  .borderline {
+    border-right: 2px solid red;
+  }
+  .icontext {
+    font-size: 11px;
+  }
+  .iconsubtext {
+    font-size: 10px;
+  }
+  .crackerlooking {
+    height: 9vh;
+    margin-bottom: 105%;
+  }
+  .lookingicon {
+    width: 30%;
+  }
+  .lookingicontitle {
+    font-size: 12px;
+  }
+  .lookingiconcontent {
+    font-size: 11px;
+    text-align: none;
+  }
+  .countbanner {
+    padding: 5px;
+  }
+  .CountUp {
+    font-size: 25px;
+  }
+  .countname {
+    font-size: 11px;
+  }
+  .socialicon {
+    width: 15%;
+    margin-right: 18%;
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin-bottom: 5%;
+  }
+  .footerlinktitle {
+    font-size: 14px;
+  }
+  .rightstext {
+    font-size: 12px;
+  }
+}
+
+/* @media (max-width: 576px) {
+  .whatsApp {
+    width: 45px;
+    height: 45px;
+    bottom: 20px;
+    right: 10px;
+    font-size: 20px;
+  }
+  .ordernow {
+    width: 80px;
+    height: 80px;
+    top: 120px;
+    right: 10px;
+  }
+  .ordergif {
+    width: 75%;
+  }
+} */

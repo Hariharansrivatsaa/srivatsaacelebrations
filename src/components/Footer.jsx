@@ -14,7 +14,7 @@ const Footer = () => {
       <section className="footer">
         <div className="container">
           <div className="row">
-            <div className="col-lg-4">
+            <div className="col-lg-4 col-md-4 col-sm-6 col-12">
               <Link to="/">
                 <img src={logo} alt="Srivatsaa" className="footerlogo" />
               </Link>
@@ -36,7 +36,7 @@ const Footer = () => {
                 </span>
               </h6>
             </div>
-            <div className="col-lg-3">
+            <div className="col-lg-3 col-md-3 col-sm-6 col-12">
               <h6 className="footertitle mt-3"> Company</h6>
               <ul>
                 <li>
@@ -67,16 +67,19 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link className="nav-item nav-link footerlinktitle" to="/Contactus">
+                  <Link
+                    className="nav-item nav-link footerlinktitle"
+                    to="/Contactus"
+                  >
                     ⮞&nbsp; Contact Us
                   </Link>
                 </li>
               </ul>
-              <div className="blinkbox mt-5">
+              <div className="blinkbox mt-lg-5">
                 <div className="blink_me">Download Pricelist</div>
               </div>
             </div>
-            <div className="col-lg-3">
+            <div className="col-lg-3 col-md-3 col-sm-6 col-12">
               <h6 className="footertitle mt-3"> Policies</h6>
               <ul>
                 <li>
@@ -139,7 +142,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-lg-2 p-0">
+            <div className="col-lg-2 col-md-2 col-sm-6 col-12 p-lg-0">
               <h6 className="footertitle mt-3"> Quick Links</h6>
               <ul>
                 <li>

@@ -69,13 +69,13 @@ const Home = () => {
               autoplayTimeout={5000}
             >
               <div className="">
-                <img src={banner1} alt="logo" />
+                <img src={banner1} alt="logo" className="bannerimage" />
               </div>
               <div className="">
-                <img src={banner2} alt="logo" />
+                <img src={banner2} alt="logo" className="bannerimage" />
               </div>
               <div className="">
-                <img src={banner3} alt="logo" />
+                <img src={banner3} alt="logo" className="bannerimage" />
               </div>
             </OwlCarousel>
           </div>
@@ -84,26 +84,26 @@ const Home = () => {
       <section className="my-5">
         <div className="container">
           <div className="row">
-            <div className="col-lg-3">
+            <div className="col-lg-3 col-md-3 col-sm-3 col-6">
               <div className="borderline">
                 <div className="row">
-                  <div className="col-lg-3">
+                  <div className="col-lg-3 col-md-3 col-sm-3 col-4">
                     <img src={transport} alt="logo" className="iconsize" />
                   </div>
-                  <div className="col-lg-9">
+                  <div className="col-lg-9 col-md-9 col-sm-9 col-8">
                     <h6 className="icontext">Super Fast Delivery</h6>
                     <h6 className="iconsubtext">Best transport Support</h6>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-lg-3">
+            <div className="col-lg-3 col-md-3 col-sm-3 col-6">
               <div className="borderline">
                 <div className="row">
-                  <div className="col-lg-3">
+                  <div className="col-lg-3 col-md-3 col-sm-3 col-4">
                     <img src={checklist} alt="logo" className="iconsize" />
                   </div>
-                  <div className="col-lg-9">
+                  <div className="col-lg-9 col-md-9 col-sm-9 col-8">
                     <h6 className="icontext">Minimum Order Value</h6>
                     <h6 className="iconsubtext">
                       For Tamil Nadu and Pondichery - Rs 2499/-, <br />
@@ -113,25 +113,25 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-3">
+            <div className="col-lg-3 col-md-3 col-sm-3 col-6">
               <div className="borderline">
                 <div className="row">
-                  <div className="col-lg-3">
+                  <div className="col-lg-3 col-md-3 col-sm-3 col-4">
                     <img src={best} alt="logo" className="iconsize" />
                   </div>
-                  <div className="col-lg-9">
+                  <div className="col-lg-9 col-md-9 col-sm-9 col-8">
                     <h6 className="icontext">Best Brand - Best Quality</h6>
                     <h6 className="iconsubtext">Premium-Grade Crackers</h6>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-lg-3">
+            <div className="col-lg-3 col-md-3 col-sm-3 col-6">
               <div className="row">
-                <div className="col-lg-3">
+                <div className="col-lg-3 col-md-3 col-sm-3 col-4">
                   <img src={payment} alt="logo" className="iconsize" />
                 </div>
-                <div className="col-lg-9">
+                <div className="col-lg-9 col-md-9 col-sm-9 col-8">
                   <h6 className="icontext">Payment Options</h6>
                   <h6 className="iconsubtext">
                     We accept UPI & Account payments.
@@ -160,20 +160,23 @@ const Home = () => {
               center={true}
               autoplayTimeout={2000}
               responsive={{
+                0: {
+                  items: 1, // For very small screens (phones)
+                },
                 360: {
-                  items: "3",
+                  items: 1, // For small screens (phones)
                 },
-                414: {
-                  items: "3",
+                576: {
+                  items: 2, // For small tablets
                 },
-                670: {
-                  items: "3",
+                768: {
+                  items: 3, // For tablets and small desktops
                 },
                 992: {
-                  items: "3",
+                  items: 3, // For larger desktops
                 },
                 1200: {
-                  items: "5",
+                  items: 5, // For extra-large screens
                 },
               }}
             >
@@ -270,11 +273,11 @@ const Home = () => {
       </section>
       <section className="crackerlooking">
         <div className="row">
-          <div className="col-lg-8 mx-auto ms-auto">
+          <div className="col-lg-8 col-md-8 col-sm-8 col-11 mx-auto ms-auto">
             <div className="lookingfor">
               <h6 className="lookingtitle">What You Looking For ?</h6>
               <div className="row">
-                <div className="col-lg-3">
+                <div className="col-lg-3 col-md-3 col-sm-3 col-6">
                   <img className="lookingicon" src={cracker1} alt="crackers" />
                   <h6 class="lookingicontitle">Gift Boxes</h6>
                   <p className="lookingiconcontent">
@@ -282,7 +285,7 @@ const Home = () => {
                     perfect for gifting joy and celebration to loved ones.
                   </p>
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-3 col-md-3 col-sm-3 col-6">
                   <img className="lookingicon" src={cracker2} alt="crackers" />
                   <h6 class="lookingicontitle">Night time crackers</h6>
                   <p className="lookingiconcontent">
@@ -291,7 +294,7 @@ const Home = () => {
                     enchanting celebrations.
                   </p>
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-3 col-md-3 col-sm-3 col-6">
                   <img className="lookingicon" src={cracker3} alt="crackers" />
                   <h6 class="lookingicontitle">Day time crackers</h6>
                   <p className="lookingiconcontent">
@@ -299,7 +302,7 @@ const Home = () => {
                     add excitement to daytime events.
                   </p>
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-3 col-md-3 col-sm-3 col-6">
                   <img className="lookingicon" src={cracker4} alt="crackers" />
                   <h6 class="lookingicontitle">Kids Collections</h6>
                   <p className="lookingiconcontent">
@@ -329,10 +332,10 @@ const Home = () => {
               autoplayTimeout={2000}
               responsive={{
                 360: {
-                  items: "3",
+                  items: "1",
                 },
                 414: {
-                  items: "3",
+                  items: "1",
                 },
                 670: {
                   items: "3",
@@ -439,9 +442,9 @@ const Home = () => {
       <section className="my-5 countbanner">
         <div className="container">
           <div className="row">
-            <div className="col-lg-10 mx-auto ms-auto">
+            <div className="col-lg-10 col-md-10 col-sm-10 col-12 mx-auto ms-auto">
               <div className="row">
-                <div className="col-lg-3">
+                <div className="col-lg-3 col-md-3 col-sm-3 col-3">
                   <h6 className="aligntext">
                     <span className="CountUp" ref={ref}>
                       {isInView && <CountUp end={4580} duration={5} />}+
@@ -449,7 +452,7 @@ const Home = () => {
                   </h6>
                   <h6 className="countname"> Glad Satisfied Consumers</h6>
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-3 col-md-3 col-sm-3 col-3">
                   <h6 className="aligntext">
                     <span className="CountUp">
                       {isInView && <CountUp end={20} duration={5} />}+
@@ -457,7 +460,7 @@ const Home = () => {
                   </h6>
                   <h6 className="countname"> Certified Agents</h6>
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-3 col-md-3 col-sm-3 col-3">
                   <h6 className="aligntext">
                     <span className="CountUp">
                       {isInView && <CountUp end={120} duration={5} />}+
@@ -465,7 +468,7 @@ const Home = () => {
                   </h6>
                   <h6 className="countname"> Varieties</h6>
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-3 col-md-3 col-sm-3 col-3">
                   <h6 className="aligntext">
                     <span className="CountUp">
                       {isInView && <CountUp end={3} duration={5} />}+
@@ -481,12 +484,12 @@ const Home = () => {
       <section className="my-5">
         <div className="container">
           <div className="row">
-            <div className="col-lg-11 mx-auto ms-auto">
+            <div className="col-lg-11 col-md-11 col-sm-11 col-12 mx-auto ms-auto">
               <div className="row">
-                <div className="col-lg-6">
+                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
                   <img src={add50} alt="banner" className="addbanner" />
                 </div>
-                <div className="col-lg-6">
+                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
                   <img src={add70} alt="banner" className="addbanner" />
                 </div>
               </div>
