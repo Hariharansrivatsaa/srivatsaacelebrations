@@ -35,7 +35,15 @@ const Product = () => {
       if (error) {
         throw error;
       }
-      setProducts(data);
+
+      // Sort products by the numeric part of 'product_code'
+      const sortedData = data.sort((a, b) => {
+        const numA = parseInt(a.product_code.split("_")[1], 10); // Extract number after '_'
+        const numB = parseInt(b.product_code.split("_")[1], 10);
+        return numA - numB;
+      });
+
+      setProducts(sortedData); // Set sorted products in state
     } catch (error) {
       console.error("Error fetching products:", error.message);
       Swal.fire("Error", "Failed to load products", "error");

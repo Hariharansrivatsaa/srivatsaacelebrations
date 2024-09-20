@@ -263,6 +263,18 @@ const AdminProduct = () => {
     setSelectedImage(null);
   };
 
+  const [sortedProducts, setSortedProducts] = useState([]);
+
+  useEffect(() => {
+    // Sort products by the numeric part of 'product_code' in ascending order
+    const sorted = [...products].sort((a, b) => {
+      const numA = parseInt(a.product_code.split("_")[1], 10); // Extract the number after '_'
+      const numB = parseInt(b.product_code.split("_")[1], 10);
+      return numA - numB;
+    });
+    setSortedProducts(sorted);
+  }, [products]);
+
   return (
     <>
       <div className="alignmentdisplay">
@@ -303,8 +315,8 @@ const AdminProduct = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {products.map((product) => (
-                      <tr key={product.id}>
+                    {sortedProducts.map((product, index) => (
+                      <tr key={index}>
                         <td>{product.product_code}</td>
                         <td>
                           <img

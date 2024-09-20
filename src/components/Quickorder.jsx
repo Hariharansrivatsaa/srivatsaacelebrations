@@ -18,13 +18,20 @@ const Quickorder = () => {
       if (error) {
         throw error;
       }
-      setProducts(data);
+
+      // Sort the fetched products by the numeric part of 'product_code'
+      const sortedData = data.sort((a, b) => {
+        const numA = parseInt(a.product_code.split("_")[1], 10); // Extract number after '_'
+        const numB = parseInt(b.product_code.split("_")[1], 10);
+        return numA - numB;
+      });
+
+      setProducts(sortedData); // Set the sorted products
     } catch (error) {
       console.error("Error fetching products:", error.message);
       Swal.fire("Error", "Failed to load products", "error");
     }
   };
-
   return (
     <>
       <Header />
