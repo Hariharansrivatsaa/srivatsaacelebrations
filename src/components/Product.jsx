@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Swal from "sweetalert2";
 import { supabase } from "../supabaseClient";
+import { Link } from "react-router-dom";
 
 const Product = () => {
   const [categories, setCategories] = useState([]);
@@ -104,7 +105,9 @@ const Product = () => {
                         className="productimage"
                       />
                       <div className="cartmiddle">
-                        <div className="productcarttext">Add to cart</div>
+                        <Link to="/Quickorder">
+                          <div className="productcarttext">Purchase</div>
+                        </Link>
                       </div>
                     </div>
                   </div>

@@ -1,27 +1,94 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import bag from "../Assets/Gif/bag.gif";
-import cartimageone from "../Assets/Products/kuruvi.webp";
-import cartimagetwo from "../Assets/Products/bigchakkar25.webp";
 import lock from "../Assets/Icon/lock.webp";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Cart = () => {
-  const [currentOrderValue] = useState(409);
+  const [quantities, setQuantities] = useState({});
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [totalMarketPrice, setTotalMarketPrice] = useState(0);
+  const [currentOrderValue, setCurrentOrderValue] = useState(0);
   const [minimumOrderValue, setMinimumOrderValue] = useState(2499);
+  const allowedCodes = ["sana couples", "pondy couples", "sago couples"];
+
+  useEffect(() => {
+    const storedQuantities = localStorage.getItem("quantities");
+    if (storedQuantities) {
+      const parsedQuantities = JSON.parse(storedQuantities);
+      setQuantities(parsedQuantities);
+      calculateTotals(parsedQuantities);
+    }
+  }, []);
+
+  const calculateTotals = (quantities) => {
+    const marketPriceTotal = Object.values(quantities).reduce((total, item) => {
+      return total + item.mrp * item.quantity;
+    }, 0);
+
+    setTotalMarketPrice(marketPriceTotal);
+    setTotalProducts(Object.keys(quantities).length);
+    setCurrentOrderValue(
+      Object.values(quantities).reduce(
+        (total, item) => total + item.our_price * item.quantity,
+        0
+      )
+    );
+  };
+
+  const handleQuantityChange = (product_code, change) => {
+    setQuantities((prevQuantities) => {
+      const newQuantity = Math.max(
+        0,
+        (prevQuantities[product_code].quantity || 0) + change
+      );
+      const updatedQuantities = { ...prevQuantities };
+
+      if (newQuantity === 0) {
+        // Remove the product if the quantity is zero
+        delete updatedQuantities[product_code];
+      } else {
+        updatedQuantities[product_code] = {
+          ...prevQuantities[product_code],
+          quantity: newQuantity,
+        };
+      }
+
+      // Update local storage
+      localStorage.setItem("quantities", JSON.stringify(updatedQuantities));
+      calculateTotals(updatedQuantities); // Recalculate totals
+      return updatedQuantities;
+    });
+  };
 
   const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
-    if (selectedValue === "insideTN") {
-      setMinimumOrderValue(2499);
-    } else if (selectedValue === "outsideTN") {
-      setMinimumOrderValue(3499);
-    }
+    setMinimumOrderValue(selectedValue === "insideTN" ? 2499 : 3499);
   };
 
   const amountRemaining = Math.max(minimumOrderValue - currentOrderValue, 0);
   const isCheckoutEnabled = currentOrderValue >= minimumOrderValue;
+
+  const handleSubmit = () => {
+    const input = document.querySelector(".inputcode");
+    const code = input.value.trim().toLowerCase();
+
+    if (allowedCodes.includes(code)) {
+      Swal.fire({
+        title: "Success!",
+        text: "Promo code applied successfully!",
+        icon: "success",
+      });
+    } else {
+      Swal.fire({
+        title: "Error!",
+        text: "Invalid promo code. Please try again.",
+        icon: "error",
+      });
+    }
+  };
 
   return (
     <>
@@ -43,87 +110,87 @@ const Cart = () => {
       </section>
       <section className="container my-4">
         <div className="row">
-          <div className="col-lg-8">
+          <div className="col-lg-9">
             <div className="cartline"></div>
-            <div className="row my-4">
-              <div className="col-lg-2">
-                <img src={cartimageone} alt="cartimage" className="cartimage" />
-              </div>
-              <div className="col-lg-4">
-                <div className="cartalignment">
-                  <h6 className="cartimagetitle">Kuruvi Crackers</h6>
-                  <h6 className="cartimagesubtitle">Brand : Srinivasa</h6>
-                  <h6 className="cartimagesubtitle">Content : 5 Pcs / 1 Pkt</h6>
-                  <h6 className="cartimagesubtitle">In Stock</h6>
-                  <h6 className="cartimagesubtitle">Market Price : ₹40 </h6>
+            {Object.values(quantities).map((item) => (
+              <div className="row my-4" key={item.product_code}>
+                <div className="col-lg-2">
+                  <img
+                    src={`https://ndabevturhrddprzhkcb.supabase.co/storage/v1/object/public/Images/${item.image_url}`}
+                    alt={item.product_name}
+                    className="cartimage"
+                  />
                 </div>
-              </div>
-              <div className="col-lg-2">
-                <h6 className="cartimagesidetitle">Price</h6>
-                <h6 className="cartimagetitle1">₹8.00</h6>
-              </div>
-              <div className="col-lg-2">
-                <h6 className="cartimagesidetitle">Quantity</h6>
-                <h6 className="cartimagetitle1">3</h6>
-              </div>
-              <div className="col-lg-2">
-                <h6 className="cartimagesidetitle">Total</h6>
-                <h6 className="cartimagetitle1">₹24.00</h6>
-              </div>
-              <div className="cartlinebtm"></div>
-            </div>
-            <div className="row my-4">
-              <div className="col-lg-2">
-                <img src={cartimagetwo} alt="cartimage" className="cartimage" />
-              </div>
-              <div className="col-lg-4">
-                <div className="cartalignment">
-                  <h6 className="cartimagetitle">Ground Chakkar Big (25Pc)</h6>
-                  <h6 className="cartimagesubtitle">Brand : Srivatsaa</h6>
-                  <h6 className="cartimagesubtitle">
-                    Content : 25 Pcs / 1 Pkt
+                <div className="col-lg-4">
+                  <div className="cartalignment">
+                    <h6 className="cartimagetitle">{item.product_name}</h6>
+                    <h6 className="cartimagesubtitle">
+                      Category : {item.category}
+                    </h6>
+                    <h6 className="cartimagesubtitle">
+                      Content : {item.product_details}
+                    </h6>
+                    <h6 className="cartimagesubtitle">In Stock</h6>
+                    <h6 className="cartimagesubtitle">
+                      Market Price : ₹{item.mrp}
+                    </h6>
+                  </div>
+                </div>
+                <div className="col-lg-2">
+                  <h6 className="cartimagesidetitle">Price</h6>
+                  <h6 className="cartimagetitle1">₹{item.our_price}</h6>
+                </div>
+                <div className="col-lg-2">
+                  <h6 className="cartimagesidetitle">Quantity</h6>
+                  <div className="d-flex align-items-center">
+                    <button
+                      onClick={() =>
+                        handleQuantityChange(item.product_code, -1)
+                      }
+                    >
+                      -
+                    </button>
+                    <h6 className="cartimagetitle1 mx-2">{item.quantity}</h6>
+                    <button
+                      onClick={() => handleQuantityChange(item.product_code, 1)}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div className="col-lg-2">
+                  <h6 className="cartimagesidetitle">Total</h6>
+                  <h6 className="cartimagetitle1">
+                    ₹{(item.our_price * item.quantity).toFixed(2)}
                   </h6>
-                  <h6 className="cartimagesubtitle">In Stock</h6>
-                  <h6 className="cartimagesubtitle">Market Price : ₹375 </h6>
                 </div>
+                <div className="cartlinebtm"></div>
               </div>
-              <div className="col-lg-2">
-                <h6 className="cartimagesidetitle">Price</h6>
-                <h6 className="cartimagetitle1">₹75.00</h6>
-              </div>
-              <div className="col-lg-2">
-                <h6 className="cartimagesidetitle">Quantity</h6>
-                <h6 className="cartimagetitle1">5</h6>
-              </div>
-              <div className="col-lg-2">
-                <h6 className="cartimagesidetitle">Total</h6>
-                <h6 className="cartimagetitle1">₹375.00</h6>
-              </div>
-              <div className="cartlinebtm"></div>
-            </div>
+            ))}
+
             <div className="row">
               <div className="col-lg-2"></div>
               <div className="col-lg-4">
                 <div className="cartalignment">
-                  <h6 className="cartimagetitle">2 Items</h6>
+                  <h6 className="cartimagetitle">{totalProducts} Items</h6>
                 </div>
               </div>
               <div className="col-lg-2"></div>
               <div className="col-lg-2"></div>
               <div className="col-lg-2">
-                <h6 className="cartimagetitle1">₹399.00</h6>
+                <h6 className="cartimagetitle1">₹{currentOrderValue}</h6>
               </div>
             </div>
             <div>
               <h6 className="cartsavetext my-2">
-                You Will Save ₹1,596 on this order
+                You Will Save ₹{totalMarketPrice - currentOrderValue} on this
+                order
               </h6>
             </div>
           </div>
-          <div className="col-lg-1"></div>
           <div className="col-lg-3">
             <h6 className="cartrightsidetitle"> ENTER PROMO CODE</h6>
-            <div class="input-group mb-3">
+            <div className="input-group mb-3">
               <input
                 type="text"
                 className="inputcode"
@@ -131,29 +198,45 @@ const Cart = () => {
                 aria-label="Promo Code"
                 aria-describedby="button-addon2"
               />
-              <button className="inputcodebtn" type="button" id="button-addon2">
+              <button
+                className="inputcodebtn"
+                type="button"
+                id="button-addon2"
+                onClick={handleSubmit}
+              >
                 Submit
               </button>
             </div>
-            <div className="cartrightsidedisplay mt-5">
+            <div className="cartrightsidedisplay">
               <h6 className="cartimagesidesubtitle">Shipping Cost</h6>
-              <h6 className="cartimagesidesubtitle">BTC</h6>
+              <h6 className="cartimagesidesubtitle">Basic Transport Cost</h6>
             </div>
-            <div className="cartrightsidedisplay my-1">
+            {/* <div className="cartrightsidedisplay my-1">
               <h6 className="cartimagesidesubtitle">Discount</h6>
               <h6 className="cartimagesidesubtitle">₹0.00</h6>
-            </div>
+            </div> */}
             <div className="cartrightsidedisplay my-1">
               <h6 className="cartimagesidesubtitle">Packing Tax (2.5%)</h6>
-              <h6 className="cartimagesidesubtitle">₹9.98</h6>
+              <h6 className="cartimagesidesubtitle">
+                ₹{(currentOrderValue * 0.025).toFixed(2)}
+              </h6>
             </div>
             <div className="cartrightsidedisplay my-1">
               <h6 className="cartimagesidesubtitle">Round Off</h6>
-              <h6 className="cartimagesidesubtitle">₹0.02</h6>
+              <h6 className="cartimagesidesubtitle">
+                ₹
+                {(
+                  Math.round(currentOrderValue * 0.025 + currentOrderValue) -
+                  (currentOrderValue * 0.025 + currentOrderValue)
+                ).toFixed(2)}
+              </h6>
             </div>
+
             <div className="cartrightsidedisplay my-2">
               <h6 className="cartimagesidetotal">Estimated Total</h6>
-              <h6 className="cartimagesidetotal">₹409</h6>
+              <h6 className="cartimagesidetotal">
+                ₹{Math.round(currentOrderValue * 0.025 + currentOrderValue)}
+              </h6>
             </div>
             <div>
               {!isCheckoutEnabled && (

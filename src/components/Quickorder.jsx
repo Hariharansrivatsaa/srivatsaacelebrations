@@ -3,9 +3,27 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Swal from "sweetalert2";
 import { supabase } from "../supabaseClient";
+import { Link } from "react-router-dom";
 
 const Quickorder = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [products, setProducts] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [quantities, setQuantities] = useState(() => {
+    const savedQuantities = localStorage.getItem("quantities");
+    return savedQuantities ? JSON.parse(savedQuantities) : {};
+  });
+
+  const [totalProducts, setTotalProducts] = useState(() => {
+    return parseInt(localStorage.getItem("totalProducts")) || 0;
+  });
+
+  const [totalOrderValue, setTotalOrderValue] = useState(() => {
+    return parseFloat(localStorage.getItem("totalOrderValue")) || 0;
+  });
 
   useEffect(() => {
     fetchProducts();
@@ -19,22 +37,111 @@ const Quickorder = () => {
         throw error;
       }
 
-      // Sort the fetched products by the numeric part of 'product_code'
       const sortedData = data.sort((a, b) => {
-        const numA = parseInt(a.product_code.split("_")[1], 10); // Extract number after '_'
+        const numA = parseInt(a.product_code.split("_")[1], 10);
         const numB = parseInt(b.product_code.split("_")[1], 10);
         return numA - numB;
       });
 
-      setProducts(sortedData); // Set the sorted products
+      setProducts(sortedData);
     } catch (error) {
       console.error("Error fetching products:", error.message);
       Swal.fire("Error", "Failed to load products", "error");
     }
   };
+
+  const handleImageClick = (imageUrl) => {
+    setSelectedImage(imageUrl);
+  };
+
+  const closePreview = () => {
+    setSelectedImage(null);
+  };
+
+  const handleQuantityChange = (product, value) => {
+    const numericValue = parseFloat(value);
+    if (!isNaN(numericValue) && numericValue >= 0) {
+      const newQuantities = {
+        ...quantities,
+        [product.product_code]: {
+          ...product,
+          quantity: numericValue,
+        },
+      };
+      setQuantities(newQuantities);
+    }
+  };
+
+  const handleWheel = (e) => {
+    e.target.blur();
+  };
+
+  useEffect(() => {
+    localStorage.setItem("quantities", JSON.stringify(quantities));
+  }, [quantities]);
+
+  const groupedProducts = products.reduce((groups, product) => {
+    if (!groups[product.category]) {
+      groups[product.category] = [];
+    }
+    groups[product.category].push(product);
+    return groups;
+  }, {});
+
+  useEffect(() => {
+    localStorage.setItem("quantities", JSON.stringify(quantities));
+
+    const calculatedTotalProducts = products.reduce((count, product) => {
+      const quantity = quantities[product.product_code]?.quantity || 0;
+      return count + (quantity > 0 ? 1 : 0);
+    }, 0);
+
+    const calculatedTotalOrderValue = products.reduce((total, product) => {
+      const quantity = quantities[product.product_code]?.quantity || 0;
+      return total + product.our_price * quantity;
+    }, 0);
+
+    setTotalProducts(calculatedTotalProducts);
+    setTotalOrderValue(calculatedTotalOrderValue);
+    localStorage.setItem("totalProducts", calculatedTotalProducts);
+    localStorage.setItem("totalOrderValue", calculatedTotalOrderValue);
+  }, [quantities, products]);
+
+  const handleReset = () => {
+    localStorage.clear();
+    setQuantities({});
+    setTotalProducts(0);
+    setTotalOrderValue(0);
+  };
   return (
     <>
       <Header />
+      <section className="my-5">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-9 ms-auto mx-auto">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Products: {totalProducts}</th>
+                    <th>Total Order: {totalOrderValue.toFixed(2)}</th>
+                    <th>
+                      <Link to="/cart">
+                        <button className="checkoutbtn">My Cart</button>
+                      </Link>
+                    </th>
+                    <th>
+                      <button className="resetbtn" onClick={handleReset}>
+                        Reset
+                      </button>
+                    </th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
       <section>
         <div className="container">
           <table>
@@ -51,37 +158,87 @@ const Quickorder = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td colSpan="8" className="tableheading">
-                  Single Sound Crackers
-                </td>
-              </tr>
-              {products.map((product, index) => (
-                <tr key={product.id}>
-                  <td>{index + 1}</td>
-                  <td>{product.product_name}</td>
-                  <td>
-                    <img
-                      src={`https://ndabevturhrddprzhkcb.supabase.co/storage/v1/object/public/Images/${product.image_url}`}
-                      alt={product.product_name}
-                      style={{ width: "50px", height: "50px" }}
-                    />
-                  </td>
-                  <td>{product.product_details}</td>
-                  <td>
-                    <del>{product.mrp}</del>
-                  </td>
-                  <td>{product.our_price}</td>
-                  <td>
-                    <input type="number" />
-                  </td>
-                  <td>0</td>
-                </tr>
+              {Object.keys(groupedProducts).map((category, catIndex) => (
+                <React.Fragment key={catIndex}>
+                  <tr>
+                    <td colSpan="8" className="tableheading">
+                      {category}
+                    </td>
+                  </tr>
+                  {groupedProducts[category].map((product, index) => {
+                    const quantity =
+                      quantities[product.product_code]?.quantity || "";
+                    const total = product.our_price * quantity;
+                    return (
+                      <tr key={product.id}>
+                        <td>{index + 1}</td>
+                        <td>{product.product_name}</td>
+                        <td>
+                          <img
+                            src={`https://ndabevturhrddprzhkcb.supabase.co/storage/v1/object/public/Images/${product.image_url}`}
+                            alt={product.product_name}
+                            style={{
+                              width: "50px",
+                              height: "50px",
+                              cursor: "pointer",
+                            }}
+                            onClick={() =>
+                              handleImageClick(
+                                `https://ndabevturhrddprzhkcb.supabase.co/storage/v1/object/public/Images/${product.image_url}`
+                              )
+                            }
+                          />
+                        </td>
+                        <td>{product.product_details}</td>
+                        <td>
+                          <del>{product.mrp}</del>
+                        </td>
+                        <td>{product.our_price}</td>
+                        <td>
+                          <input
+                            type="number"
+                            value={quantity}
+                            min="0"
+                            onChange={(e) =>
+                              handleQuantityChange(product, e.target.value)
+                            }
+                            onWheel={handleWheel} // Prevent scroll from changing the value
+                          />
+                        </td>
+                        <td>{total.toFixed(2)}</td>
+                      </tr>
+                    );
+                  })}
+                </React.Fragment>
               ))}
             </tbody>
           </table>
         </div>
       </section>
+
+      {selectedImage && (
+        <div
+          onClick={closePreview}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            background: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={selectedImage}
+            alt="Preview"
+            style={{ maxWidth: "90%", maxHeight: "90%" }}
+          />
+        </div>
+      )}
+
       <Footer />
     </>
   );

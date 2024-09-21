@@ -23,6 +23,7 @@ import chakkarspl from "../Assets/Products/chakkarspl.webp";
 import chakkardlx from "../Assets/Products/chakkardlx.webp";
 import fourlakshimi from "../Assets/Products/4lakshimi.webp";
 import twosound from "../Assets/Products/2sound.webp";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [isInView, setIsInView] = useState(false);
@@ -184,7 +185,9 @@ const Home = () => {
                 <div className="productcontain">
                   <img src={kuruvi} alt="products" className="productimage" />
                   <div class="cartmiddle">
-                    <div class="productcarttext">Add to cart</div>
+                    <Link to="/Quickorder">
+                      <div className="productcarttext">Purchase</div>
+                    </Link>
                   </div>
                   <div className="aligntext">
                     <p className="my-3">(1Pkt / 5Pcs)</p>

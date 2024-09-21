@@ -34,6 +34,9 @@ import UserProfile from "./components/UserProfile";
 import { useAuthStore } from "./Store/useAuthStore";
 import { Navigate } from "react-router-dom";
 import UserDashboard from "./components/User/UserDashboard";
+import Getotp from "./components/Getotp";
+import Verifyotp from "./components/Verifyotp";
+import ForgetPassword from "./components/ForgetPassword";
 
 const PrivateRoute = ({ children }) => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -70,6 +73,9 @@ function App() {
         <Route exact path="/ChannelPartner" element={<ChannelPartner />} />
         <Route exact path="/Login" element={<Login />} />
         <Route exact path="/Register" element={<Register />} />
+        <Route exact path="/Getotp" element={<Getotp />} />
+        <Route exact path="/Verifyotp" element={<Verifyotp />} />
+        <Route exact path="/ForgetPassword" element={<ForgetPassword />} />
         <Route exact path="/Contactus" element={<Contactus />} />
         <Route exact path="/Product" element={<Product />} />
         <Route exact path="/Quickorder" element={<Quickorder />} />

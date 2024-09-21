@@ -1,15 +1,9 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import loginlogo from "../Assets/Logo/Logo.webp";
-import { supabase } from "../supabaseClient";
-import Swal from "sweetalert2";
 
-const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+const ForgetPassword = () => {
   const [phone, setPhone] = useState("");
-
-
   return (
     <>
       <section>
@@ -27,27 +21,10 @@ const Register = () => {
                     />
                   </Link>
                 </div>
-                <h4 className="fw-bold">SIGN UP</h4>
+                <h4 className="fw-bold">FORGET PASSWORD</h4>
                 <p className="fw-bold">
-                  <small>Hello, Please enter your details.</small>
+                  <small> Please Enter Mobile Number</small>
                 </p>
-
-                <div className="fancy">
-                  <input
-                    type="text"
-                    placeholder="Enter Your Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </div>
-                <div className="fancy my-4">
-                  <input
-                    type="email"
-                    placeholder="Enter Your MailId"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
                 <div className="fancy my-4">
                   <input
                     type="text"
@@ -65,14 +42,23 @@ const Register = () => {
                   </Link>
                 </div>
 
-                <p className="fw-bold mt-3">
-                  <small>
-                    Already have an account?&nbsp;
-                    <span>
-                      <Link to="/Login">Sign In</Link>
-                    </span>
-                  </small>
-                </p>
+                <div className="cartrightsidedisplay">
+                  <p className="fw-bold mt-3">
+                    <small>
+                      <span>
+                        <Link to="/Register">Back</Link>
+                      </span>
+                    </small>
+                  </p>
+                  <p className="fw-bold mt-3">
+                    <small>
+                      Already have an account?&nbsp;
+                      <span>
+                        <Link to="/Login">Sign In</Link>
+                      </span>
+                    </small>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -82,4 +68,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default ForgetPassword;

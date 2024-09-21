@@ -9,6 +9,7 @@ import { useAuthStore } from "../Store/useAuthStore";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -46,6 +47,10 @@ const Login = () => {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <>
       <section>
@@ -79,12 +84,23 @@ const Login = () => {
                   </div>
                   <div className="fancy my-4">
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       placeholder="Enter Your Password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
                     />
+                    <button
+                      type="button"
+                      className="toggle-visibility"
+                      onClick={togglePasswordVisibility}
+                    >
+                      <i
+                        className={
+                          showPassword ? "fas fa-eye-slash" : "fas fa-eye"
+                        }
+                      ></i>
+                    </button>
                   </div>
                   <div>
                     <button type="submit" className="loginbutton">
@@ -92,14 +108,23 @@ const Login = () => {
                     </button>
                   </div>
                 </form>
-                <p className="fw-bold mt-3">
-                  <small>
-                    Don't have an account?&nbsp;
-                    <span>
-                      <Link to="/Register">Sign Up</Link>
-                    </span>
-                  </small>
-                </p>
+                <div className="cartrightsidedisplay">
+                  <p className="fw-bold mt-3">
+                    <small>
+                      Don't have an account?&nbsp;
+                      <span>
+                        <Link to="/Register">Sign Up</Link>
+                      </span>
+                    </small>
+                  </p>
+                  <p className="fw-bold mt-3">
+                    <small>
+                      <span>
+                        <Link to="/ForgetPassword">Forget Password ?</Link>
+                      </span>
+                    </small>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

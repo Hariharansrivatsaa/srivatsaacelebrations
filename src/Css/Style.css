@@ -511,7 +511,7 @@ a {
   padding: 20px;
   border-radius: 10px;
   width: 35%;
-  margin-top: 10%;
+  margin-top: 15%;
   margin-left: 60%;
 }
 .loginlogo {
@@ -527,6 +527,7 @@ a {
   overflow: hidden;
   --offset: 3px;
 }
+
 .fancy::before {
   content: "";
   position: absolute;
@@ -538,6 +539,7 @@ a {
   aspect-ratio: 1;
   animation: rotate 2s linear infinite;
 }
+
 .fancy::after {
   content: "";
   position: absolute;
@@ -547,6 +549,7 @@ a {
   background: inherit;
   border-radius: inherit;
 }
+
 .fancy input {
   position: absolute;
   color: #2b4d9b;
@@ -558,9 +561,36 @@ a {
   border: none;
   outline: none;
 }
+
 .fancy input::placeholder {
   border: none;
 }
+
+/* Button for toggling visibility */
+.toggle-visibility {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  z-index: 20;
+  cursor: pointer;
+  color: #2b4d9b;
+  font-size: 1.2rem;
+  outline: none;
+}
+
+/* Styling the font awesome icons */
+.toggle-visibility i {
+  font-size: 20px;
+}
+
+/* Optional styling for button hover/focus state */
+.toggle-visibility:hover i {
+  color: #d0541e;
+}
+
 @keyframes rotate {
   from {
     transform: translate(-50%, -50%) scale(1.4) rotate(0turn);
@@ -899,4 +929,51 @@ table {
   border: 1px solid #515050;
   border-radius: 10px;
   background: transparent;
+}
+.checkoutbtn {
+  border-radius: 10px;
+  padding: 6px 20px;
+  outline: none;
+  background: green;
+  border: none;
+  font-size: 17px;
+  color: #fff;
+  font-weight: 600;
+}
+.checkoutbtn:hover {
+  border: 1px solid green;
+  color: green;
+  background: none;
+}
+.resetbtn {
+  border-radius: 10px;
+  padding: 6px 20px;
+  outline: none;
+  background: red;
+  border: none;
+  font-size: 17px;
+  color: #fff;
+  font-weight: 600;
+}
+.resetbtn:hover {
+  border: 1px solid red;
+  color: red;
+  background: none;
+}
+.checkoutrules {
+  font-size: 18px;
+  font-weight: 500;
+}
+.checkoutrulecolor {
+  color: #d0541e;
+}
+.backarrow {
+  color: #d0541e;
+  font-size: 30px;
+}
+.otpinput {
+  margin-left: 5% !important;
+  width: 2.5rem !important;
+  gap: 10px !important;
+  margin-bottom: 5% !important;
 }

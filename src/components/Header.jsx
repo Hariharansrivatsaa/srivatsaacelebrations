@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import icon1 from "../Assets/Icon/rocket.webp";
@@ -9,10 +9,16 @@ import { useAuthStore } from "../Store/useAuthStore";
 
 const Header = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
-
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
-
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const [productCount, setProductCount] = useState(0);
+
+  useEffect(() => {
+    const totalProducts = localStorage.getItem("totalProducts");
+    if (totalProducts) {
+      setProductCount(Number(totalProducts));
+    }
+  }, []);
 
   return (
     <>
@@ -138,7 +144,9 @@ const Header = () => {
             {/* Cart Icon Section */}
             <div className="nav-item">
               <Link to="/Cart" className="nav-link headerlinktitle">
-                <span className="badge">1</span>
+                {productCount > 0 && (
+                  <span className="badge">{productCount}</span>
+                )}
                 <img src={cart} alt="cart" className="carticon" />
               </Link>
             </div>
