@@ -1,55 +1,48 @@
 import React, { useState } from "react";
 import { account, ID } from "../lib/appwrite";
+import { supabase } from "../supabaseClient";
 import Swal from "sweetalert2";
 import OtpInput from "react-otp-input";
 import loginlogo from "../Assets/Logo/Logo.webp";
+import { useNavigate } from "react-router-dom";
 
 const RegisterAndVerify = () => {
   const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [location, setLocation] = useState("");
   const [otp, setOtp] = useState("");
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [userId, setUserId] = useState(null);
+  const [step, setStep] = useState("collectInfo"); // "collectInfo", "verifyOTP"
+  const [userDataId, setUserDataId] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleRegister = async (e) => {
+  const handleCollectInfo = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
-      const generatedUserId = name.replace(/\s+/g, "_").toLowerCase();
-
-      // Make sure userId is unique and valid
-      if (generatedUserId.length > 36) {
-        throw new Error("User ID must be 36 characters or less.");
-      }
-
-      const userAccount = await account.create(
-        generatedUserId,
-        email,
-        password,
-        name
+      // Create a phone token
+      const response = await account.createPhoneToken(
+        ID.unique(),
+        `+91${phone}`
       );
-      setUserId(userAccount.$id);
-
-      await account.createPhoneToken(ID.unique(), `+91${phone}`);
-
-      console.log("Account created and OTP sent successfully");
+      setUserDataId(response.userId);
       Swal.fire({
         icon: "success",
         title: "OTP Sent",
         text: "Please check your phone for the OTP",
       });
-
-      setIsRegistered(true);
+      setStep("verifyOTP");
     } catch (error) {
-      console.error("Error during registration:", error);
+      console.error("Error sending OTP:", error);
       Swal.fire({
         icon: "error",
         title: "Error",
-        text:
-          error.message ||
-          "Failed to create account and send OTP. Please try again.",
+        text: error.message || "Failed to send OTP. Please try again.",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -64,15 +57,12 @@ const RegisterAndVerify = () => {
       return;
     }
 
+    setIsLoading(true);
     try {
-      const result = await account.createSession(userId, otp);
-      console.log("OTP verification result:", result);
-
-      Swal.fire({
-        icon: "success",
-        title: "Phone Verified",
-        text: "Your phone number has been successfully verified.",
-      });
+      // Verify the OTP
+      await account.createSession(userDataId, otp);
+      // If OTP verification is successful, proceed with user creation in Supabase
+      await handleRegister();
     } catch (error) {
       console.error("Error verifying OTP:", error);
       Swal.fire({
@@ -81,6 +71,33 @@ const RegisterAndVerify = () => {
         text:
           error.message ||
           "Failed to verify OTP. Please try again or resend OTP.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRegister = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("users")
+        .insert([{ username: name, email, location, phone, password }]);
+
+      if (error) throw error;
+
+      Swal.fire({
+        icon: "success",
+        title: "Registration Successful",
+        text: "You have been registered successfully!",
+      }).then(() => {
+        navigate("/Login");
+      });
+    } catch (error) {
+      console.error("Error during registration:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: error.message,
       });
     }
   };
@@ -95,12 +112,12 @@ const RegisterAndVerify = () => {
               <img src={loginlogo} alt="Login Logo" className="loginlogo" />
             </div>
             <h4 className="fw-bold">SIGN UP</h4>
-            {!isRegistered ? (
+            {step === "collectInfo" && (
               <>
                 <p className="fw-bold">
-                  <small>Hello, Please enter your details.</small>
+                  <small>Please enter your information to register.</small>
                 </p>
-                <form onSubmit={handleRegister}>
+                <form onSubmit={handleCollectInfo}>
                   <div className="fancy my-4">
                     <input
                       type="text"
@@ -141,14 +158,35 @@ const RegisterAndVerify = () => {
                       />
                     </div>
                   </div>
+                  <div className="fancy my-4">
+                    <input
+                      type="text"
+                      placeholder="Enter Your Location"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                      required
+                    />
+                  </div>
                   <div>
-                    <button type="submit" className="loginbutton">
-                      Register & Send OTP
+                    <button
+                      type="submit"
+                      className="loginbutton"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <>
+                          <i className="fas fa-spinner fa-spin mr-2"></i>
+                          Sending OTP...
+                        </>
+                      ) : (
+                        "Send OTP"
+                      )}
                     </button>
                   </div>
                 </form>
               </>
-            ) : (
+            )}
+            {step === "verifyOTP" && (
               <>
                 <h4 className="fw-bold">Verify OTP</h4>
                 <p className="fw-bold">
@@ -165,8 +203,19 @@ const RegisterAndVerify = () => {
                     )}
                   />
                   <div>
-                    <button type="submit" className="loginbutton">
-                      Verify OTP
+                    <button
+                      type="submit"
+                      className="loginbutton"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <>
+                          <i className="fas fa-spinner fa-spin mr-2"></i>
+                          Verifying...
+                        </>
+                      ) : (
+                        "Verify OTP and Register"
+                      )}
                     </button>
                   </div>
                 </form>
