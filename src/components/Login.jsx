@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import loginlogo from "../Assets/Logo/Logo.webp";
 import { supabase } from "../supabaseClient";
@@ -24,11 +24,18 @@ const Login = () => {
 
       if (data && data.length === 1) {
         const user = data[0];
+
+        // Assuming password is hashed, you'll need to compare it with bcrypt
+        const passwordMatch = bcrypt.compareSync(password, user.password);
         if (user.password === password) {
+          // Store the user ID in sessionStorage
+          sessionStorage.setItem("userId", user.id);
+
           Swal.fire({
             icon: "success",
             title: "Login Successful",
           }).then(() => {
+            // Set login state in Zustand
             useAuthStore.getState().setLogin(true);
             navigate("/");
           });
