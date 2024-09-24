@@ -8,6 +8,9 @@ import { Link } from "react-router-dom";
 const Product = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(9); // Number of products per page
 
   useEffect(() => {
     fetchCategories();
@@ -16,12 +19,8 @@ const Product = () => {
 
   const fetchCategories = async () => {
     try {
-      console.log("Fetching categories...");
       const { data, error } = await supabase.from("category").select("*");
-      if (error) {
-        throw error;
-      }
-      console.log("Fetched categories:", data);
+      if (error) throw error;
       setCategories(data);
     } catch (error) {
       console.error("Error fetching categories:", error.message);
@@ -31,15 +30,12 @@ const Product = () => {
 
   const fetchProducts = async () => {
     try {
-      console.log("Fetching products...");
       const { data, error } = await supabase.from("products").select("*");
-      if (error) {
-        throw error;
-      }
+      if (error) throw error;
 
-      // Sort products by the numeric part of 'product_code'
+      // Sort products by product_code
       const sortedData = data.sort((a, b) => {
-        const numA = parseInt(a.product_code.split("_")[1], 10); // Extract number after '_'
+        const numA = parseInt(a.product_code.split("_")[1], 10);
         const numB = parseInt(b.product_code.split("_")[1], 10);
         return numA - numB;
       });
@@ -51,12 +47,6 @@ const Product = () => {
     }
   };
 
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-  };
-
   // Filter products based on the selected category
   const filteredProducts = selectedCategory
     ? products.filter(
@@ -64,12 +54,28 @@ const Product = () => {
       )
     : products;
 
+  // Pagination logic: Get current products for the current page
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  // Handle page change
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category); // Set the selected category
+    setCurrentPage(1); // Reset to the first page when category changes
+  };
+
   return (
     <>
       <Header />
       <section>
         <div className="container">
-          <h5> Showing 1-20 of 155 results</h5>
+          {/* <h5> Showing 1-20 of 155 results</h5> */}
           <div className="row my-5">
             <div className="col-lg-3">
               <h5 className="categorytitle mb-4">Products By Category</h5>
@@ -96,7 +102,7 @@ const Product = () => {
                 {selectedCategory ? selectedCategory.category : "All Products"}
               </h5>
               <div className="row my-3">
-                {filteredProducts.map((product) => (
+                {currentProducts.map((product) => (
                   <div key={product.id} className="col-lg-4 mb-4">
                     <div className="productcontain">
                       <img
@@ -111,6 +117,23 @@ const Product = () => {
                       </div>
                     </div>
                   </div>
+                ))}
+              </div>
+
+              {/* Pagination */}
+              <div className="pagination">
+                {[
+                  ...Array(
+                    Math.ceil(filteredProducts.length / productsPerPage)
+                  ).keys(),
+                ].map((number) => (
+                  <button
+                    key={number + 1}
+                    onClick={() => paginate(number + 1)}
+                    className="page-link"
+                  >
+                    {number + 1}
+                  </button>
                 ))}
               </div>
             </div>

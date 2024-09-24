@@ -113,6 +113,68 @@ const Quickorder = () => {
     setTotalProducts(0);
     setTotalOrderValue(0);
   };
+
+  const handleCheckout = async () => {
+    // Retrieve userId from session storage
+    const userId = sessionStorage.getItem("userId");
+
+    if (!userId) {
+      Swal.fire("Error", "User not logged in", "error");
+      return;
+    }
+
+    // Filter products that have been added to the cart (quantity > 0)
+    const productsInCart = Object.keys(quantities)
+      .filter((productCode) => quantities[productCode].quantity > 0)
+      .map((productCode) => ({
+        product_code: productCode,
+      }));
+
+    if (productsInCart.length === 0) {
+      Swal.fire(
+        "Cart is empty",
+        "Please add products to your cart.",
+        "warning"
+      );
+      return;
+    }
+
+    try {
+      // Fetch the current user's data from the users table in Supabase
+      const { data: user, error: fetchError } = await supabase
+        .from("users")
+        .select("checkout")
+        .eq("id", userId)
+        .single();
+
+      if (fetchError) {
+        throw fetchError;
+      }
+
+      // Update the checkout field by appending new products
+      const updatedCheckout = [...(user.checkout || []), ...productsInCart];
+
+      const { error: updateError } = await supabase
+        .from("users")
+        .update({ checkout: updatedCheckout })
+        .eq("id", userId);
+
+      if (updateError) {
+        throw updateError;
+      }
+
+      // Redirect to the cart page
+      Swal.fire("Success", "Your cart has been updated!", "success").then(
+        () => {
+          window.location.href = "/cart";
+        }
+      );
+    } catch (error) {
+      console.error("Error updating checkout:", error.message);
+      Swal.fire("Error", "Failed to update checkout.", "error");
+    }
+  };
+
   return (
     <>
       <Header />
@@ -127,7 +189,12 @@ const Quickorder = () => {
                     <th>Total Order: {totalOrderValue.toFixed(2)}</th>
                     <th>
                       <Link to="/cart">
-                        <button className="checkoutbtn">My Cart</button>
+                        <button
+                          className="checkoutbtn"
+                          onClick={handleCheckout}
+                        >
+                          My Cart
+                        </button>
                       </Link>
                     </th>
                     <th>

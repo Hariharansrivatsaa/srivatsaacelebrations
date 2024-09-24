@@ -7,8 +7,21 @@ import threads from "../Assets/Icon/threads.webp";
 import twitter from "../Assets/Icon/twitter (1).webp";
 import facebook from "../Assets/Icon/facebook.webp";
 import youtube from "../Assets/Icon/youtube.webp";
+import pdf from "../Assets/Pdf/Srivatsaapricelist.pdf";
 
 const Footer = () => {
+  const handleDownloadClick = () => {
+    const fileUrl = pdf; // Use the imported PDF file URL
+
+    // Create an anchor element and trigger the download
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.setAttribute("download", "Srivatsaapricelist.pdf"); // Filename to download as
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  };
+
   return (
     <>
       <section className="footer">
@@ -57,7 +70,6 @@ const Footer = () => {
                     ⮞&nbsp; Customer Pickup Points
                   </Link>
                 </li>
-
                 <li>
                   <Link
                     className="nav-item nav-link footerlinktitle"
@@ -75,7 +87,8 @@ const Footer = () => {
                   </Link>
                 </li>
               </ul>
-              <div className="blinkbox mt-lg-5">
+
+              <div className="blinkbox mt-lg-5" onClick={handleDownloadClick}>
                 <div className="blink_me">Download Pricelist</div>
               </div>
             </div>
