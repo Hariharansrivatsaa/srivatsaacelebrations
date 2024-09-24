@@ -4,17 +4,25 @@ import Footer from "./Footer";
 import Swal from "sweetalert2";
 import { supabase } from "../supabaseClient";
 import { Link } from "react-router-dom";
+import { FadeLoader } from "react-spinners";
 
 const Product = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [loading, setLoading] = useState(true); // Loading state
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(9); // Number of products per page
 
   useEffect(() => {
-    fetchCategories();
-    fetchProducts();
+    const fetchData = async () => {
+      setLoading(true); // Start loading
+      await fetchCategories();
+      await fetchProducts();
+      setLoading(false); // End loading
+    };
+
+    fetchData();
   }, []);
 
   const fetchCategories = async () => {
@@ -70,74 +78,88 @@ const Product = () => {
     setCurrentPage(1); // Reset to the first page when category changes
   };
 
+  const totalResults = filteredProducts.length;
+  const startResult = (currentPage - 1) * productsPerPage + 1;
+  const endResult = Math.min(currentPage * productsPerPage, totalResults);
+
   return (
     <>
       <Header />
       <section>
         <div className="container">
-          {/* <h5> Showing 1-20 of 155 results</h5> */}
-          <div className="row my-5">
-            <div className="col-lg-3">
-              <h5 className="categorytitle mb-4">Products By Category</h5>
-              <button
-                className="producttopic"
-                onClick={() => setSelectedCategory(null)}
-              >
-                All
-              </button>
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  className={`producttopic ${
-                    selectedCategory?.id === category.id ? "active" : ""
-                  }`}
-                  onClick={() => handleCategoryClick(category)}
-                >
-                  {category.category}
-                </button>
-              ))}
+          <h5>
+            Showing {startResult}-{endResult} of {totalResults} results
+          </h5>
+          {loading ? ( // Conditionally render spinner
+            <div className="aligntext my-5">
+              <FadeLoader size={50} color={"#d0541e"} loading={loading} />
             </div>
-            <div className="col-lg-9">
-              <h5 className="producttitleheading">
-                {selectedCategory ? selectedCategory.category : "All Products"}
-              </h5>
-              <div className="row my-3">
-                {currentProducts.map((product) => (
-                  <div key={product.id} className="col-lg-4 mb-4">
-                    <div className="productcontain">
-                      <img
-                        src={`https://ndabevturhrddprzhkcb.supabase.co/storage/v1/object/public/Images/${product.image_url}`}
-                        alt={product.name}
-                        className="productimage"
-                      />
-                      <div className="cartmiddle">
-                        <Link to="/Quickorder">
-                          <div className="productcarttext">Purchase</div>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Pagination */}
-              <div className="pagination">
-                {[
-                  ...Array(
-                    Math.ceil(filteredProducts.length / productsPerPage)
-                  ).keys(),
-                ].map((number) => (
+          ) : (
+            <div className="row my-5">
+              <div className="col-lg-3">
+                <h5 className="categorytitle mb-4">Products By Category</h5>
+                <button
+                  className="producttopic"
+                  onClick={() => setSelectedCategory(null)}
+                >
+                  All
+                </button>
+                {categories.map((category) => (
                   <button
-                    key={number + 1}
-                    onClick={() => paginate(number + 1)}
-                    className="page-link"
+                    key={category.id}
+                    className={`producttopic ${
+                      selectedCategory?.id === category.id ? "active" : ""
+                    }`}
+                    onClick={() => handleCategoryClick(category)}
                   >
-                    {number + 1}
+                    {category.category}
                   </button>
                 ))}
               </div>
+              <div className="col-lg-9">
+                <h5 className="producttitleheading">
+                  {selectedCategory
+                    ? selectedCategory.category
+                    : "All Products"}
+                </h5>
+                <div className="row my-3">
+                  {currentProducts.map((product) => (
+                    <div key={product.id} className="col-lg-4 mb-4">
+                      <div className="productcontain">
+                        <img
+                          src={`https://ndabevturhrddprzhkcb.supabase.co/storage/v1/object/public/Images/${product.image_url}`}
+                          alt={product.name}
+                          className="productimage"
+                        />
+                        <div className="cartmiddle">
+                          <Link to="/Quickorder">
+                            <div className="productcarttext">Purchase</div>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Pagination */}
+                <div className="pagination">
+                  {[
+                    ...Array(
+                      Math.ceil(filteredProducts.length / productsPerPage)
+                    ).keys(),
+                  ].map((number) => (
+                    <button
+                      key={number + 1}
+                      onClick={() => paginate(number + 1)}
+                      className="page-link"
+                    >
+                      {number + 1}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
       <Footer />

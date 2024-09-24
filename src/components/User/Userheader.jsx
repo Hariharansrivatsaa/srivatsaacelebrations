@@ -36,8 +36,8 @@ const UserHeader = () => {
                     />
                   </span>
                   <div className="dropdown-content">
-                    <NavLink to="/Profile">My Profile</NavLink>
-                    <NavLink to="/Changepassword">Change Password</NavLink>
+                    <NavLink to="/UserProfile">My Profile</NavLink>
+                    {/* <NavLink to="/Changepassword">Change Password</NavLink> */}
                     <NavLink to="/" id="logout-hover" onClick={handleLogout}>
                       Logout
                     </NavLink>

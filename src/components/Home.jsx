@@ -383,10 +383,10 @@ const Home = () => {
           <div className="row">
             <div className="col-lg-11 col-md-11 col-sm-11 col-12 mx-auto ms-auto">
               <div className="row">
-                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
+                <div className="col-lg-6 col-md-6 col-sm-6 col-12">
                   <img src={add50} alt="banner" className="addbanner" />
                 </div>
-                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
+                <div className="col-lg-6 col-md-6 col-sm-6 col-12">
                   <img src={add70} alt="banner" className="addbanner" />
                 </div>
               </div>

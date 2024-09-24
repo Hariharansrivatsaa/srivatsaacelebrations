@@ -164,7 +164,7 @@ const Header = () => {
       </section>
 
       <section>
-        <Link to="/Admindashboard" className="ordernow floating">
+        <Link to="/Quickorder" className="ordernow floating">
           <img src={order} alt="Order" className="ordergif" />
         </Link>
       </section>

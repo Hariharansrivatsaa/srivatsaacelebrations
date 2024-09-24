@@ -693,16 +693,14 @@ a {
 }
 .contactbgbox {
   background-color: #d0541e;
-  /* width: 100%; */
-  height: 30vh;
+  height: 35vh;
   margin-top: 13%;
 }
 .contactboxwhite {
   background: #ffffff;
-  /* width: 100%; */
   padding: 30px;
   border-radius: 10px;
-  margin-top: -4%;
+  margin-top: -8%;
 }
 .contactcircle {
   border-radius: 50%;
@@ -724,6 +722,7 @@ a {
   color: #b12733;
   text-transform: uppercase;
 }
+/* Ensure table has the correct styles for borders and alignment */
 table,
 td,
 th {
@@ -736,12 +735,22 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
+/* Style for table heading */
 .tableheading {
   padding: 5px;
   background: #d0541e;
   color: #ffffff;
   font-size: 20px;
   width: 100%;
+}
+/* Table container for responsiveness */
+.table-responsive {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  margin-bottom: 15px;
+}
+/* Prevent horizontal overflow */
+body {
+  overflow-x: hidden; /* Avoid overall horizontal scrolling on body */
 }
 .categorytitle {
   color: #d0541e;
@@ -980,7 +989,42 @@ table {
 }
 .pagination {
   display: flex;
-  padding-left: 0;
-  list-style: none;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 5px;
+  margin-top: 20px;
+}
+.pagination button {
+  min-width: 40px; /* Ensure buttons are touch-friendly */
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+.react-tel-input .form-control {
+  position: relative;
+  font-size: 14px;
+  letter-spacing: 0.01rem;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-left: 48px;
+  margin-left: 0;
+  background: #ffffff;
+  border: 1px solid #9195ab !important;
+  border-radius: 10px !important;
+  line-height: 25px;
+  height: 42px !important;
+  width: 373px !important;
+  outline: none;
+}
+.validationmsg {
+  color: red;
+  font-size: 15px;
+}
+.contactboxtext {
+  color: #d0541e;
+}
+.contactboxpara {
+  font-size: 14.5px;
+  color: #228acd;
+  font-weight: 700;
 }

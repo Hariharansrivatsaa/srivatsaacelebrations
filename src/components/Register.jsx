@@ -17,6 +17,7 @@ const RegisterAndVerify = () => {
   const [userDataId, setUserDataId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleCollectInfo = async (e) => {
     e.preventDefault();
@@ -102,6 +103,10 @@ const RegisterAndVerify = () => {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <section>
       <div className="loginbg"></div>
@@ -140,16 +145,27 @@ const RegisterAndVerify = () => {
                   </div>
                   <div className="fancy my-4">
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       placeholder="Enter Your Password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
                     />
+                    <button
+                      type="button"
+                      className="toggle-visibility"
+                      onClick={togglePasswordVisibility}
+                    >
+                      <i
+                        className={
+                          showPassword ? "fas fa-eye-slash" : "fas fa-eye"
+                        }
+                      ></i>
+                    </button>
                   </div>
                   <div className="fancy my-4">
                     <div className="input-group">
-                      <span className="input-group-text">+91</span>
+                      {/* <span className="input-group-text">+91</span> */}
                       <input
                         type="tel"
                         placeholder="Enter Your Phone Number"

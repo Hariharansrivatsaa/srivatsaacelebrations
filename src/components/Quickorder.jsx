@@ -182,35 +182,37 @@ const Quickorder = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-9 ms-auto mx-auto">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Products: {totalProducts}</th>
-                    <th>Total Order: {totalOrderValue.toFixed(2)}</th>
-                    <th>
-                      <Link to="/cart">
-                        <button
-                          className="checkoutbtn"
-                          onClick={handleCheckout}
-                        >
-                          My Cart
+              <div className="table-responsive">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Products: {totalProducts}</th>
+                      <th>Total Order: {totalOrderValue.toFixed(2)}</th>
+                      <th>
+                        <Link to="/cart">
+                          <button
+                            className="checkoutbtn"
+                            onClick={handleCheckout}
+                          >
+                            My Cart
+                          </button>
+                        </Link>
+                      </th>
+                      <th>
+                        <button className="resetbtn" onClick={handleReset}>
+                          Reset
                         </button>
-                      </Link>
-                    </th>
-                    <th>
-                      <button className="resetbtn" onClick={handleReset}>
-                        Reset
-                      </button>
-                    </th>
-                  </tr>
-                </thead>
-              </table>
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </section>
       <section>
-        <div className="container">
+        <div className="container table-responsive">
           <table>
             <thead>
               <tr>
@@ -238,9 +240,11 @@ const Quickorder = () => {
                     const total = product.our_price * quantity;
                     return (
                       <tr key={product.id}>
-                        <td>{index + 1}</td>
-                        <td>{product.product_name}</td>
-                        <td>
+                        <td data-label="S.No">{index + 1}</td>
+                        <td data-label="Product Name">
+                          {product.product_name}
+                        </td>
+                        <td data-label="Product Image">
                           <img
                             src={`https://ndabevturhrddprzhkcb.supabase.co/storage/v1/object/public/Images/${product.image_url}`}
                             alt={product.product_name}
@@ -256,12 +260,12 @@ const Quickorder = () => {
                             }
                           />
                         </td>
-                        <td>{product.product_details}</td>
-                        <td>
+                        <td data-label="Content">{product.product_details}</td>
+                        <td data-label="Price ₹">
                           <del>{product.mrp}</del>
                         </td>
-                        <td>{product.our_price}</td>
-                        <td>
+                        <td data-label="Our Price ₹">{product.our_price}</td>
+                        <td data-label="Quantity">
                           <input
                             type="number"
                             value={quantity}
@@ -272,7 +276,7 @@ const Quickorder = () => {
                             onWheel={handleWheel} // Prevent scroll from changing the value
                           />
                         </td>
-                        <td>{total.toFixed(2)}</td>
+                        <td data-label="Total ₹">{total.toFixed(2)}</td>
                       </tr>
                     );
                   })}

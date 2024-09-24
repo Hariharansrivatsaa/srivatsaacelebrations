@@ -60,16 +60,16 @@ const Footer = () => {
                     ⮞&nbsp; About Us
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link className="nav-item nav-link footerlinktitle" to="">
                     ⮞&nbsp; Our Gallery
                   </Link>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <Link className="nav-item nav-link footerlinktitle" to="">
                     ⮞&nbsp; Customer Pickup Points
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link
                     className="nav-item nav-link footerlinktitle"
@@ -116,14 +116,14 @@ const Footer = () => {
                     Cancellation & Refund Policy
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     className="nav-item nav-link footerlinktitle"
                     to="/Shipping"
                   >
                     Shipping & Delivery Policy
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link
                     className="nav-item nav-link footerlinktitle"
@@ -175,7 +175,10 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link className="nav-item nav-link footerlinktitle" to="">
+                  <Link
+                    className="nav-item nav-link footerlinktitle"
+                    to="/Quickorder"
+                  >
                     ⮞&nbsp; Quick Purchase
                   </Link>
                 </li>
@@ -188,12 +191,50 @@ const Footer = () => {
               </ul>
               <h6 className="footertitle mt-3">Follow Us</h6>
               <div>
-                <img src={insta} alt="Instagram" className="socialicon" />
-                <img src={linkedin} alt="Linkedin" className="socialicon" />
-                <img src={threads} alt="Threads" className="socialicon" />
-                <img src={twitter} alt="Twitter" className="socialicon" />
-                <img src={facebook} alt="Facebook" className="socialicon" />
-                <img src={youtube} alt="Youtube" className="socialicon" />
+                <div className="social-icons">
+                  <a
+                    href="https://www.instagram.com/srivatsaa_celebrations/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={insta} alt="Instagram" className="socialicon" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/srivatsaa-celebrations"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={linkedin} alt="Linkedin" className="socialicon" />
+                  </a>
+                  <a
+                    href="https://www.threads.net/@srivatsaa_celebrations"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={threads} alt="Threads" className="socialicon" />
+                  </a>
+                  {/* <a
+                    href="https://www.twitter.com/yourprofile"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={twitter} alt="Twitter" className="socialicon" />
+                  </a> */}
+                  <a
+                    href="https://www.facebook.com/profile.php?id=61564531473371"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={facebook} alt="Facebook" className="socialicon" />
+                  </a>
+                  <a
+                    href="https://www.youtube.com/channel/yourprofile"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={youtube} alt="Youtube" className="socialicon" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
