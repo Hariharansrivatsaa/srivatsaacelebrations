@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import checkmark from "../Assets/Svg/checkmark.svg";
 import bhim from "../Assets/Payment/bhim.webp";
 import upi from "../Assets/Payment/upi.webp";
 import gpay from "../Assets/Payment/gpay.webp";
@@ -11,40 +10,15 @@ import bankupi from "../Assets/Payment/bankupi.webp";
 import icici from "../Assets/Payment/icici.webp";
 import cub from "../Assets/Payment/cub.webp";
 
-const Thankyou = () => {
+const Payment = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  let totalOrderValue = localStorage.getItem("totalOrderValue");
-
   return (
     <>
       <Header />
       <div className="row">
         <div className="col-lg-7 mx-auto ms-auto">
-          <section className="container">
-            <div className="my-5">
-              <div className="aligntext">
-                <img
-                  src={checkmark}
-                  alt="checkmark"
-                  className="checkmarkicon"
-                />
-                <h4> Thank you</h4>
-                <h6> Your Order has Placed Successfully</h6>
-                <p>
-                  {" "}
-                  Please make the payment of ₹ {totalOrderValue} using the links
-                  below. Once the payment is done, Please inform us throught
-                  phone or whatsapp at{" "}
-                  <a href="https://wa.me/917358008404" target="_blank">
-                    +91 73580 08404
-                  </a>
-                </p>
-              </div>
-            </div>
-          </section>
           <section className="container">
             <div className="my-5">
               <div className="aligntext">
@@ -122,4 +96,4 @@ const Thankyou = () => {
   );
 };
 
-export default Thankyou;
+export default Payment;

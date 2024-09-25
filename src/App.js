@@ -40,6 +40,7 @@ import ForgetPassword from "./components/ForgetPassword";
 import UserOrder from "./components/User/UserOrder";
 import UserProfile from "./components/User/UserProfile";
 import Thankyou from "./components/Thankyou";
+import Payment from "./components/Payment";
 
 const PrivateRoute = ({ children }) => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -85,6 +86,7 @@ function App() {
         <Route exact path="/Cart" element={<Cart />} />
         <Route exact path="/Checkout" element={<Checkout />} />
         <Route exact path="/Thankyou" element={<Thankyou />} />
+        <Route exact path="/Payment" element={<Payment />} />
         <Route
           exact
           path="/UserProfile"

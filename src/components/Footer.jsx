@@ -184,7 +184,10 @@ const Footer = () => {
                 </li>
 
                 <li>
-                  <Link className="nav-item nav-link footerlinktitle" to="">
+                  <Link
+                    className="nav-item nav-link footerlinktitle"
+                    to="/Payment"
+                  >
                     ⮞&nbsp; Payment Details
                   </Link>
                 </li>
