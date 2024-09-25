@@ -39,8 +39,8 @@
     font-size: 10px;
   }
   .crackerlooking {
-    height: 9vh;
-    margin-bottom: 105%;
+    height: 75vh;
+    margin-bottom: 10%;
   }
   .lookingicon {
     width: 30%;
@@ -127,17 +127,20 @@
     font-size: 39px;
   }
   .iconcolor {
-    font-size: 30px;
+    font-size: 28px;
   }
   .contactboxwhite {
     margin-top: 5%;
     padding: 5px;
   }
   .contactbgbox {
-    height: 100vh !important;
+    height: 130vh !important;
   }
   .contactboxpara {
     font-size: 15px;
+  }
+  .cartrightsidedisplay {
+    display: block;
   }
 }
 

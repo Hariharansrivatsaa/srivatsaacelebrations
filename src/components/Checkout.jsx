@@ -37,7 +37,9 @@ const Checkout = () => {
       </section>
       <section className="container">
         <div className="row">
-          <div className="col-lg-6 mx-auto ms-auto"></div>
+          <div className="col-lg-6 mx-auto ms-auto">
+            
+          </div>
         </div>
       </section>
       <Footer />
