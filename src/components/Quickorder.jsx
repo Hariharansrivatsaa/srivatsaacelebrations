@@ -191,7 +191,7 @@ const Quickorder = () => {
                       <Link to="/cart">
                         <button
                           className="checkoutbtn"
-                          onClick={handleCheckout}
+                          // onClick={handleCheckout}
                         >
                           My Cart
                         </button>
