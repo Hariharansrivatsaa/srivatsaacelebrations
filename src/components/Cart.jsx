@@ -101,30 +101,39 @@ const Cart = () => {
     const orderDetails = Object.entries(newCheckoutEntry)[0];
     const [orderDate, items] = orderDetails;
 
+    const productDetails = items
+      .filter((item) => item.product_code)
+      .map(
+        (item) => `
+  Product Name: ${item.product_name}
+  Product Code: ${item.product_code}
+  Quantity: ${item.quantity}
+  Total: ₹${item.Total.toFixed(2)}`
+      )
+      .join("\n");
+
+    const summaryDetails = items
+      .filter((item) => typeof item === "object" && !Array.isArray(item))
+      .map((item) => {
+        const [key, value] = Object.entries(item)[0];
+        return `${key}: ${value}`;
+      })
+      .join("\n");
+
     const message = `
-New Order (${orderDate}):
-
-Customer Details:
-Username: ${userData.username}
-Phone: ${userData.phone}
-Location: ${userData.location}
-
-Order Details:
-${items
-  .map((item) => {
-    if (item.product_code) {
-      return `
-Product Code: ${item.product_code}
-Quantity: ${item.quantity}
-Total: ₹${item.Total.toFixed(2)}`;
-    } else if (typeof item === "object" && !Array.isArray(item)) {
-      const [key, value] = Object.entries(item)[0];
-      return `${key}: ${value}`;
-    }
-  })
-  .filter(Boolean)
-  .join("\n")}
-`;
+  New Order (${orderDate}):
+  
+  Customer Details:
+  Username: ${userData.username}
+  Phone: ${userData.phone}
+  Location: ${userData.location}
+  
+  Order Details:
+  ${productDetails}
+  
+  Order Summary:
+  ${summaryDetails}
+  `;
 
     const params = new URLSearchParams({
       chat_id: chatId,
@@ -177,6 +186,7 @@ Total: ₹${item.Total.toFixed(2)}`;
           hour12: true,
         })]: Object.entries(quantities)
           .map(([product_code, item]) => ({
+            product_name: item.product_name,
             product_code,
             quantity: item.quantity,
             Total: item.our_price * item.quantity,
