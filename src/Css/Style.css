@@ -1028,3 +1028,43 @@ body {
   color: #228acd;
   font-weight: 700;
 }
+.routelogin {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: #d0541e;
+  color: #ffffff;
+  border: none;
+  font-size: 18px;
+}
+.routelogin:hover {
+  border: 1px solid #d0541e;
+  color: #d0541e;
+  background: transparent;
+}
+.checkoutpage {
+  font-size: 20px;
+}
+.checkoutpagecolour {
+  color: #d0541e;
+}
+.checkmarkicon {
+  width: 7%;
+}
+.image-row {
+  display: flex;
+  justify-content: space-between; /* Adjusts the space between the images */
+}
+.paymenticon {
+  width: 13%;
+}
+.bankupi {
+  width: 30%;
+}
+.paymentbox {
+  border: 1px solid #d0541e;
+  border-radius: 10px;
+  padding: 10px;
+}
+.bankicon {
+  width: 50%;
+}
