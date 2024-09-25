@@ -3,8 +3,9 @@ import Header from "./Header";
 import Footer from "./Footer";
 import bag from "../Assets/Gif/bag.gif";
 import lock from "../Assets/Icon/lock.webp";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { supabase } from "../supabaseClient";
 
 const Cart = () => {
   const [quantities, setQuantities] = useState({});
@@ -13,6 +14,10 @@ const Cart = () => {
   const [currentOrderValue, setCurrentOrderValue] = useState(0);
   const [minimumOrderValue, setMinimumOrderValue] = useState(2499);
   const allowedCodes = ["sana couples", "pondy couples", "sago couples"];
+  const navigate = useNavigate();
+
+  const botToken = "7077221858:AAHk9lh5chm4IJ445d9L71qsywzqE6nEzBg";
+  const chatId = "-1002187790078";
 
   useEffect(() => {
     const storedQuantities = localStorage.getItem("quantities");
@@ -85,6 +90,150 @@ const Cart = () => {
       Swal.fire({
         title: "Error!",
         text: "Invalid promo code. Please try again.",
+        icon: "error",
+      });
+    }
+  };
+
+  const sendTelegramMessage = async (newCheckoutEntry, userData) => {
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+    const orderDetails = Object.entries(newCheckoutEntry)[0];
+    const [orderDate, items] = orderDetails;
+
+    const productDetails = items
+      .filter((item) => item.product_code)
+      .map(
+        (item) => `
+  Product Name: ${item.product_name}
+  Product Code: ${item.product_code}
+  Quantity: ${item.quantity}
+  Total: ₹${item.Total.toFixed(2)}`
+      )
+      .join("\n");
+
+    const summaryDetails = items
+      .filter((item) => typeof item === "object" && !Array.isArray(item))
+      .map((item) => {
+        const [key, value] = Object.entries(item)[0];
+        return `${key}: ${value}`;
+      })
+      .join("\n");
+
+    const message = `
+  New Order (${orderDate}):
+  
+  Customer Details:
+  Username: ${userData.username}
+  Phone: ${userData.phone}
+  Location: ${userData.location}
+  
+  Order Details:
+  ${productDetails}
+  
+  Order Summary:
+  ${summaryDetails}
+  `;
+
+    const params = new URLSearchParams({
+      chat_id: chatId,
+      text: message,
+      parse_mode: "HTML",
+    });
+
+    try {
+      const response = await fetch(`${url}?${params}`);
+      if (!response.ok) {
+        throw new Error("Failed to send message to Telegram");
+      }
+      console.log("Message sent to Telegram successfully");
+    } catch (error) {
+      console.error("Error sending message to Telegram:", error);
+      // Handle error (you might want to show an alert to the user)
+    }
+  };
+
+  const handleCheckout = async () => {
+    const userId = sessionStorage.getItem("userId");
+    if (!userId) {
+      Swal.fire({
+        title: "Error!",
+        text: "You must be logged in to checkout.",
+        icon: "error",
+      });
+      navigate("/login");
+      return;
+    }
+
+    try {
+      // Fetch current user data
+      const { data: user, error: fetchError } = await supabase
+        .from("users")
+        .select("checkout, username, phone, location")
+        .eq("id", userId)
+        .single();
+
+      if (fetchError) throw fetchError;
+
+      // Prepare new checkout entry
+      const newCheckoutEntry = {
+        [new Date().toLocaleString("en-US", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        })]: Object.entries(quantities)
+          .map(([product_code, item]) => ({
+            product_name: item.product_name,
+            product_code,
+            quantity: item.quantity,
+            Total: item.our_price * item.quantity,
+          }))
+          .concat([
+            { "Total Items": totalProducts },
+            { "Total Amount": currentOrderValue },
+            { "Estimated Total": Math.round(currentOrderValue * 1.025) },
+          ]),
+      };
+
+      // Update checkout array
+      const updatedCheckout = [...(user.checkout || []), newCheckoutEntry];
+
+      // Update user's checkout field
+      const { error: updateError } = await supabase
+        .from("users")
+        .update({ checkout: updatedCheckout })
+        .eq("id", userId);
+
+      if (updateError) throw updateError;
+
+      // Send Telegram message
+      await sendTelegramMessage(newCheckoutEntry, {
+        username: user.username,
+        phone: user.phone,
+        location: user.location,
+      });
+
+      Swal.fire({
+        title: "Success!",
+        text: "Your order has been placed successfully!",
+        icon: "success",
+      });
+
+      // Clear cart
+      localStorage.removeItem("quantities");
+      setQuantities({});
+      calculateTotals({});
+
+      // Navigate to order confirmation page
+      navigate("/Checkout");
+    } catch (error) {
+      console.error("Error during checkout:", error);
+      Swal.fire({
+        title: "Error!",
+        text: "There was an error processing your order. Please try again.",
         icon: "error",
       });
     }
@@ -252,7 +401,11 @@ const Cart = () => {
             </div>
             <div className="my-5">
               <Link to="/Checkout">
-                <button className="checkbtn" disabled={!isCheckoutEnabled}>
+                <button
+                  className="checkbtn"
+                  disabled={!isCheckoutEnabled}
+                  onClick={handleCheckout}
+                >
                   <img src={lock} alt="lock" className="btnicon" />
                   Checkout
                 </button>
