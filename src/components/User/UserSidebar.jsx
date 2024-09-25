@@ -63,7 +63,7 @@ const UserSidebar = () => {
                 </h6>
               </div>
             </Link>
-            <Link to="/AdminCategory">
+            <Link to="/UserOrder">
               <div
                 className="sidebaritem"
                 onMouseEnter={() => handleMouseEnter("order")}
@@ -83,7 +83,7 @@ const UserSidebar = () => {
                 </h6>
               </div>
             </Link>
-            <Link to="/AdminCategory">
+            {/* <Link to="/UserOrder">
               <div
                 className="sidebaritem"
                 onMouseEnter={() => handleMouseEnter("invoice")}
@@ -102,28 +102,30 @@ const UserSidebar = () => {
                   Invoices
                 </h6>
               </div>
-            </Link>
+            </Link> */}
           </div>
           <div>
             <h6 className="sidebarheading">Users</h6>
-            <div
-              className="sidebaritem"
-              onMouseEnter={() => handleMouseEnter("profile")}
-              onMouseLeave={() => handleMouseLeave("profile")}
-            >
-              <img
-                src={hoveredItems.profile ? profilehover : profile}
-                alt="profile"
-                className="sidebaricon"
-              />
-              <h6
-                className={`sidebarheadingtitle ${
-                  hoveredItems.profile ? "hovered" : ""
-                }`}
+            <Link to="/UserProfile">
+              <div
+                className="sidebaritem"
+                onMouseEnter={() => handleMouseEnter("profile")}
+                onMouseLeave={() => handleMouseLeave("profile")}
               >
-                Profile
-              </h6>
-            </div>
+                <img
+                  src={hoveredItems.profile ? profilehover : profile}
+                  alt="profile"
+                  className="sidebaricon"
+                />
+                <h6
+                  className={`sidebarheadingtitle ${
+                    hoveredItems.profile ? "hovered" : ""
+                  }`}
+                >
+                  Profile
+                </h6>
+              </div>
+            </Link>
           </div>
         </section>
       </div>

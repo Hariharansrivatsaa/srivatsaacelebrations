@@ -252,6 +252,7 @@ const Cart = () => {
         <div className="alignmentdisplay">
           <h6 className="mt-2"> Delivery To :</h6>
           <select className="selectinput" onChange={handleSelectChange}>
+            <option>Select</option>
             <option value="insideTN">Inside Tamil Nadu</option>
             <option value="outsideTN">Outside Tamil Nadu</option>
           </select>
@@ -263,14 +264,14 @@ const Cart = () => {
             <div className="cartline"></div>
             {Object.values(quantities).map((item) => (
               <div className="row my-4" key={item.product_code}>
-                <div className="col-lg-2">
+                <div className="col-lg-2 col-md-2 col-sm-2 col-4">
                   <img
                     src={`https://ndabevturhrddprzhkcb.supabase.co/storage/v1/object/public/Images/${item.image_url}`}
                     alt={item.product_name}
                     className="cartimage"
                   />
                 </div>
-                <div className="col-lg-4">
+                <div className="col-lg-4 col-md-4 col-sm-4 col-8">
                   <div className="cartalignment">
                     <h6 className="cartimagetitle">{item.product_name}</h6>
                     <h6 className="cartimagesubtitle">
@@ -285,11 +286,11 @@ const Cart = () => {
                     </h6>
                   </div>
                 </div>
-                <div className="col-lg-2">
+                <div className="col-lg-2 col-md-2 col-sm-2 col-4">
                   <h6 className="cartimagesidetitle">Price</h6>
                   <h6 className="cartimagetitle1">₹{item.our_price}</h6>
                 </div>
-                <div className="col-lg-2">
+                <div className="col-lg-2 col-md-2 col-sm-2 col-4">
                   <h6 className="cartimagesidetitle">Quantity</h6>
                   <div className="d-flex align-items-center">
                     <button
@@ -307,7 +308,7 @@ const Cart = () => {
                     </button>
                   </div>
                 </div>
-                <div className="col-lg-2">
+                <div className="col-lg-2 col-md-2 col-sm-2 col-4">
                   <h6 className="cartimagesidetitle">Total</h6>
                   <h6 className="cartimagetitle1">
                     ₹{(item.our_price * item.quantity).toFixed(2)}
@@ -318,15 +319,15 @@ const Cart = () => {
             ))}
 
             <div className="row">
-              <div className="col-lg-2"></div>
-              <div className="col-lg-4">
+              <div className="col-lg-2 col-md-2 col-sm-2 col-1"></div>
+              <div className="col-lg-4 col-md-4 col-sm-4 col-4">
                 <div className="cartalignment">
                   <h6 className="cartimagetitle">{totalProducts} Items</h6>
                 </div>
               </div>
-              <div className="col-lg-2"></div>
-              <div className="col-lg-2"></div>
-              <div className="col-lg-2">
+              <div className="col-lg-2 col-md-2 col-sm-2 col-2"></div>
+              <div className="col-lg-2 col-md-2 col-sm-2 col-2"></div>
+              <div className="col-lg-2 col-md-2 col-sm-2 col-2">
                 <h6 className="cartimagetitle1">₹{currentOrderValue}</h6>
               </div>
             </div>

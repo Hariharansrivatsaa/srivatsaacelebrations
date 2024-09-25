@@ -1,9 +1,99 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import partner from "../Assets/Images/partner.webp";
 import Header from "./Header";
 import Footer from "./Footer";
+import Swal from "sweetalert2";
 
 const ChannelPartner = () => {
+  const [loading, setLoading] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [create, SetCreate] = useState({});
+  const [validation, setValidation] = useState({});
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const CheckValidation = () => {
+    let Status = true,
+      validdateData = {};
+    if (!create.Name) {
+      validdateData.Name = "Name is Required";
+      Status = false;
+    }
+    if (!create.Number) {
+      validdateData.Number = "Number is Required";
+      Status = false;
+    } else if (create.Number.length !== 10) {
+      validdateData.Number = "Invalid Number";
+      Status = false;
+    }
+    if (!create.Email) {
+      validdateData.Email = "Email is Required";
+      Status = false;
+    }
+    setValidation({ ...validation, ...validdateData });
+    return Status;
+  };
+
+  const setData = (e, key) => {
+    SetCreate({ ...create, [key]: e });
+    if (validation[key]) setValidation({ ...validation, [key]: false });
+  };
+
+  const handleSubmit = (e) => {
+    setLoading(true);
+    e.preventDefault();
+
+    if (CheckValidation()) {
+      const formEle = document.querySelector("form");
+      const formDatab = new FormData(formEle);
+
+      fetch(
+        "https://sheet.best/api/sheets/00705f78-8aeb-4a85-8550-9fcd16dc6451",
+        {
+          method: "POST",
+          body: formDatab,
+        }
+      )
+        .then((res) => {
+          setLoading(false);
+
+          // Show success message with SweetAlert
+          Swal.fire({
+            title: "Success!",
+            text: "Request submitted successfully, Our Team Will Reach You Soon.",
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+
+          // Clear form data after successful submission
+          formEle.reset();
+
+          // Optionally reset any form state
+          setButtonDisabled(false); // Enable the button again
+        })
+        .catch((error) => {
+          setLoading(false);
+          setButtonDisabled(true); // Disable button on error
+
+          // Show error message with SweetAlert
+          Swal.fire({
+            title: "Error!",
+            text: "Something went wrong. Please try again.",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+        });
+    } else {
+      setLoading(false);
+    }
+  };
+
+  const handleWheel = (e) => {
+    e.target.blur();
+  };
+
   return (
     <>
       <Header />
@@ -14,50 +104,86 @@ const ChannelPartner = () => {
               <img src={partner} alt="Partner" className="chitimage" />
             </div>
             <div className="col-lg-4">
-              <h4 className="founderparaspan"> REGISTER HERE </h4>
-              <div>
-                <label className="labeltext">Full Name</label>
-                <input
-                  type="text"
-                  placeholder="Enter Full Name"
-                  className="fieldinput"
-                />
-              </div>
-              <div>
-                <label className="labeltext">Phone Number</label>
-                <input
-                  type="text"
-                  placeholder="Enter Phone Number"
-                  className="fieldinput"
-                />
-              </div>
-              <div>
-                <label className="labeltext">Email Id</label>
-                <input
-                  type="email"
-                  placeholder="Enter Email Id"
-                  className="fieldinput"
-                />
-              </div>
-              <div>
+              <form onSubmit={(e) => handleSubmit(e)}>
+                <h4 className="founderparaspan"> REGISTER HERE </h4>
+                <div>
+                  <label className="labeltext">Full Name</label>
+                  <input
+                    type="text"
+                    placeholder="Enter Full Name"
+                    className="fieldinput"
+                    name="Name"
+                    onChange={(e) => {
+                      setData(e.target.value, "Name");
+                    }}
+                  />
+                  {validation.Name && (
+                    <p className="validationmsg">{validation.Name}</p>
+                  )}
+                </div>
+                <div>
+                  <label className="labeltext">Phone Number</label>
+                  <input
+                    type="number"
+                    placeholder="Enter Phone Number"
+                    className="fieldinput"
+                    name="Number"
+                    onChange={(e) => {
+                      setData(e.target.value, "Number");
+                    }}
+                    min="0"
+                    onWheel={handleWheel} // Prevent scroll from changing the value
+                  />
+                  {validation.Number && (
+                    <p className="validationmsg">{validation.Number}</p>
+                  )}
+                </div>
+                <div>
+                  <label className="labeltext">Email Id</label>
+                  <input
+                    type="email"
+                    placeholder="Enter Email Id"
+                    className="fieldinput"
+                    name="Email"
+                    onChange={(e) => {
+                      setData(e.target.value, "Email");
+                    }}
+                  />
+                  {validation.Email && (
+                    <p className="validationmsg">{validation.Email}</p>
+                  )}
+                </div>
+                {/* <div>
                 <label className="labeltext">Password</label>
                 <input
                   type="password"
                   placeholder="Enter Password"
                   className="fieldinput"
                 />
-              </div>
-              <div>
+              </div> */}
+                {/* <div>
                 <label className="labeltext">Confirm Password</label>
                 <input
                   type="password"
                   placeholder="Enter Confirm Password"
                   className="fieldinput"
                 />
-              </div>
-              <div>
-                <button className="button">Register</button>
-              </div>
+              </div> */}
+                <div>
+                  <button
+                    type="submit"
+                    className="button"
+                    disabled={buttonDisabled || loading}
+                  >
+                    Register
+                    {loading ? (
+                      <i class="fa fa-circle-o-notch fa-spin"></i>
+                    ) : (
+                      ""
+                    )}
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

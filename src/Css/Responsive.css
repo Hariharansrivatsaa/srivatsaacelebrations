@@ -61,6 +61,9 @@
   .countname {
     font-size: 11px;
   }
+  .footer {
+    padding: 20px;
+  }
   .socialicon {
     width: 15%;
     margin-right: 18%;
@@ -73,6 +76,68 @@
   }
   .rightstext {
     font-size: 12px;
+  }
+  .pagination {
+    overflow-x: auto; /* Allow horizontal scrolling on smaller screens */
+    white-space: nowrap;
+    gap: 0; /* Remove gap on smaller screens */
+    padding: 0 5px; /* Add some padding for mobile */
+  }
+  .pagination button {
+    flex: 1 0 auto; /* Ensure buttons can shrink/grow appropriately */
+    margin: 0 2px; /* Small gap between buttons */
+  }
+  table {
+    min-width: 600px; /* Set a minimum width to ensure the table scrolls */
+  }
+  .login-bg {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 35%;
+    margin-left: 0;
+  }
+  .loginbg {
+    background-image: url("../Assets/Bg/loginbg.webp");
+    height: 100vh; /* Maintain full height */
+    background-size: cover; /* Keep the cover for a good visual */
+  }
+  .signup-bg {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 5%;
+    margin-left: 0%;
+  }
+  .otpinput {
+    margin-left: 5% !important;
+    width: 2rem !important;
+    gap: 10px !important;
+    margin-bottom: 5% !important;
+  }
+  .chitimage {
+    height: 25vh;
+  }
+  .founderparaspan {
+    margin-top: 10%;
+  }
+  .centered {
+    font-size: 39px;
+  }
+  .iconcolor {
+    font-size: 30px;
+  }
+  .contactboxwhite {
+    margin-top: 5%;
+    padding: 5px;
+  }
+  .contactbgbox {
+    height: 100vh !important;
+  }
+  .contactboxpara {
+    font-size: 15px;
   }
 }
 

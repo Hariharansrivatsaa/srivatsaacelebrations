@@ -1,11 +1,108 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import chit from "../Assets/Banner/chit.webp";
 import Header from "./Header";
 import Footer from "./Footer";
+import "react-phone-input-2/lib/style.css";
+import Swal from "sweetalert2";
+
 const Chit = () => {
+  const [loading, setLoading] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [create, SetCreate] = useState({});
+  const [validation, setValidation] = useState({});
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const CheckValidation = () => {
+    let Status = true,
+      validdateData = {};
+    if (!create.Scheme) {
+      validdateData.Scheme = "Scheme Type is Required";
+      Status = false;
+    }
+    if (!create.Name) {
+      validdateData.Name = "Name is Required";
+      Status = false;
+    }
+    if (!create.Number) {
+      validdateData.Number = "Number is Required";
+      Status = false;
+    } else if (create.Number.length !== 10) {
+      validdateData.Number = "Invalid Number";
+      Status = false;
+    }
+    if (!create.Email) {
+      validdateData.Email = "Email is Required";
+      Status = false;
+    }
+    if (!create.Location) {
+      validdateData.Location = "Location is Required";
+      Status = false;
+    }
+    setValidation({ ...validation, ...validdateData });
+    return Status;
+  };
+
+  const setData = (e, key) => {
+    SetCreate({ ...create, [key]: e });
+    if (validation[key]) setValidation({ ...validation, [key]: false });
+  };
+
+  const handleSubmit = (e) => {
+    setLoading(true);
+    e.preventDefault();
+
+    if (CheckValidation()) {
+      const formEle = document.querySelector("form");
+      const formDatab = new FormData(formEle);
+
+      fetch(
+        "https://sheet.best/api/sheets/54a40779-bc91-430c-ae01-47aec551e03b",
+        {
+          method: "POST",
+          body: formDatab,
+        }
+      )
+        .then((res) => {
+          setLoading(false);
+
+          // Show success message with SweetAlert
+          Swal.fire({
+            title: "Success!",
+            text: "Your form has been submitted successfully, Our Team Will Reach You Soon.",
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+
+          // Clear form data after successful submission
+          formEle.reset();
+
+          // Optionally reset any form state
+          setButtonDisabled(false); // Enable the button again
+        })
+        .catch((error) => {
+          setLoading(false);
+          setButtonDisabled(true); // Disable button on error
+
+          // Show error message with SweetAlert
+          Swal.fire({
+            title: "Error!",
+            text: "There was an issue submitting your form. Please try again.",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+        });
+    } else {
+      setLoading(false);
+    }
+  };
+
+  const handleWheel = (e) => {
+    e.target.blur();
+  };
+
   return (
     <>
       <Header />
@@ -16,56 +113,108 @@ const Chit = () => {
               <img src={chit} alt="chit" className="chitimage" />
             </div>
             <div className="col-lg-4">
-              <h4 className="founderparaspan"> ENQUIRY NOW </h4>
-              <div>
-                <label className="labeltext">Scheme Type</label>
-                <select className="fieldinput">
-                  <option value="">Select Option</option>
-                  <option value="500">Rs.500 Per Month</option>
-                  <option value="650">Rs.650 Per Month</option>
-                  <option value="750">Rs.750 Per Month</option>
-                  <option value="1000">Rs.1000 Per Month</option>
-                  <option value="1250">Rs.1250 Per Month</option>
-                  <option value="1500">Rs.1500 Per Month</option>
-                  <option value="2000">Rs.2000 Per Month</option>
-                  <option value="2500">Rs.2500 Per Month</option>
-                </select>
-              </div>
-              <div>
-                <label className="labeltext">Full Name</label>
-                <input
-                  type="text"
-                  placeholder="Enter Full Name"
-                  className="fieldinput"
-                />
-              </div>
-              <div>
-                <label className="labeltext">Phone Number</label>
-                <input
-                  type="text"
-                  placeholder="Enter Phone Number"
-                  className="fieldinput"
-                />
-              </div>
-              <div>
-                <label className="labeltext">Email Id</label>
-                <input
-                  type="email"
-                  placeholder="Enter Email Id"
-                  className="fieldinput"
-                />
-              </div>
-              <div>
-                <label className="labeltext">Location</label>
-                <input
-                  type="text"
-                  placeholder="Enter Location"
-                  className="fieldinput"
-                />
-              </div>
-              <div>
-                <button className="button">Enquiry</button>
-              </div>
+              <form onSubmit={(e) => handleSubmit(e)}>
+                <h4 className="founderparaspan"> ENQUIRY NOW </h4>
+                <div>
+                  <label className="labeltext">Scheme Type</label>
+                  <select
+                    className="fieldinput"
+                    name="Scheme"
+                    onChange={(e) => {
+                      setData(e.target.value, "Scheme");
+                    }}
+                  >
+                    <option value="">Select Option</option>
+                    <option value="500">Rs.500 Per Month</option>
+                    <option value="650">Rs.650 Per Month</option>
+                    <option value="750">Rs.750 Per Month</option>
+                    <option value="1000">Rs.1000 Per Month</option>
+                    <option value="1250">Rs.1250 Per Month</option>
+                    <option value="1500">Rs.1500 Per Month</option>
+                    <option value="2000">Rs.2000 Per Month</option>
+                    <option value="2500">Rs.2500 Per Month</option>
+                  </select>
+                  {validation.Scheme && (
+                    <p className="validationmsg">{validation.Scheme}</p>
+                  )}
+                </div>
+                <div>
+                  <label className="labeltext">Full Name</label>
+                  <input
+                    type="text"
+                    placeholder="Enter Full Name"
+                    className="fieldinput"
+                    name="Name"
+                    onChange={(e) => {
+                      setData(e.target.value, "Name");
+                    }}
+                  />
+                  {validation.Name && (
+                    <p className="validationmsg">{validation.Name}</p>
+                  )}
+                </div>
+                <div>
+                  <label className="labeltext">Phone Number</label>
+                  <input
+                    type="Number"
+                    placeholder="Enter Mobile Number"
+                    className="fieldinput"
+                    name="Number"
+                    onChange={(e) => {
+                      setData(e.target.value, "Number");
+                    }}
+                    min="0"
+                    onWheel={handleWheel} // Prevent scroll from changing the value
+                  />
+                  {validation.Number && (
+                    <p className="validationmsg">{validation.Number}</p>
+                  )}
+                </div>
+                <div>
+                  <label className="labeltext">Email Id</label>
+                  <input
+                    type="text"
+                    placeholder="Enter Email Id"
+                    className="fieldinput"
+                    name="Email"
+                    onChange={(e) => {
+                      setData(e.target.value, "Email");
+                    }}
+                  />
+                  {validation.Email && (
+                    <p className="validationmsg">{validation.Email}</p>
+                  )}
+                </div>
+                <div>
+                  <label className="labeltext">Location</label>
+                  <input
+                    type="text"
+                    placeholder="Enter Location"
+                    className="fieldinput"
+                    name="Location"
+                    onChange={(e) => {
+                      setData(e.target.value, "Location");
+                    }}
+                  />
+                  {validation.Location && (
+                    <p className="validationmsg">{validation.Location}</p>
+                  )}
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    className="button"
+                    disabled={buttonDisabled || loading}
+                  >
+                    Enquiry Now
+                    {loading ? (
+                      <i class="fa fa-circle-o-notch fa-spin"></i>
+                    ) : (
+                      ""
+                    )}
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

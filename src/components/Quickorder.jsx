@@ -113,6 +113,68 @@ const Quickorder = () => {
     setTotalProducts(0);
     setTotalOrderValue(0);
   };
+
+  const handleCheckout = async () => {
+    // Retrieve userId from session storage
+    const userId = sessionStorage.getItem("userId");
+
+    if (!userId) {
+      Swal.fire("Error", "User not logged in", "error");
+      return;
+    }
+
+    // Filter products that have been added to the cart (quantity > 0)
+    const productsInCart = Object.keys(quantities)
+      .filter((productCode) => quantities[productCode].quantity > 0)
+      .map((productCode) => ({
+        product_code: productCode,
+      }));
+
+    if (productsInCart.length === 0) {
+      Swal.fire(
+        "Cart is empty",
+        "Please add products to your cart.",
+        "warning"
+      );
+      return;
+    }
+
+    try {
+      // Fetch the current user's data from the users table in Supabase
+      const { data: user, error: fetchError } = await supabase
+        .from("users")
+        .select("checkout")
+        .eq("id", userId)
+        .single();
+
+      if (fetchError) {
+        throw fetchError;
+      }
+
+      // Update the checkout field by appending new products
+      const updatedCheckout = [...(user.checkout || []), ...productsInCart];
+
+      const { error: updateError } = await supabase
+        .from("users")
+        .update({ checkout: updatedCheckout })
+        .eq("id", userId);
+
+      if (updateError) {
+        throw updateError;
+      }
+
+      // Redirect to the cart page
+      Swal.fire("Success", "Your cart has been updated!", "success").then(
+        () => {
+          window.location.href = "/cart";
+        }
+      );
+    } catch (error) {
+      console.error("Error updating checkout:", error.message);
+      Swal.fire("Error", "Failed to update checkout.", "error");
+    }
+  };
+
   return (
     <>
       <Header />
@@ -120,30 +182,37 @@ const Quickorder = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-9 ms-auto mx-auto">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Products: {totalProducts}</th>
-                    <th>Total Order: {totalOrderValue.toFixed(2)}</th>
-                    <th>
-                      <Link to="/cart">
-                        <button className="checkoutbtn">My Cart</button>
-                      </Link>
-                    </th>
-                    <th>
-                      <button className="resetbtn" onClick={handleReset}>
-                        Reset
-                      </button>
-                    </th>
-                  </tr>
-                </thead>
-              </table>
+              <div className="table-responsive">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Products: {totalProducts}</th>
+                      <th>Total Order: {totalOrderValue.toFixed(2)}</th>
+                      <th>
+                        <Link to="/cart">
+                          <button
+                            className="checkoutbtn"
+                            onClick={handleCheckout}
+                          >
+                            My Cart
+                          </button>
+                        </Link>
+                      </th>
+                      <th>
+                        <button className="resetbtn" onClick={handleReset}>
+                          Reset
+                        </button>
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </section>
       <section>
-        <div className="container">
+        <div className="container table-responsive">
           <table>
             <thead>
               <tr>
@@ -171,9 +240,11 @@ const Quickorder = () => {
                     const total = product.our_price * quantity;
                     return (
                       <tr key={product.id}>
-                        <td>{index + 1}</td>
-                        <td>{product.product_name}</td>
-                        <td>
+                        <td data-label="S.No">{index + 1}</td>
+                        <td data-label="Product Name">
+                          {product.product_name}
+                        </td>
+                        <td data-label="Product Image">
                           <img
                             src={`https://ndabevturhrddprzhkcb.supabase.co/storage/v1/object/public/Images/${product.image_url}`}
                             alt={product.product_name}
@@ -189,12 +260,12 @@ const Quickorder = () => {
                             }
                           />
                         </td>
-                        <td>{product.product_details}</td>
-                        <td>
+                        <td data-label="Content">{product.product_details}</td>
+                        <td data-label="Price ₹">
                           <del>{product.mrp}</del>
                         </td>
-                        <td>{product.our_price}</td>
-                        <td>
+                        <td data-label="Our Price ₹">{product.our_price}</td>
+                        <td data-label="Quantity">
                           <input
                             type="number"
                             value={quantity}
@@ -205,7 +276,7 @@ const Quickorder = () => {
                             onWheel={handleWheel} // Prevent scroll from changing the value
                           />
                         </td>
-                        <td>{total.toFixed(2)}</td>
+                        <td data-label="Total ₹">{total.toFixed(2)}</td>
                       </tr>
                     );
                   })}

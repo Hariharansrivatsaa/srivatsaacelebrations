@@ -18,16 +18,14 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import CountUp from "react-countup";
 import Header from "./Header";
 import Footer from "./Footer";
-import kuruvi from "../Assets/Products/kuruvi.webp";
-import chakkarspl from "../Assets/Products/chakkarspl.webp";
-import chakkardlx from "../Assets/Products/chakkardlx.webp";
-import fourlakshimi from "../Assets/Products/4lakshimi.webp";
-import twosound from "../Assets/Products/2sound.webp";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { supabase } from "../supabaseClient";
 
 const Home = () => {
   const [isInView, setIsInView] = useState(false);
   const ref = useRef();
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -49,6 +47,24 @@ const Home = () => {
         observer.unobserve(ref.current);
       }
     };
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      console.log("Fetching products...");
+      const { data, error } = await supabase.from("products").select("*");
+      if (error) {
+        throw error;
+      }
+      setProducts(data);
+    } catch (error) {
+      console.error("Error fetching products:", error.message);
+      Swal.fire("Error", "Failed to load products", "error");
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
   }, []);
 
   return (
@@ -181,95 +197,36 @@ const Home = () => {
                 },
               }}
             >
-              <div className="itemcard">
-                <div className="productcontain">
-                  <img src={kuruvi} alt="products" className="productimage" />
-                  <div class="cartmiddle">
-                    <Link to="/Quickorder">
-                      <div className="productcarttext">Purchase</div>
-                    </Link>
+              {products
+                .filter((product) => product.is_new_arrival) // Filter for new arrivals
+                .map((product) => (
+                  <div className="itemcard" key={product.id}>
+                    <div className="productcontain">
+                      <img
+                        src={`https://ndabevturhrddprzhkcb.supabase.co/storage/v1/object/public/Images/${product.image_url}`}
+                        alt={product.name}
+                        className="productimage"
+                      />
+                      <div className="cartmiddle">
+                        <Link to="/Quickorder">
+                          <div className="productcarttext">Purchase</div>
+                        </Link>
+                      </div>
+                      <div className="aligntext">
+                        <p>{product.product_name}</p>
+                        <p className="my-1">{product.product_details}</p>
+                        <p>
+                          <del className="deletetag"> ₹ {product.mrp} </del>
+                          &nbsp;
+                          <ins className="inserttag">
+                            {" "}
+                            ₹ {product.our_price}
+                          </ins>
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="aligntext">
-                    <p className="my-3">(1Pkt / 5Pcs)</p>
-                    <p>
-                      <del className="deletetag"> ₹ 40 </del> &nbsp;
-                      <ins className="inserttag"> ₹ 8</ins>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="itemcard">
-                <div className="productcontain">
-                  <img src={twosound} alt="products" className="productimage" />
-                  <div class="cartmiddle">
-                    <div class="productcarttext">Add to cart</div>
-                  </div>
-                  <div className="aligntext">
-                    <p className="my-3">(1Pkt / 5Pcs)</p>
-                    <p>
-                      <del className="deletetag"> ₹ 145 </del> &nbsp;
-                      <ins className="inserttag"> ₹ 29</ins>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="itemcard">
-                <div className="productcontain">
-                  <img
-                    src={chakkarspl}
-                    alt="products"
-                    className="productimage"
-                  />
-                  <div class="cartmiddle">
-                    <div class="productcarttext">Add to cart</div>
-                  </div>
-                  <div className="aligntext">
-                    <p className="my-3">(1Pkt / 5Pcs)</p>
-                    <p>
-                      <del className="deletetag"> ₹ 380 </del> &nbsp;
-                      <ins className="inserttag"> ₹ 76 </ins>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="itemcard">
-                <div className="productcontain">
-                  <img
-                    src={fourlakshimi}
-                    alt="products"
-                    className="productimage"
-                  />
-                  <div class="cartmiddle">
-                    <div class="productcarttext">Add to cart</div>
-                  </div>
-                  <div className="aligntext">
-                    <p className="my-3">(1Pkt / 5Pcs)</p>
-                    <p>
-                      <del className="deletetag"> ₹ 100 </del> &nbsp;
-                      <ins className="inserttag"> ₹ 20</ins>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="itemcard">
-                <div className="productcontain">
-                  <img
-                    src={chakkardlx}
-                    alt="products"
-                    className="productimage"
-                  />
-                  <div class="cartmiddle">
-                    <div class="productcarttext">Add to cart</div>
-                  </div>
-                  <div className="aligntext">
-                    <p className="my-3">(1Pkt / 5Pcs)</p>
-                    <p>
-                      <del className="deletetag"> ₹ 325 </del> &nbsp;
-                      <ins className="inserttag"> ₹ 125</ins>
-                    </p>
-                  </div>
-                </div>
-              </div>
+                ))}
             </OwlCarousel>
           </div>
         </div>
@@ -351,93 +308,30 @@ const Home = () => {
                 },
               }}
             >
-              <div className="itemcard">
-                <div className="productcontain">
-                  <img src={kuruvi} alt="products" className="productimage" />
-                  <div class="cartmiddle">
-                    <div class="productcarttext">Add to cart</div>
-                  </div>
-                  <div className="aligntext">
-                    <p className="my-3">(1Pkt / 5Pcs)</p>
-                    <p>
-                      <del className="deletetag"> ₹ 40 </del> &nbsp;
-                      <ins className="inserttag"> ₹ 8</ins>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="itemcard">
-                <div className="productcontain">
-                  <img src={twosound} alt="products" className="productimage" />
-                  <div class="cartmiddle">
-                    <div class="productcarttext">Add to cart</div>
-                  </div>
-                  <div className="aligntext">
-                    <p className="my-3">(1Pkt / 5Pcs)</p>
-                    <p>
-                      <del className="deletetag"> ₹ 145 </del> &nbsp;
-                      <ins className="inserttag"> ₹ 29</ins>
-                    </p>
+              {products.map((product) => (
+                <div className="itemcard" key={product.id}>
+                  <div className="productcontain">
+                    <img
+                      src={`https://ndabevturhrddprzhkcb.supabase.co/storage/v1/object/public/Images/${product.image_url}`}
+                      alt={product.name}
+                      className="productimage"
+                    />
+                    <div class="cartmiddle">
+                      <Link to="/Quickorder">
+                        <div className="productcarttext">Purchase</div>
+                      </Link>
+                    </div>
+                    <div className="aligntext">
+                      <p className="my-3">{product.product_details}</p>
+                      <p>
+                        <del className="deletetag"> ₹ {product.mrp} </del>{" "}
+                        &nbsp;
+                        <ins className="inserttag"> ₹ {product.our_price}</ins>
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="itemcard">
-                <div className="productcontain">
-                  <img
-                    src={chakkarspl}
-                    alt="products"
-                    className="productimage"
-                  />
-                  <div class="cartmiddle">
-                    <div class="productcarttext">Add to cart</div>
-                  </div>
-                  <div className="aligntext">
-                    <p className="my-3">(1Pkt / 5Pcs)</p>
-                    <p>
-                      <del className="deletetag"> ₹ 380 </del> &nbsp;
-                      <ins className="inserttag"> ₹ 76 </ins>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="itemcard">
-                <div className="productcontain">
-                  <img
-                    src={fourlakshimi}
-                    alt="products"
-                    className="productimage"
-                  />
-                  <div class="cartmiddle">
-                    <div class="productcarttext">Add to cart</div>
-                  </div>
-                  <div className="aligntext">
-                    <p className="my-3">(1Pkt / 5Pcs)</p>
-                    <p>
-                      <del className="deletetag"> ₹ 100 </del> &nbsp;
-                      <ins className="inserttag"> ₹ 20</ins>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="itemcard">
-                <div className="productcontain">
-                  <img
-                    src={chakkardlx}
-                    alt="products"
-                    className="productimage"
-                  />
-                  <div class="cartmiddle">
-                    <div class="productcarttext">Add to cart</div>
-                  </div>
-                  <div className="aligntext">
-                    <p className="my-3">(1Pkt / 5Pcs)</p>
-                    <p>
-                      <del className="deletetag"> ₹ 325 </del> &nbsp;
-                      <ins className="inserttag"> ₹ 125</ins>
-                    </p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </OwlCarousel>
           </div>
         </div>
@@ -489,10 +383,10 @@ const Home = () => {
           <div className="row">
             <div className="col-lg-11 col-md-11 col-sm-11 col-12 mx-auto ms-auto">
               <div className="row">
-                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
+                <div className="col-lg-6 col-md-6 col-sm-6 col-12">
                   <img src={add50} alt="banner" className="addbanner" />
                 </div>
-                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
+                <div className="col-lg-6 col-md-6 col-sm-6 col-12">
                   <img src={add70} alt="banner" className="addbanner" />
                 </div>
               </div>
