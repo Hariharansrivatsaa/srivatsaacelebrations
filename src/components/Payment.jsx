@@ -23,7 +23,6 @@ const Payment = () => {
             <div className="my-5">
               <div className="aligntext">
                 <p>
-                  {" "}
                   Your inquiry will be handled by our delivery team once we
                   receive your money. You can also pay by using Google Pay at{" "}
                   <span className="checkoutpagecolour">73971 48404</span>. If
