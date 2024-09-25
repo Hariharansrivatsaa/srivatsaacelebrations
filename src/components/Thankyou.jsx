@@ -24,7 +24,7 @@ const Thankyou = () => {
       <div className="row">
         <div className="col-lg-7 mx-auto ms-auto">
           <section className="container">
-            <div className="my-5">
+            <div className="my-3">
               <div className="aligntext">
                 <img
                   src={checkmark}
@@ -46,7 +46,7 @@ const Thankyou = () => {
             </div>
           </section>
           <section className="container">
-            <div className="my-5">
+            <div className="my-2">
               <div className="aligntext">
                 <p>
                   {" "}
@@ -83,7 +83,7 @@ const Thankyou = () => {
           </section>
           <section className="container">
             <div className="row">
-              <div className="col-lg-6">
+              <div className="col-lg-6 col-md-6 col-sm-12 col-12 my-3">
                 <div className="paymentbox">
                   <img src={icici} alt="icici" className="bankicon mb-4" />
                   <div>
@@ -98,7 +98,7 @@ const Thankyou = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-6">
+              <div className="col-lg-6 col-md-6 col-sm-12 col-12 my-3">
                 <div className="paymentbox">
                   <img src={cub} alt="cub" className="bankicon mb-4" />
                   <div>

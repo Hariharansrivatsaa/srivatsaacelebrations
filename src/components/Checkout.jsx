@@ -7,6 +7,9 @@ import Swal from "sweetalert2";
 import { supabase } from "../supabaseClient";
 
 const Checkout = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const [quantities, setQuantities] = useState({});
   const [totalProducts, setTotalProducts] = useState(0);

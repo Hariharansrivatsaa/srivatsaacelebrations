@@ -57,7 +57,7 @@ const Payment = () => {
           </section>
           <section className="container">
             <div className="row">
-              <div className="col-lg-6">
+              <div className="col-lg-6 col-md-6 col-sm-12 col-12 my-3">
                 <div className="paymentbox">
                   <img src={icici} alt="icici" className="bankicon mb-4" />
                   <div>
@@ -72,7 +72,7 @@ const Payment = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-6">
+              <div className="col-lg-6 col-md-6 col-sm-12 col-12 my-3">
                 <div className="paymentbox">
                   <img src={cub} alt="cub" className="bankicon mb-4" />
                   <div>
