@@ -8,13 +8,15 @@ import Swal from "sweetalert2";
 import { supabase } from "../supabaseClient";
 
 const Cart = () => {
+  const couponData = ["Sana24", "Pondy Couple24", "Sago24"];
+
   const [quantities, setQuantities] = useState({});
   const [totalProducts, setTotalProducts] = useState(0);
   const [totalMarketPrice, setTotalMarketPrice] = useState(0);
   const [currentOrderValue, setCurrentOrderValue] = useState(0);
   const [minimumOrderValue, setMinimumOrderValue] = useState(2499);
-  const allowedCodes = ["Sana24", "Pondy Couple24", "Sago24"];
-  
+  const [allowedCodes, setallowedCodes] = useState([couponData]);
+
   useEffect(() => {
     const storedQuantities = localStorage.getItem("quantities");
     if (storedQuantities) {
@@ -74,9 +76,10 @@ const Cart = () => {
 
   const handleSubmit = () => {
     const input = document.querySelector(".inputcode");
-    const code = input.value.trim().toLowerCase();
+    const code = input.value.trim();
 
-    if (allowedCodes.includes(code)) {
+    if (couponData.includes(code)) {
+      localStorage.setItem("couponCode", code);
       Swal.fire({
         title: "Success!",
         text: "Promo code applied successfully!",
@@ -85,14 +88,12 @@ const Cart = () => {
     } else {
       Swal.fire({
         title: "Error!",
-        text: "Invalid promo code. Please try again.",
+        text: "Invalid promo code. Please try again with a valid promo code.",
         icon: "error",
       });
     }
   };
 
-  
- 
   return (
     <>
       <Header />
@@ -201,6 +202,10 @@ const Cart = () => {
                 placeholder="Promo Code"
                 aria-label="Promo Code"
                 aria-describedby="button-addon2"
+                // value={allowedCodes}
+                onChange={(e) => {
+                  setallowedCodes(e.target.value);
+                }}
               />
               <button
                 className="inputcodebtn"

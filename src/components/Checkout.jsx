@@ -15,6 +15,8 @@ const Checkout = () => {
   const [totalProducts, setTotalProducts] = useState(0);
   const [totalMarketPrice, setTotalMarketPrice] = useState(0);
   const [currentOrderValue, setCurrentOrderValue] = useState(0);
+  const [userPromoCode, setUserPromoCode] = useState();
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -22,6 +24,9 @@ const Checkout = () => {
   const chatId = "-1002187790078";
 
   useEffect(() => {
+    const PromoCode = localStorage.getItem("couponCode");
+    setUserPromoCode(PromoCode);
+
     const storedQuantities = localStorage.getItem("quantities");
     if (storedQuantities) {
       const parsedQuantities = JSON.parse(storedQuantities);
@@ -51,39 +56,38 @@ const Checkout = () => {
     const orderDetails = Object.entries(newCheckoutEntry)[0];
     const [orderDate, items] = orderDetails;
 
-    const productDetails = items
-      .filter((item) => item.product_code)
-      .map(
-        (item) => `
-  Product Name: ${item.product_name}
-  Product Code: ${item.product_code}
-  Quantity: ${item.quantity}
-  Total: ₹${item.Total.toFixed(2)}`
-      )
-      .join("\n");
-
-    const summaryDetails = items
-      .filter((item) => typeof item === "object" && !Array.isArray(item))
-      .map((item) => {
-        const [key, value] = Object.entries(item)[0];
-        return `${key}: ${value}`;
-      })
-      .join("\n");
+    const couponCode = userPromoCode;
+    const totalItems = items.find((item) => item["Total Items"])["Total Items"];
+    const totalAmount = items.find((item) => item["Total Amount"])[
+      "Total Amount"
+    ];
+    const estimatedAmount = items.find((item) => item["Estimated Total"])[
+      "Estimated Total"
+    ];
 
     const message = `
-  New Order (${orderDate}):
+    
+  🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔🔔
+
+  New order! 🎉
+
+  Date : ${orderDate}
   
-  Customer Details:
-  Username: ${userData.username}
-  Phone: ${userData.phone}
-  Location: ${userData.location}
+  Received from ${userData.username} 
+  
+  Location - ${userData.location}
+  Contact No - ${userData.phone}
   
   Order Details:
-  ${productDetails}
-  
-  Order Summary:
-  ${summaryDetails}
-  `;
+  ---------------------
+  Coupon Code - ${couponCode}
+  Total Items - ${totalItems}
+  Estimated Amount - ₹${totalAmount.toFixed(2)}
+
+  Total Amount - ₹${estimatedAmount.toFixed(2)}
+
+
+    `;
 
     const params = new URLSearchParams({
       chat_id: chatId,
@@ -114,7 +118,7 @@ const Checkout = () => {
       navigate("/Login");
       return;
     }
-
+    setLoading(true);
     try {
       // Fetch current user data
       const { data: user, error: fetchError } = await supabase
@@ -142,6 +146,7 @@ const Checkout = () => {
             Total: item.our_price * item.quantity,
           }))
           .concat([
+            { "Promo Code": userPromoCode },
             { "Total Items": totalProducts },
             { "Total Amount": currentOrderValue },
             { "Estimated Total": Math.round(currentOrderValue * 1.025) },
@@ -174,6 +179,7 @@ const Checkout = () => {
 
       // Clear cart
       localStorage.removeItem("quantities");
+      localStorage.removeItem("couponCode");
       setQuantities({});
       calculateTotals({});
 
@@ -186,6 +192,8 @@ const Checkout = () => {
         text: "There was an error processing your order. Please try again.",
         icon: "error",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -243,8 +251,12 @@ const Checkout = () => {
                   </h6>
                 </div>
                 <div className="my-5">
-                  <button className="checkbtn" onClick={handleCheckout}>
-                    Confirm Order
+                  <button
+                    className="checkbtn"
+                    onClick={handleCheckout}
+                    disabled={loading} // Disable button when loadin
+                  >
+                    {loading ? "Processing..." : "Confirm Order"}
                   </button>
                 </div>
               </div>
