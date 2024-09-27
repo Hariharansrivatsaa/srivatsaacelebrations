@@ -142,7 +142,7 @@ const Adminsidebar = () => {
                 </h6>
               </div>
             </Link>
-            <Link to="/AdminCategory">
+            <Link to="">
               <div
                 className="sidebaritem"
                 onMouseEnter={() => handleMouseEnter("inv")}
@@ -162,7 +162,7 @@ const Adminsidebar = () => {
                 </h6>
               </div>
             </Link>
-            <Link to="/AdminCategory">
+            <Link to="/AdminOrder">
               <div
                 className="sidebaritem"
                 onMouseEnter={() => handleMouseEnter("order")}
@@ -182,7 +182,7 @@ const Adminsidebar = () => {
                 </h6>
               </div>
             </Link>
-            <Link to="/AdminCategory">
+            <Link to="">
               <div
                 className="sidebaritem"
                 onMouseEnter={() => handleMouseEnter("pur")}
@@ -199,26 +199,6 @@ const Adminsidebar = () => {
                   }`}
                 >
                   Purchases
-                </h6>
-              </div>
-            </Link>
-            <Link to="/AdminCategory">
-              <div
-                className="sidebaritem"
-                onMouseEnter={() => handleMouseEnter("invoice")}
-                onMouseLeave={() => handleMouseLeave("invoice")}
-              >
-                <img
-                  src={hoveredItems.invoice ? invoicehover : invoice}
-                  alt="invoice"
-                  className="sidebaricon"
-                />
-                <h6
-                  className={`sidebarheadingtitle ${
-                    hoveredItems.invoice ? "hovered" : ""
-                  }`}
-                >
-                  Invoices
                 </h6>
               </div>
             </Link>
@@ -243,7 +223,7 @@ const Adminsidebar = () => {
                 Profile
               </h6>
             </div>
-            <div
+            {/* <div
               className="sidebaritem"
               onMouseEnter={() => handleMouseEnter("role")}
               onMouseLeave={() => handleMouseLeave("role")}
@@ -260,7 +240,7 @@ const Adminsidebar = () => {
               >
                 Roles
               </h6>
-            </div>
+            </div> */}
             <div
               className="sidebaritem"
               onMouseEnter={() => handleMouseEnter("cus")}

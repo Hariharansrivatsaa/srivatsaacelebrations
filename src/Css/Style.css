@@ -1068,3 +1068,25 @@ body {
 .bankicon {
   width: 50%;
 }
+.orderedtext {
+  color: #d0541e;
+}
+.rotated {
+  display: inline-block;
+  transform: scaleX(-1);
+  color: #d0541e !important;
+}
+.viewbtn {
+  padding: 5px 20px;
+  /* width: 90%; */
+  background: #d0541e;
+  border-radius: 10px;
+  border: none;
+  /* margin-top: 5%; */
+  color: #fff;
+}
+.viewbtn:hover {
+  color: #d0541e;
+  border: 1px solid #d0541e;
+  background: transparent;
+}

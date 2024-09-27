@@ -30,6 +30,7 @@ import Adminsidebar from "./components/Admin/Adminsidebar";
 import AdminCategory from "./components/Admin/AdminCategory";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import AdminProduct from "./components/Admin/AdminProduct";
+import AdminOrder from "./components/Admin/AdminOrder";
 
 import { useAuthStore } from "./Store/useAuthStore";
 import { Navigate } from "react-router-dom";
@@ -41,6 +42,7 @@ import UserOrder from "./components/User/UserOrder";
 import UserProfile from "./components/User/UserProfile";
 import Thankyou from "./components/Thankyou";
 import Payment from "./components/Payment";
+import SpecificOrder from "./components/Admin/SpecificOrder";
 
 const PrivateRoute = ({ children }) => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -101,6 +103,8 @@ function App() {
         <Route exact path="/Adminsidebar" element={<Adminsidebar />} />
         <Route exact path="/AdminCategory" element={<AdminCategory />} />
         <Route exact path="/AdminProduct" element={<AdminProduct />} />
+        <Route exact path="/AdminOrder" element={<AdminOrder />} />
+        <Route exact path="/SpecificOrder/:id" element={<SpecificOrder />} />
         <Route exact path="/UserDashboard" element={<UserDashboard />} />
         <Route exact path="/UserOrder" element={<UserOrder />} />
       </Routes>
