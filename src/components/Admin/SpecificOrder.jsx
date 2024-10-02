@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Adminheader from "./Adminheader";
 import Adminsidebar from "./Adminsidebar";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
 import jsPDF from "jspdf";
 import "jspdf-autotable"; // Import jsPDF autotable for better table handling
-import logo from "../../Assets/Logo/Footerlogo.webp"; // Import the logo image
 
 const SpecificOrder = () => {
   const { id } = useParams(); // Get the order ID from the URL parameters
@@ -13,20 +12,22 @@ const SpecificOrder = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const navigate = useNavigate();
+
   const fetchOrders = async () => {
     setLoading(true);
     const { data, error } = await supabase
-      .from("users") // Change to your orders table name if different
+      .from("users")
       .select("*")
-      .eq("id", id); // Ensure you're filtering by the order ID
+      .eq("id", id);
 
     if (error) {
       console.error("Error fetching order:", error);
       setError(error);
     } else {
-      setOrderData(data[0]); // Assuming data is an array and we're interested in the first item
+      setOrderData(data[0]);
     }
-    setLoading(false); // Set loading to false once data is fetched
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -139,13 +140,16 @@ const SpecificOrder = () => {
                             </tr>
                           </tbody>
                         </table>
-                        {/* Download PDF Button below the table */}
-                        {/* <button
+                        <button
                           className="btn btn-primary my-3"
-                          onClick={() => downloadPDF(timestamp, products)}
+                          onClick={() =>
+                            navigate(`/SpecificOrderPdf`, {
+                              state: { timestamp, products },
+                            })
+                          }
                         >
-                          Download PDF for {timestamp}
-                        </button> */}
+                          View PDF for {timestamp}
+                        </button>
                       </div>
                     );
                   })}

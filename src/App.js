@@ -43,6 +43,7 @@ import UserProfile from "./components/User/UserProfile";
 import Thankyou from "./components/Thankyou";
 import Payment from "./components/Payment";
 import SpecificOrder from "./components/Admin/SpecificOrder";
+import SpecificOrderPdf from "./components/Admin/SpecificOrderPdf";
 
 const PrivateRoute = ({ children }) => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -105,6 +106,7 @@ function App() {
         <Route exact path="/AdminProduct" element={<AdminProduct />} />
         <Route exact path="/AdminOrder" element={<AdminOrder />} />
         <Route exact path="/SpecificOrder/:id" element={<SpecificOrder />} />
+        <Route exact path="/SpecificOrderPdf" element={<SpecificOrderPdf />} />
         <Route exact path="/UserDashboard" element={<UserDashboard />} />
         <Route exact path="/UserOrder" element={<UserOrder />} />
       </Routes>

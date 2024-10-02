@@ -1090,3 +1090,10 @@ body {
   border: 1px solid #d0541e;
   background: transparent;
 }
+.pdfbox {
+  border: 1px solid #d0541e;
+  padding: 10px;
+}
+.pdfheading {
+  text-align: center;
+}
