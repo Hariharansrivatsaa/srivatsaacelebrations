@@ -241,24 +241,26 @@ const Adminsidebar = () => {
                 Roles
               </h6>
             </div> */}
-            <div
-              className="sidebaritem"
-              onMouseEnter={() => handleMouseEnter("cus")}
-              onMouseLeave={() => handleMouseLeave("cus")}
-            >
-              <img
-                src={hoveredItems.cus ? customerhover : customer}
-                alt="customer"
-                className="sidebaricon"
-              />
-              <h6
-                className={`sidebarheadingtitle ${
-                  hoveredItems.cus ? "hovered" : ""
-                }`}
+            <Link to="/AdminCustomer">
+              <div
+                className="sidebaritem"
+                onMouseEnter={() => handleMouseEnter("cus")}
+                onMouseLeave={() => handleMouseLeave("cus")}
               >
-                Customers
-              </h6>
-            </div>
+                <img
+                  src={hoveredItems.cus ? customerhover : customer}
+                  alt="customer"
+                  className="sidebaricon"
+                />
+                <h6
+                  className={`sidebarheadingtitle ${
+                    hoveredItems.cus ? "hovered" : ""
+                  }`}
+                >
+                  Customers
+                </h6>
+              </div>
+            </Link>
           </div>
           <div>
             <h6 className="sidebarheading">Others</h6>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Adminheader from "./Adminheader";
 import Adminsidebar from "./Adminsidebar";
 import html2pdf from "html2pdf.js/dist/html2pdf.min";
@@ -34,6 +34,13 @@ const SpecificOrderPdf = () => {
             <Adminheader />
           </section>
           <section>
+            <h5 className="pagetitle my-4">
+              {" "}
+              <span class="rotated">
+                <Link to="/AdminOrder">➟</Link>
+              </span>{" "}
+              Order Details
+            </h5>
             <div className="container" id="order-pdf">
               <div className="pdfbox">
                 <h5 className="pdfheading">
