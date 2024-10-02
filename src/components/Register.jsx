@@ -23,11 +23,23 @@ const RegisterAndVerify = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
+      // Check for existing session and delete if found
+      try {
+        const session = await account.getSession("current");
+        if (session) {
+          await account.deleteSession("current");
+        }
+      } catch (sessionError) {
+        // If no session exists, this will throw an error, which we can ignore
+        console.log("No existing session found");
+      }
+
       // Create a phone token
       const response = await account.createPhoneToken(
         ID.unique(),
         `+91${phone}`
       );
+      console.log("userId", response.userId);
       setUserDataId(response.userId);
       Swal.fire({
         icon: "success",
@@ -61,18 +73,35 @@ const RegisterAndVerify = () => {
     setIsLoading(true);
     try {
       // Verify the OTP
+      console.log("userDataId", userDataId);
       await account.createSession(userDataId, otp);
       // If OTP verification is successful, proceed with user creation in Supabase
       await handleRegister();
     } catch (error) {
       console.error("Error verifying OTP:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Verification Failed",
-        text:
-          error.message ||
-          "Failed to verify OTP. Please try again or resend OTP.",
-      });
+      if (error.type === "user_session_already_exists") {
+        // If a session already exists, try to delete it and retry verification
+        try {
+          await account.deleteSession("current");
+          await account.createSession(userDataId, otp);
+          await handleRegister();
+        } catch (retryError) {
+          console.error("Error during retry:", retryError);
+          Swal.fire({
+            icon: "error",
+            title: "Verification Failed",
+            text: "An unexpected error occurred. Please try again later.",
+          });
+        }
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Verification Failed",
+          text:
+            error.message ||
+            "Failed to verify OTP. Please try again or resend OTP.",
+        });
+      }
     } finally {
       setIsLoading(false);
     }
