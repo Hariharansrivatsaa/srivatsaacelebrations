@@ -3,11 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import Adminheader from "./Adminheader";
 import Adminsidebar from "./Adminsidebar";
 import html2pdf from "html2pdf.js/dist/html2pdf.min";
-import logo from "../../Assets/Logo/Logo.webp";
 
 const SpecificOrderPdf = () => {
   const location = useLocation();
-  const { timestamp, products } = location.state || {};
+  const { timestamp, products, orderData } = location.state || {};
 
   const downloadPDF = () => {
     const element = document.getElementById("order-pdf");
@@ -70,8 +69,8 @@ const SpecificOrderPdf = () => {
               </div>
               <div className="pdfbox">
                 <h5>Customer Details</h5>
-                <p> Name : </p>
-                <p> Phone No : </p>
+                <p> Name : {orderData.username}</p>
+                <p> Phone No : {orderData.phone}</p>
               </div>
               <table className="my-5">
                 <thead>

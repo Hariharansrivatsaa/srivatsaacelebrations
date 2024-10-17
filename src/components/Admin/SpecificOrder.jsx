@@ -78,9 +78,21 @@ const SpecificOrder = () => {
 
                     return (
                       <div key={index}>
-                        <h5 className="orderedtext my-3">
-                          Ordered Date : {timestamp}
-                        </h5>
+                        <div className="cartrightsidedisplay">
+                          <div>
+                            <h5 className="orderedtext my-3">
+                              Customer Name : {orderData.username}
+                            </h5>
+                            <h5 className="orderedtext my-3">
+                              Customer Number : {orderData.phone}
+                            </h5>
+                          </div>
+                          <div>
+                            <h5 className="orderedtext my-3">
+                              Ordered Date : {timestamp}
+                            </h5>
+                          </div>
+                        </div>
                         <table className="my-5">
                           <thead>
                             <tr>
@@ -144,7 +156,7 @@ const SpecificOrder = () => {
                           className="btn btn-primary my-3"
                           onClick={() =>
                             navigate(`/SpecificOrderPdf`, {
-                              state: { timestamp, products },
+                              state: { timestamp, products, orderData },
                             })
                           }
                         >
