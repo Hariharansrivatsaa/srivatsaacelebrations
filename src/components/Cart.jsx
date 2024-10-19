@@ -14,7 +14,7 @@ const Cart = () => {
   const [totalProducts, setTotalProducts] = useState(0);
   const [totalMarketPrice, setTotalMarketPrice] = useState(0);
   const [currentOrderValue, setCurrentOrderValue] = useState(0);
-  const [minimumOrderValue, setMinimumOrderValue] = useState(2499);
+  const [minimumOrderValue, setMinimumOrderValue] = useState(199);
   const [allowedCodes, setallowedCodes] = useState([couponData]);
 
   useEffect(() => {
